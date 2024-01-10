@@ -60,14 +60,21 @@ public class PlayerStat : MonoBehaviour
         set { _speed = value; }
     }
     // 점프높이
-    [SerializeField] float _jump = 8.0f;
+    [SerializeField] float _jump = 15.0f;
     public float Jump
     {
         get { return _jump; }
         set { _jump = value; }
     }
+    // 점프 횟수
+    [SerializeField] int _jumpCount = 1;
+    public int JumpCount
+    {
+        get { return _jumpCount; }
+        set { _jumpCount = value; }
+    }
     // 중력
-    [SerializeField]float _gravity = -20.0f;
+    [SerializeField]float _gravity = -50.0f;
     public float Gravity
     {
         get { return _gravity; }
