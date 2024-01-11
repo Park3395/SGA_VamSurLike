@@ -11,10 +11,7 @@ public class PlayerMove : MonoBehaviour
     // 점프 상태 검사
     int jumpingCount = 0;
 
-    // 카메라 회전 속도
-    [SerializeField]
-    float rotSpeed = 200f;
-
+    // 화면 회전 각
     float mx = 0;
 
     void Start()
@@ -66,10 +63,10 @@ public class PlayerMove : MonoBehaviour
         cc.Move(dir * pStat.Speed * Time.deltaTime);
 
         #region rotate
-
+        
         float mouseX = Input.GetAxis("Mouse X");
 
-        mx += mouseX * rotSpeed * Time.deltaTime;
+        mx += mouseX * pStat.RotSpeed * Time.deltaTime;
         transform.eulerAngles = new Vector3(0, mx, 0);
 
         #endregion

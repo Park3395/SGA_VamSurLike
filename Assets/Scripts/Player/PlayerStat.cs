@@ -5,15 +5,15 @@ using UnityEngine;
 
 public class PlayerStat : MonoBehaviour
 {
-//// 플레이어 기본 스테이터스 
-#region Status Base
+    //// 플레이어 기본 스테이터스 
+    #region Status Base
 
     // 체력
     [SerializeField] int _nowHP = 100;
     public int NowHP
     {
         get { return _nowHP; }
-        set { _nowHP = value; } 
+        set { _nowHP = value; }
     }
     // 최대 체력
     [SerializeField] int _maxHP = 100;
@@ -74,12 +74,24 @@ public class PlayerStat : MonoBehaviour
         set { _jumpCount = value; }
     }
     // 중력
-    [SerializeField]float _gravity = -50.0f;
+    [SerializeField] float _gravity = -50.0f;
     public float Gravity
     {
         get { return _gravity; }
         set { _gravity = value; }
     }
 
-#endregion
+    #endregion
+
+    #region UI Status
+
+    // 카메라 회전 속도
+    [SerializeField]
+    float _rotSpeed = 200f;
+    public float RotSpeed
+    {
+        get{ return _rotSpeed; }
+        set{ _rotSpeed = value; }
+    }
+    #endregion
 }
