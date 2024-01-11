@@ -19,8 +19,6 @@ public class BeetleFSM : MonoBehaviour
 
     public float attackDistance = 0.01f;
 
-    CharacterController cc;
-
     Animator anim;
 
     Transform player;
@@ -31,8 +29,6 @@ public class BeetleFSM : MonoBehaviour
         e_State = BeetleState.Spawn;
 
         player = GameObject.Find("Player").transform;
-
-        cc = GetComponent<CharacterController>();
 
         anim = GetComponent<Animator>();
     }
@@ -63,26 +59,29 @@ public class BeetleFSM : MonoBehaviour
 
     void Spawn()
     {
-        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Spawn") && Vector3.Distance(transform.position, player.position) < findDistance)
+        StartCoroutine(SpawnToRun());
+        if (Vector3.Distance(transform.position, player.position) < findDistance)
         {
             e_State = BeetleState.Run;
-
             anim.SetTrigger("IdleToRun");
         }
     }
 
+    IEnumerator SpawnToRun()
+    {
+        yield return new WaitForSeconds(4.0f);
+    }
+
     void Run()
     {
-        if (Vector3.Distance(transform.position, player.position) > attackDistance)
+        if (Vector3.Distance(transform.position, player.position) < attackDistance)
         {
-            ////이동 방향
-            //Vector3 dir = (player.position - transform.position).normalized;
+            Debug.Log("Run");
+            //이동 방향
+            Vector3 dir = (player.position - transform.position).normalized;
 
-            ////캐릭터 컨트롤러를 사용하여 이동
-            //cc.Move(dir * Time.deltaTime);
-
-            ////플레이어를 향해 방향 전환
-            //transform.forward = dir;
+            //플레이어를 향해 방향 전환
+            transform.forward = dir;
         }
     }
         void Attack()
@@ -105,5 +104,12 @@ public class BeetleFSM : MonoBehaviour
 
         // 현재 상태를 이동으로 전환한다
         e_State = BeetleState.Run;
+    }
+
+    public void AnimationFinished()
+    {
+        anim.Play("Run");
+        transform.parent.position = transform.position;
+        transform.localPosition = Vector3.zero;
     }
 }
