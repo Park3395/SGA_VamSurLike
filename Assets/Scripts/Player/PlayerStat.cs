@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerStat : MonoBehaviour
 {
     //// 플레이어 기본 스테이터스 
-    #region Status Base
+    #region Base Staus
 
     // 체력
     [SerializeField] int _nowHP = 100;
