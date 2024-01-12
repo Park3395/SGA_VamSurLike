@@ -15,9 +15,9 @@ public class BeetleFSM : MonoBehaviour
 
     BeetleState e_State;
 
-    public float findDistance = 5;
+    public float findDistance = 10.0f;
 
-    public float attackDistance = 0.01f;
+    public float attackDistance = 2.0f;
 
     Animator anim;
 
@@ -59,6 +59,7 @@ public class BeetleFSM : MonoBehaviour
 
     void Spawn()
     {
+        transform.forward = player.position;
         StartCoroutine(SpawnToRun());
         if (Vector3.Distance(transform.position, player.position) < findDistance)
         {
@@ -74,7 +75,7 @@ public class BeetleFSM : MonoBehaviour
 
     void Run()
     {
-        if (Vector3.Distance(transform.position, player.position) < attackDistance)
+        if (Vector3.Distance(transform.position, player.position) > attackDistance)
         {
             Debug.Log("Run");
             //이동 방향
@@ -83,10 +84,25 @@ public class BeetleFSM : MonoBehaviour
             //플레이어를 향해 방향 전환
             transform.forward = dir;
         }
+        else if (Vector3.Distance(transform.position, player.position) <= attackDistance)
+        {
+            Debug.Log("Attack");
+            e_State = BeetleState.Attack;
+        }
     }
         void Attack()
     {
-
+        // 플레이어가 공격 범위 내라면 공격을 시작한다
+        if (Vector3.Distance(transform.position, player.position) <= attackDistance)
+        {
+            anim.Play("Attack");
+        }
+        // 공격 범위를 벗어났다면 현재 상태를 Move로 전환한다 (재추격)
+        else
+        {
+            e_State = BeetleState.Run;
+            anim.SetTrigger("AttackToRun");
+        }
     }
 
     // 피격 상태
@@ -106,10 +122,22 @@ public class BeetleFSM : MonoBehaviour
         e_State = BeetleState.Run;
     }
 
-    public void AnimationFinished()
+    void Die()
     {
-        anim.Play("Run");
-        transform.parent.position = transform.position;
-        transform.localPosition = Vector3.zero;
+        // 진행 중인 피격 코루틴 함수를 중지한다
+        StopAllCoroutines();
+
+        // 사망 상태를 처리하기 위한 코루틴을 실행한다
+        StartCoroutine(DieProcess());
+    }
+
+    // 사망 상태 처리용 코루틴
+    IEnumerator DieProcess()
+    {
+
+        // 2초 동안 기다린 이후 자기자신을 제거한다
+        yield return new WaitForSeconds(2.0f);
+        print("소멸!");
+        Destroy(gameObject);
     }
 }
