@@ -3,10 +3,15 @@ guid: d70a6fb18bf1a1246bc77b7c3c36300c
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: matBeetle
+    second: {fileID: 2100000, guid: 21d07593eda857d4f8819b53ffdc1dcc, type: 2}
   materials:
     materialImportMode: 2
-    materialName: 0
+    materialName: 2
     materialSearch: 1
     materialLocation: 1
   animations:

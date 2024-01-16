@@ -3,7 +3,22 @@ guid: cbffed2685a59da4ba42516f81121756
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: matHuntress
+    second: {fileID: 2100000, guid: 1757ca7f428da9641a3149011e0e3e1c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: matHuntressArrow
+    second: {fileID: 2100000, guid: 537b3f41480a01045bf96e5c31135f73, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: matHuntressCape
+    second: {fileID: 2100000, guid: 2ecf27ab21b80c74aa8bb49f10c992f5, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
