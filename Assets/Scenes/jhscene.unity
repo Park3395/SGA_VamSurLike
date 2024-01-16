@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 101804861}
   - component: {fileID: 101804860}
   - component: {fileID: 101804859}
-  m_Layer: 7
+  m_Layer: 15
   m_Name: Post-process Volume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -622,7 +622,7 @@ MonoBehaviour:
   volumeTrigger: {fileID: 1698088523}
   volumeLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 32768
   stopNaNPropagation: 1
   finalBlitToCameraTarget: 0
   antialiasingMode: 0
