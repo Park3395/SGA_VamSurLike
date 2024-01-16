@@ -63,17 +63,7 @@
     <Compile Include="Assets\Scripts\HitEvent.cs" />
     <Compile Include="Assets\Scripts\BeetleFSM.cs" />
     <Compile Include="Assets\Scripts\Billboard.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Assets\Assets\TextAsset\readme #117193.txt" />
-    <None Include="Assets\Assets\TextAsset\LICENSE_OFL.txt" />
-    <None Include="Assets\Assets\TextAsset\LiberationSans - OFL.txt" />
-    <None Include="Assets\Assets\TextAsset\version.txt" />
-    <None Include="Assets\Assets\TextAsset\readme #117187.txt" />
-    <None Include="Assets\Assets\TextAsset\readme.txt" />
-    <None Include="Assets\Assets\TextAsset\Trace me.txt" />
-    <None Include="Assets\Assets\TextAsset\OFL.txt" />
-    <None Include="Assets\Assets\TextAsset\EmojiOne Attribution.txt" />
+    <Compile Include="Assets\Scripts\StoneGolemFSM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -19,6 +19,10 @@ public class BeetleFSM : MonoBehaviour
 
     public float attackDistance = 2.0f;
 
+    public float HP = 80;
+    public float MaxHP = 80;
+    public float AttackPower = 12;
+
     Animator anim;
 
     Transform player;
