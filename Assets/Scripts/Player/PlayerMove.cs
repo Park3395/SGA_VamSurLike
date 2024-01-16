@@ -13,6 +13,8 @@ public class PlayerMove : MonoBehaviour
 
     // 화면 회전 각
     float mx = 0;
+    // 현재 점프력
+    float yVelocity = 0;
 
     void Start()
     {
@@ -37,14 +39,11 @@ public class PlayerMove : MonoBehaviour
 
         // 플레이어 이동 방향을 카메라가 보는 방향으로 설정
         dir = Camera.main.transform.TransformDirection(dir);
-
+        dir *= pStat.Speed * Time.deltaTime;
         #endregion
 
         // 플레이어 점프
         #region jump
-
-        // 점프력 변수
-        float yVelocity = 0;
 
         // 플레이어가 땅에 닿았을 때
         if (cc.collisionFlags == CollisionFlags.Below)
@@ -68,6 +67,7 @@ public class PlayerMove : MonoBehaviour
         }
 
         // 점프력에 중력값 적용
+        
         yVelocity += pStat.Gravity * Time.deltaTime;
         // 플레이어 이동 벡터에 점프 값 적용
         dir.y = yVelocity;
@@ -75,7 +75,7 @@ public class PlayerMove : MonoBehaviour
         #endregion
 
         // 플레이어 이동 처리
-        cc.Move(dir * pStat.Speed * Time.deltaTime);
+        cc.Move(dir);
 
         #region rotate
         

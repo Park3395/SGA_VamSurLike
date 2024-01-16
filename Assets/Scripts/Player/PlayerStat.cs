@@ -37,6 +37,25 @@ public class PlayerStat : MonoBehaviour
         set { _HPregen = value; }
     }
 
+
+
+    // 플레이어 레벨
+    [SerializeField] float _PLevel = 0;
+    public float Plevel
+    {
+        get { return _PLevel; }
+        set { _PLevel = value; }
+    }
+    // 플레이어 경험치
+    [SerializeField] float _Pexp = 0;
+    public float Pexp
+    {
+        get { return _Pexp; }
+        set { _Pexp = value; }
+    }
+
+
+
     // 공격력
     [SerializeField] float _dmg = 10;
     public float Dmg
@@ -52,15 +71,17 @@ public class PlayerStat : MonoBehaviour
         set { _attSpd = value; }
     }
 
+
+
     // 이동속도
-    [SerializeField] float _speed = 5.0f;
+    [SerializeField] float _speed = 15.0f;
     public float Speed
     {
         get { return _speed; }
         set { _speed = value; }
     }
     // 점프높이
-    [SerializeField] float _jump = 15.0f;
+    [SerializeField] float _jump = 0.3f;
     public float Jump
     {
         get { return _jump; }
@@ -74,7 +95,7 @@ public class PlayerStat : MonoBehaviour
         set { _jumpCount = value; }
     }
     // 중력
-    [SerializeField] float _gravity = -50.0f;
+    [SerializeField] float _gravity = -1.0f;
     public float Gravity
     {
         get { return _gravity; }
@@ -87,7 +108,7 @@ public class PlayerStat : MonoBehaviour
 
     // 카메라 회전 속도
     [SerializeField]
-    float _rotSpeed = 200f;
+    float _rotSpeed = 1000f;
     public float RotSpeed
     {
         get{ return _rotSpeed; }
