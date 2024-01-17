@@ -9,7 +9,9 @@ public class SelectCommando : MonoBehaviour
     public GameObject readyicon;
     public GameObject lobby_huntress;
     public GameObject huntress_information;
-    
+    public GameObject lobby_bandit;
+    public GameObject bandit_information;
+
 
     public void OnClick()
     {
@@ -18,7 +20,9 @@ public class SelectCommando : MonoBehaviour
         lobby_commando.gameObject.SetActive(true);
         lobby_huntress.gameObject.SetActive(false);
         huntress_information.gameObject.SetActive(false);
-        
+        lobby_bandit.SetActive(false);
+        bandit_information.SetActive(false);
+
     }
     
 }
