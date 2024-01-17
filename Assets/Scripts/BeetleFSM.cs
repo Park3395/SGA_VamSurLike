@@ -34,6 +34,9 @@ public class BeetleFSM : MonoBehaviour
 
     Animator anim;
 
+    // 캐릭터 컨트롤러
+    CharacterController cc;
+
     // 플레이어의 위치
     Transform player;
 
@@ -49,8 +52,11 @@ public class BeetleFSM : MonoBehaviour
         // 플레이어 위치 좌표 가져오기
         player = GameObject.Find("Player").transform;
 
+        // 캐릭터 컨트롤러 가져오기
+        cc = GetComponent<CharacterController>();
+
         // 자식 오브젝트의 애니메이터 컴포넌트 가져오기
-        anim = transform.GetComponentInChildren<Animator>();
+        anim = GetComponent<Animator>();
 
         // 내비게이션 에이전트 컴포넌트 가져오기
         agent = GetComponent<NavMeshAgent>();
@@ -72,7 +78,7 @@ public class BeetleFSM : MonoBehaviour
                 Attack();
                 break;
             case BeetleState.Hurt:
-                Hurt();
+                //Hurt();
                 break;
             case BeetleState.Death:
                 //Damaged();
@@ -111,12 +117,9 @@ public class BeetleFSM : MonoBehaviour
         // 현재 위치가 공격 사거리보다 크다면 플레이어를 향해 이동
         if (Vector3.Distance(transform.position, player.position) > attackDistance)
         {
-            //Debug.Log("Run");
-            ////이동 방향
-            //Vector3 dir = (player.position - transform.position).normalized;
+            Vector3 dir = (player.position - transform.position).normalized;
 
-            ////플레이어를 향해 방향 전환
-            //transform.forward = dir;
+            transform.forward = dir;
 
             // 에이전트의 이동을 정지하고 경로를 초기화
             agent.isStopped = true;
@@ -129,7 +132,7 @@ public class BeetleFSM : MonoBehaviour
             agent.destination = player.position;
         }
         // 플레이어와의 거리가 공격 사거리 이내라면
-        else if (Vector3.Distance(transform.position, player.position) <= attackDistance)
+        else
         {
             // enum변수 상태를 Attack으로 전환
             Debug.Log("Attack");
@@ -145,7 +148,7 @@ public class BeetleFSM : MonoBehaviour
         {
             anim.Play("Attack");
         }
-        // 공격 범위를 벗어났다면 현재 상태를 Move로 전환한다 (재추격)
+        // 공격 범위를 벗어났다면 현재 상태를 Run으로 전환한다 (재추격)
         else
         {
             e_State = BeetleState.Run;
@@ -170,6 +173,10 @@ public class BeetleFSM : MonoBehaviour
 
         // 플레이어의 공격력만큼 적 체력 감소.
         HP -= hitPower;
+
+        // 에이전트의 이동을 정지하고 경로를 초기화
+        agent.isStopped = true;
+        agent.ResetPath();
 
         // 적 체력이 0보다 크면 피격 상태로 전환
         if (HP > 0)
@@ -220,6 +227,8 @@ public class BeetleFSM : MonoBehaviour
     // 사망 상태 처리용 코루틴
     IEnumerator DieProcess()
     {
+        // 캐릭터 컨트롤러를 비활성화한다
+        cc.enabled = false;
 
         // 2초 동안 기다린 이후 자기자신을 제거한다
         yield return new WaitForSeconds(2.0f);
