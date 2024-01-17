@@ -203,6 +203,8 @@ public class StoneGolemFSM : MonoBehaviour
     // 레이저 스킬
     void Skill()
     {
+        
+
         StartCoroutine(MuzzleLaser());
     }
 
