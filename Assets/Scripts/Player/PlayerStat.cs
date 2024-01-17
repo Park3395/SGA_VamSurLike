@@ -103,16 +103,4 @@ public class PlayerStat : MonoBehaviour
     }
 
     #endregion
-
-    #region UI Status
-
-    // 카메라 회전 속도
-    [SerializeField]
-    float _rotSpeed = 1000f;
-    public float RotSpeed
-    {
-        get{ return _rotSpeed; }
-        set{ _rotSpeed = value; }
-    }
-    #endregion
 }

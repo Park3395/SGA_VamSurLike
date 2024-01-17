@@ -10,11 +10,11 @@ public class PlayerMove : MonoBehaviour
     CharacterController cc;
     // 점프 상태 검사
     int jumpingCount = 0;
-
-    // 화면 회전 각
-    float mx = 0;
     // 현재 점프력
     float yVelocity = 0;
+
+    //// 화면 회전 각
+    //float mx = 0;
 
     void Start()
     {
@@ -79,13 +79,13 @@ public class PlayerMove : MonoBehaviour
 
         #region rotate
         
-        // 마우스 수평 입력
-        float mouseX = Input.GetAxis("Mouse X");
+        //// 마우스 수평 입력
+        //float mouseX = Input.GetAxis("Mouse X");
 
-        // 수평 입력과 저장된 회전 속도 연산 처리
-        mx += mouseX * pStat.RotSpeed * Time.deltaTime;
-        // 플레이어 수평 회전
-        transform.eulerAngles = new Vector3(0, mx, 0);
+        //// 수평 입력과 저장된 회전 속도 연산 처리
+        //mx += mouseX * pStat.RotSpeed * Time.deltaTime;
+        //// 플레이어 수평 회전
+        //transform.eulerAngles = new Vector3(0, mx, 0);
 
         #endregion
     }

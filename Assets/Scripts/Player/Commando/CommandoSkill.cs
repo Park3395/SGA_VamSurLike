@@ -41,7 +41,7 @@ public class CommandoSkill : PlayerSkill
         anim = GetComponentInChildren<Animator>();
     }
 
-    void Update()
+    new void Update()
     {
         base.Update();
         if (nowshootTime > 0f)
