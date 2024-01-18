@@ -23,7 +23,7 @@ public class StoneGolemFSM : MonoBehaviour
     // 기본 공격 범위
     public float attackDistance = 6.0f;
     // 레이저 공격 범위
-    public float skillDistance = 10.0f;
+    public float skillDistance = 20.0f;
 
     public float HP = 480;
     public float MaxHP = 480;
@@ -33,7 +33,6 @@ public class StoneGolemFSM : MonoBehaviour
     // laser 
     public float initialLaserDuration = 3.0f;
     public float fixedLaserDuration = 1.0f;
-    public float laserSpeed = 5.0f;
 
     // HP 슬라이더
     public Slider hpSlider;
@@ -109,9 +108,7 @@ public class StoneGolemFSM : MonoBehaviour
         if (Vector3.Distance(transform.position, player.position) < findDistance)
         {
             // enum변수의 상태를 Run으로 전환
-            e_State = StoneGolemState.Run;
-            // 이동 애니메이션 전환
-            anim.SetTrigger("IdleToRun");
+            e_State = StoneGolemState.Skill;
         }
     }
 
@@ -140,14 +137,8 @@ public class StoneGolemFSM : MonoBehaviour
             // 내비게이션의 목적지를 플레이어의 위치로 설정
             agent.destination = player.position;
         }
-        // 현재 위치가 스킬 사거리 - 2 보다 크고 스킬사거리 보다 작은 범위 내에 있을 때
-        else if (Vector3.Distance(transform.position, player.position) > skillDistance || Vector3.Distance(transform.position, player.position) < skillDistance - 2.0f)
-        {
-            // enum변수 상태를 Skill로 전환
-            e_State = StoneGolemState.Skill;
-        }
         // 플레이어와의 거리가 공격 사거리 이내라면
-        else
+        else if (Vector3.Distance(transform.position, player.position) <= attackDistance)
         {
             // enum변수 상태를 Attack으로 전환
             Debug.Log("Attack");
@@ -216,45 +207,68 @@ public class StoneGolemFSM : MonoBehaviour
     // 레이저 스킬
     void Skill()
     {
-        // Laser animation 재생
-        anim.Play("LaserAiming");
-
-        StartCoroutine(ActivateLaser());
+        if (Vector3.Distance(transform.position, player.position) <= skillDistance)
+        {
+            // Laser animation 재생
+            anim.Play("LaserAiming");
+            StartCoroutine(ActivateLaser());
+        }
+        else
+        {
+            e_State = StoneGolemState.Run;
+        }
     }
 
     IEnumerator ActivateLaser()
     {
         // LineRenderer 컴포넌트를 자식객체의 Inspector에서 찾기.
         LineRenderer lR = GetComponentInChildren<LineRenderer>();
+        lR.enabled = true;
 
+        // LineRenderer의 위치 갯수
         lR.positionCount = 2;
 
-        lR.SetPosition(0, transform.Find("mdlGolem").Find("GolemArmature").Find("Root").Find("base").Find("stomach").Find("chest").Find("head").Find("MuzzleLaser").gameObject.transform.position);
+        // ???? mdlGolem안의 child인 MuzzleLaser의 위치 받아오기.
+        lR.SetPosition(0, GameObject.FindGameObjectWithTag("LaserPos").transform.position);
         // 경과 시간
         float elapsedTime = 0f;
 
+        // 경과 시간이 초기 레이저 설정 시간(3초)가 될 때까지 조준
         while (elapsedTime < initialLaserDuration)
         {
             lR.SetPosition(1, player.position);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        // 3초 대기
-        yield return new WaitForSeconds(3.0f);
 
-        lR.SetPosition(1, player.position);
+        // 플레이어의 마지막 위치를 저장
+        Vector3 mPos = player.position;
         elapsedTime = 0f;
+        // 1초 동안 레이저가 데미지를 입힐 수 있는 상태
         while (elapsedTime < fixedLaserDuration)
         {
-            lR.SetPosition(1, player.position);
+            anim.SetTrigger("LaserAttack");
+            // player의 마지막 위치와 연결
+            lR.SetPosition(1, mPos);
             elapsedTime += Time.deltaTime;
+            // 이 때 플레이어가 레이저에 닿으면 데미지를 입음
+            /*
+            // 데미지 처리 함수. 
+
+
+             */
             yield return null;
         }
-        Destroy(lR);
 
+        // 레이저 비활성화
+        lR.enabled = false;
+
+        // 레이저 발사 후 1초 대기
         yield return new WaitForSeconds(1.0f);
 
+        // enum 상태를 Run으로 전환
         e_State = StoneGolemState.Run;
+        anim.SetTrigger("SkillToRun");
     }
 
     // 피격 상태
