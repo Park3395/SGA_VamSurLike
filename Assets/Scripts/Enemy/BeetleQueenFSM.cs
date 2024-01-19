@@ -67,7 +67,12 @@ public class BeetleQueenFSM : MonoBehaviour
 
     void Spawn()
     {
+        StartCoroutine(SpawnToRun());
+    }
 
+    IEnumerator SpawnToRun()
+    {
+        yield return new WaitForSeconds(3.5f);
     }
 
     void Idle()

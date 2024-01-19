@@ -101,7 +101,7 @@ public class StoneGolemFSM : MonoBehaviour
         // 플레이어를 인식할 수 있는 거리 내에 들어오면
         if (Vector3.Distance(transform.position, player.position) < findDistance)
         {
-            // enum변수의 상태를 Run으로 전환
+            // enum변수의 상태를 Skill로 전환
             e_State = StoneGolemState.Skill;
         }
     }
