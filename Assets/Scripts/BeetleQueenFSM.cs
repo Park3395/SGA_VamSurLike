@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BeetleQueenFSM : MonoBehaviour
 {
@@ -20,4 +21,72 @@ public class BeetleQueenFSM : MonoBehaviour
 
     public float HP;
     public float MaxHP;
+    public float FireSpitPower;
+    public float FireSpitDelay;
+    public float BeetleSpawnDelay;
+
+    Animator anim;
+
+    NavMeshAgent agent;
+
+    private void Start()
+    {
+        e_State = BQState.Spawn;
+
+        anim = GetComponent<Animator>();
+
+        agent = GetComponent<NavMeshAgent>();
+    }
+
+    private void Update()
+    {
+        switch (e_State)
+        {
+            case BQState.Spawn:
+                Spawn();
+                break;
+            case BQState.Idle:
+                Idle();
+                break;
+            case BQState.Walk:
+                Walk();
+                break;
+            case BQState.BeetleSpawn:
+                BeetleSpawn();
+                break;
+            case BQState.FireSpit:
+                //Hurt();
+                break;
+            case BQState.Damaged:
+                //Damaged();
+                break;
+            case BQState.Death:
+                break;
+        }
+    }
+
+    void Spawn()
+    {
+
+    }
+
+    void Idle()
+    {
+
+    }
+
+    void Walk()
+    {
+
+    }
+
+    void BeetleSpawn()
+    {
+
+    }
+    
+    void FireSpit()
+    {
+
+    }
 }

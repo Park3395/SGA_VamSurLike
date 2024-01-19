@@ -34,9 +34,6 @@ public class BeetleFSM : MonoBehaviour
 
     Animator anim;
 
-    // 캐릭터 컨트롤러
-    CharacterController cc;
-
     // 플레이어의 위치
     Transform player;
 
@@ -51,9 +48,6 @@ public class BeetleFSM : MonoBehaviour
 
         // 플레이어 위치 좌표 가져오기
         player = GameObject.Find("Player").transform;
-
-        // 캐릭터 컨트롤러 가져오기
-        cc = GetComponent<CharacterController>();
 
         // 자식 오브젝트의 애니메이터 컴포넌트 가져오기
         anim = GetComponent<Animator>();
@@ -227,9 +221,7 @@ public class BeetleFSM : MonoBehaviour
     // 사망 상태 처리용 코루틴
     IEnumerator DieProcess()
     {
-        // 캐릭터 컨트롤러를 비활성화한다
-        cc.enabled = false;
-
+        anim.Play("Death");
         // 2초 동안 기다린 이후 자기자신을 제거한다
         yield return new WaitForSeconds(2.0f);
         print("소멸!");
