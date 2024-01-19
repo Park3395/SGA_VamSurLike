@@ -11,7 +11,7 @@ public class CameraController : MonoBehaviour
     Transform Player;
 
     [SerializeField]
-    float dis = 7.0f;
+    float dis = 4.0f;
 
     private void Awake()
     {
@@ -19,14 +19,17 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
+        Vector3 tar = Target.position;
+
         Vector3 dir = Player.position - Target.position;
         dir.Normalize();
 
-        dir = Quaternion.AngleAxis(30f,dir) * dir * dis;
-        Debug.Log(dir);
+        //dir = Quaternion.AngleAxis(-30f,dir) * dir * dis;
+        //Debug.Log(dir);
+        dir *= dis;
 
         Vector3 move = Target.position + dir;
-        
+
         this.transform.position = move;
         
         // 카메라 시점을 Target으로 초기화

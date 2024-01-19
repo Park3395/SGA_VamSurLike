@@ -13,8 +13,8 @@ public class PlayerMove : MonoBehaviour
     // 현재 점프력
     float yVelocity = 0;
 
-    //// 화면 회전 각
-    //float mx = 0;
+    [SerializeField]
+    string[] runanim;
 
     void Start()
     {
@@ -36,6 +36,7 @@ public class PlayerMove : MonoBehaviour
         // 플레이어 이동을 위한 벡터 설정 및 정규화
         Vector3 dir = new Vector3(h, 0, v);
         dir = dir.normalized;
+        playRun(dir);
 
         // 플레이어 이동 방향을 카메라가 보는 방향으로 설정
         dir = Camera.main.transform.TransformDirection(dir);
@@ -88,5 +89,21 @@ public class PlayerMove : MonoBehaviour
         //transform.eulerAngles = new Vector3(0, mx, 0);
 
         #endregion
+    }
+
+    void playRun(Vector3 dir)
+    {
+        if(dir.x ==1)
+        {
+
+        }
+        else if (dir.x == -1)
+        {
+
+        }
+        else
+        {
+            
+        }
     }
 }
