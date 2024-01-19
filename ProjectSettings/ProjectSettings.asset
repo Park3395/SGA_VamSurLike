@@ -14,7 +14,7 @@ PlayerSettings:
   accelerometerFrequency: 60
   companyName: DefaultCompany
   productName: SGA_VamSurLike
-  defaultCursor: {fileID: 2800000, guid: 4a068661cad25dd43a72c7ec5e882d81, type: 3}
+  defaultCursor: {fileID: 2800000, guid: b47e01a5b4a37e343bc66e24b92e5750, type: 3}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
   m_ShowUnitySplashScreen: 1
