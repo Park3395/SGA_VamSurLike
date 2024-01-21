@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Model
+  - LaserPos
   layers:
   - Default
   - TransparentFX
@@ -15,7 +16,7 @@ TagManager:
   - Player
   - Bullet
   - Ground
-  - 
+  - Enemy
   - 
   - 
   - 

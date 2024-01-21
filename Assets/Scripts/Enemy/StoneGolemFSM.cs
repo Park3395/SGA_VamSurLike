@@ -52,7 +52,7 @@ public class StoneGolemFSM : MonoBehaviour
         e_State = StoneGolemState.Spawn;
 
         // 플레이어 위치 좌표 가져오기
-        player = GameObject.Find("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
 
         // 자식 오브젝트의 애니메이터 컴포넌트 가져오기
         anim = GetComponent<Animator>();
@@ -94,9 +94,9 @@ public class StoneGolemFSM : MonoBehaviour
     // 스폰 상태
     void Spawn()
     {
-        // beetle이 플레이어를 바라보도록 설정
+        // StoneGolem이 플레이어를 바라보도록 설정
         transform.forward = player.position;
-        // 스폰 애니메이션이 완전히 끝난 후 플레이어를 추적하도록 4.0초의 대기시간을 가진 코루틴함수 사용.
+        // 스폰 애니메이션이 완전히 끝난 후 플레이어를 추적하도록 2.0초의 대기시간을 가진 코루틴함수 사용.
         StartCoroutine(SpawnToRun());
         // 플레이어를 인식할 수 있는 거리 내에 들어오면
         if (Vector3.Distance(transform.position, player.position) < findDistance)
@@ -108,7 +108,7 @@ public class StoneGolemFSM : MonoBehaviour
 
     IEnumerator SpawnToRun()
     {
-        yield return new WaitForSeconds(4.0f);
+        yield return new WaitForSeconds(2.0f);
     }
 
     // 이동 상태
