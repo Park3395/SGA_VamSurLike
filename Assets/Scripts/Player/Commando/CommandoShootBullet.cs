@@ -19,23 +19,12 @@ public class CommandoShootBullet : MonoBehaviour
 
     public Vector3 shootforce;
 
-    private void Update()
-    {
-        //Vector3 temp1 = aim.position - focus.position;
-        //temp1.Normalize();
-        //Vector3 temp2 = aim.position - cam.position;
-        //temp2.Normalize();
-        //shootforce = temp1 + temp2;
-
-        shootforce = aim.position - cam.position;
-        shootforce.Normalize();
-    }
-
     void ShootBulletL()
     {
         Debug.Log("spawn");
         //shootforce = aim.position - shootPosL.position;
         //shootforce.Normalize();
+        ShootSqn();
         Instantiate(basicBullet, shootPosL.position, new Quaternion(), this.transform);
     }
 
@@ -44,6 +33,22 @@ public class CommandoShootBullet : MonoBehaviour
         Debug.Log("spawn");
         //shootforce = aim.position - shootPosR.position;
         //shootforce.Normalize();
+        ShootSqn();
         Instantiate(basicBullet, shootPosR.position, new Quaternion(), this.transform);
+    }
+
+    void ShootSqn()
+    {
+        RaycastHit hit;
+        Physics.Raycast(cam.position, cam.forward, out hit, 30f);
+        if (hit.point != Vector3.zero)
+            shootforce = hit.point - focus.position;
+        else
+        {
+            shootforce = aim.position - cam.position;
+            Vector3 temp = aim.position - focus.position;
+            shootforce += temp;
+        }
+        shootforce.Normalize();
     }
 }
