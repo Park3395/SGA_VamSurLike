@@ -1,5 +1,6 @@
 {
   "dependencies": {
+<<<<<<< HEAD
     "com.unity.burst": {
       "version": "1.8.11",
       "depth": 1,
@@ -9,6 +10,8 @@
       },
       "url": "https://packages.unity.com"
     },
+=======
+>>>>>>> parent of 0aa02c04 (lobby 0119)
     "com.unity.collab-proxy": {
       "version": "2.2.0",
       "depth": 0,
