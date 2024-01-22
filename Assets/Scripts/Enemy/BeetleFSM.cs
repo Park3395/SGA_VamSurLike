@@ -47,7 +47,7 @@ public class BeetleFSM : MonoBehaviour
         e_State = BeetleState.Spawn;
 
         // 플레이어 위치 좌표 가져오기
-        player = GameObject.Find("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
 
         // 자식 오브젝트의 애니메이터 컴포넌트 가져오기
         anim = GetComponent<Animator>();
