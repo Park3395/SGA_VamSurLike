@@ -1,12 +1,20 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Assets/rorResource/Texture2D/LDR/texCursor.png.meta
 guid: b0eabc2105442b447b99c5b9cd1a735d
+=======
+guid: 14373514c2cea5a4d82969f32b7150b5
+>>>>>>> parent of fbc753d0 (lobby 0119-2):Assets/Assets/Texture2D/texCursor.png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
     mipMapMode: 0
+<<<<<<< HEAD:Assets/Assets/rorResource/Texture2D/LDR/texCursor.png.meta
     enableMipMap: 0
+=======
+    enableMipMap: 1
+>>>>>>> parent of fbc753d0 (lobby 0119-2):Assets/Assets/Texture2D/texCursor.png.meta
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -37,8 +45,13 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
+<<<<<<< HEAD:Assets/Assets/rorResource/Texture2D/LDR/texCursor.png.meta
     wrapU: 1
     wrapV: 1
+=======
+    wrapU: 0
+    wrapV: 0
+>>>>>>> parent of fbc753d0 (lobby 0119-2):Assets/Assets/Texture2D/texCursor.png.meta
     wrapW: 0
   nPOTScale: 0
   lightmap: 0
@@ -52,9 +65,15 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
+<<<<<<< HEAD:Assets/Assets/rorResource/Texture2D/LDR/texCursor.png.meta
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
   textureType: 8
+=======
+  alphaIsTransparency: 0
+  spriteTessellationDetail: 0
+  textureType: 0
+>>>>>>> parent of fbc753d0 (lobby 0119-2):Assets/Assets/Texture2D/texCursor.png.meta
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -122,11 +141,28 @@ TextureImporter:
   spriteSheet:
     serializedVersion: 2
     sprites: []
+<<<<<<< HEAD:Assets/Assets/rorResource/Texture2D/LDR/texCursor.png.meta
     outline: []
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
+=======
+    outline:
+    - - {x: 16.283081, y: 14.737209}
+      - {x: 7.398773, y: 6.9976234}
+      - {x: -7.195757, y: 7.0460434}
+      - {x: -6.843191, y: -7.918003}
+      - {x: -17.114136, y: -16.74038}
+      - {x: -29, y: -16}
+      - {x: -29, y: 26}
+      - {x: -27, y: 29}
+      - {x: 16.375877, y: 28.855171}
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 1537655665
+>>>>>>> parent of fbc753d0 (lobby 0119-2):Assets/Assets/Texture2D/texCursor.png.meta
     vertices: []
     indices: 
     edges: []
