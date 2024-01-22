@@ -25,7 +25,7 @@ public class CamRotate : MonoBehaviour
         my += mouseY * rotSpeed * Time.deltaTime;
 
         // 카메라 수직 회전 최소,최대값 설정
-        my = Mathf.Clamp(my, -85f, 85f);
+        my = Mathf.Clamp(my, -70f, 70f);
         
         // 카메라 회전
         transform.eulerAngles = new Vector3(-my, mx, 0);

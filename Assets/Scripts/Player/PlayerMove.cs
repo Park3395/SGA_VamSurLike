@@ -13,14 +13,20 @@ public class PlayerMove : MonoBehaviour
     // 현재 점프력
     float yVelocity = 0;
 
+    // 조준점
     [SerializeField]
-    string[] runanim;
+    Transform aim;
+    // 플레이어 정위치
+    [SerializeField]
+    Transform focus;
 
+    Animator anim;
     void Start()
     {
         // 전역 변수 초기화
         pStat = this.GetComponent<PlayerStat>();
         cc = this.GetComponent<CharacterController>();
+        anim = this.GetComponentInChildren<Animator>();
     }
 
     void Update()
@@ -51,8 +57,12 @@ public class PlayerMove : MonoBehaviour
         {
             // 점프 중이었다면
             if (jumpingCount != pStat.JumpCount)
+            {
                 // 점프가 아닌 상태로 전환
                 jumpingCount = pStat.JumpCount;
+
+                anim.SetBool("Jumping", false);
+            }
             
             // 점프력 초기화
             yVelocity = 0;
@@ -63,6 +73,9 @@ public class PlayerMove : MonoBehaviour
         {
             // 저장된 점프력만큼 점프력 설정
             yVelocity = pStat.Jump;
+
+            anim.SetBool("Jumping",true);
+
             // 점프 횟수 1회 차감
             jumpingCount--;
         }
@@ -79,31 +92,27 @@ public class PlayerMove : MonoBehaviour
         cc.Move(dir);
 
         #region rotate
-        
-        //// 마우스 수평 입력
-        //float mouseX = Input.GetAxis("Mouse X");
 
-        //// 수평 입력과 저장된 회전 속도 연산 처리
-        //mx += mouseX * pStat.RotSpeed * Time.deltaTime;
-        //// 플레이어 수평 회전
-        //transform.eulerAngles = new Vector3(0, mx, 0);
+        Vector3 rot = aim.position - focus.position;
+        Quaternion nextrot = Quaternion.LookRotation(rot);
+
+        Debug.Log(nextrot);
+        //transform.rotation = Quaternion.Lerp(transform.rotation, nextrot, Time.deltaTime);
 
         #endregion
     }
 
     void playRun(Vector3 dir)
     {
-        if(dir.x ==1)
+        if (Mathf.Approximately(dir.x, 0) && Mathf.Approximately(dir.z, 0))
         {
-
-        }
-        else if (dir.x == -1)
-        {
-
+            anim.SetBool("isMove", false);
         }
         else
         {
-            
+            anim.SetBool("isMove", true);
         }
+        anim.SetFloat("xDir",dir.x);
+        anim.SetFloat("yDir", dir.z);
     }
 }

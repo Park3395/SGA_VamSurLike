@@ -5,14 +5,13 @@ using UnityEngine;
 public class BasicBullet : MonoBehaviour
 {
     Vector3 force;
-    float speed = 100f;
+    float speed = 10f;
     float nowt = 0f;
     float maxt = 3f;
 
     private void Awake()
     {
-        force = transform.position - GetComponentInParent<Transform>().position;
-        force.Normalize();
+        force = GetComponentInParent<CommandoShootBullet>().shootforce;
     }
 
     private void Update()

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 194022317879926527}
   - component: {fileID: 8783225172457753562}
   - component: {fileID: 5392680853793215977}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: BasicBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 1e7e1fa3261be4b41ad48a237720a90d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -118,4 +118,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 621dd484259c60a4e9a8648d483a407e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aim: {fileID: 0}
