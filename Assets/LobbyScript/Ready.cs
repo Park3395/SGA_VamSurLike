@@ -8,9 +8,10 @@ using UnityEngine.EventSystems;
 public class Ready : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler //OnPointer 함수들을 발동 시키기 위한 어... 뭐라해야되냐
 {
     public GameObject now_difficulty;
+    //씬 전환
    public void OnClick()
    {
-        SceneManager.LoadScene("StartScene");
+        SceneManager.LoadScene("jhscene");
    }
     //준비 아이콘 위에 마우스를 올렸을 때
     public void OnPointerEnter(PointerEventData eventData)

@@ -3,7 +3,12 @@ guid: 1523d8a647e5fef4a8c88e50ad74ddb5
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CatwalkTop1_1Mesh_0Mat
+    second: {fileID: 2100000, guid: 576d8035f50df484aba8bbafb28967cd, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
