@@ -3,7 +3,42 @@ guid: c5aaf5b3ebfc65e4490ab45728aeb5db
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: matRailGunnerBase
+    second: {fileID: 2100000, guid: 44374dbd74547d84186431a51949db9c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: matRailgun
+    second: {fileID: 2100000, guid: c2e114081a247774985dccea6a97ea07, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: matRailgunBackpackCharged
+    second: {fileID: 2100000, guid: 8926014c44b21a74b9e2f2e7c1b91047, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: matRailgunBackpackCharging
+    second: {fileID: 2100000, guid: e7159c368957bdd4c82e5222636209ac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: matRailgunBackpackIdle
+    second: {fileID: 2100000, guid: fb8a7e9e47b32284ea95ff79526df1c7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: matRailgunBackpackReboot
+    second: {fileID: 2100000, guid: 59f73b9a832917a4987db6fb3792d168, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: matRailgunnerTrim
+    second: {fileID: 2100000, guid: 52519007c98e6944fb926697b258263a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
