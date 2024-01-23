@@ -3,7 +3,12 @@ guid: 942d32c25eea0814aadfd87f1dadfff9
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BanditShotgunMesh_0Mat
+    second: {fileID: -3453240398917934399, guid: 9b0d61bdcb93d7644807ce2eeaf65c7f, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
