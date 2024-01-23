@@ -49,7 +49,7 @@ public class BeetleFSM : MonoBehaviour
         // 플레이어 위치 좌표 가져오기
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
-        // 자식 오브젝트의 애니메이터 컴포넌트 가져오기
+        // 애니메이터 컴포넌트 가져오기
         anim = GetComponent<Animator>();
 
         // 내비게이션 에이전트 컴포넌트 가져오기
