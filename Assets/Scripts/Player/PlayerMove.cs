@@ -81,7 +81,6 @@ public class PlayerMove : MonoBehaviour
         }
 
         // 점프력에 중력값 적용
-        
         yVelocity += pStat.Gravity * Time.deltaTime;
         // 플레이어 이동 벡터에 점프 값 적용
         dir.y = yVelocity;
@@ -93,11 +92,9 @@ public class PlayerMove : MonoBehaviour
 
         #region rotate
 
-        Vector3 rot = aim.position - focus.position;
-        Quaternion nextrot = Quaternion.LookRotation(rot);
-
-        Debug.Log(nextrot);
-        //transform.rotation = Quaternion.Lerp(transform.rotation, nextrot, Time.deltaTime);
+        Vector3 fromX = new Vector3(focus.position.x, 0, focus.position.z);
+        Vector3 toX = new Vector3(aim.position.x, 0, aim.position.z);
+        float angleX = Vector3.SignedAngle(fromX, toX, this.transform.up);
 
         #endregion
     }
