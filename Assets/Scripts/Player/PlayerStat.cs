@@ -71,6 +71,21 @@ public class PlayerStat : MonoBehaviour
         set { _attSpd = value; }
     }
 
+    // 치명타율
+    [SerializeField] float _cri = 0.1f;
+    public float Cri
+    {
+        get { return _cri; }
+        set { _cri = value; }
+    }
+
+    // 치명타 피해량
+    [SerializeField] float _cridmg = 1.2f;
+    public float Cridmg
+    {
+        get { return _cridmg; }
+        set { _cridmg = value; }
+    }
 
 
     // 이동속도

@@ -6,49 +6,54 @@ public class CommandoShootBullet : MonoBehaviour
 {
     [SerializeField]
     GameObject basicBullet;
+
     [SerializeField]
     Transform shootPosL;
     [SerializeField]
     Transform shootPosR;
     [SerializeField]
-    Transform aim;
-    [SerializeField]
     Transform cam;
-    [SerializeField]
-    Transform focus;
 
     public Vector3 shootforce;
 
     void ShootBulletL()
     {
         Debug.Log("spawn");
-        //shootforce = aim.position - shootPosL.position;
-        //shootforce.Normalize();
-        ShootSqn();
+        ShootSqn(false);
         Instantiate(basicBullet, shootPosL.position, new Quaternion(), this.transform);
     }
 
     void ShootBulletR()
     {
         Debug.Log("spawn");
-        //shootforce = aim.position - shootPosR.position;
-        //shootforce.Normalize();
-        ShootSqn();
+        ShootSqn(true);
         Instantiate(basicBullet, shootPosR.position, new Quaternion(), this.transform);
     }
 
-    void ShootSqn()
+    void ShootSqn(bool isRight)
     {
         RaycastHit hit;
-        Physics.Raycast(cam.position, cam.forward, out hit, 30f);
+        Ray ray = new Ray(cam.position, cam.forward);
+        Vector3 endpoint = ray.origin + (ray.direction * 30f);
+        
+        Physics.Raycast(ray, out hit, 30f);
+        
         if (hit.point != Vector3.zero)
-            shootforce = hit.point - focus.position;
+        {
+            if (isRight)
+                shootforce = hit.point - shootPosR.position;
+            else
+                shootforce = hit.point - shootPosL.position;
+        }
         else
         {
-            shootforce = aim.position - cam.position;
-            Vector3 temp = aim.position - focus.position;
-            shootforce += temp;
+            if (isRight)
+                shootforce = endpoint - shootPosR.position;
+            else
+                shootforce = endpoint - shootPosL.position;
+
         }
+
         shootforce.Normalize();
     }
 }
