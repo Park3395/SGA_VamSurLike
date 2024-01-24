@@ -9,5 +9,7 @@ public class ToStart : MonoBehaviour
     public void OnClick()
     {
         SceneManager.LoadScene("StartScene");
+        Time.timeScale = 1.0f;
+        PauseMenu.gamePaused = false;
     }
 }

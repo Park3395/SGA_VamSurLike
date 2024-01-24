@@ -9,7 +9,8 @@ public class Test : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Q))
         {
-            SceneManager.LoadScene("LobbyScene");
+            //현재씬 재시작
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             Time.timeScale = 1.0f;
         }
 
