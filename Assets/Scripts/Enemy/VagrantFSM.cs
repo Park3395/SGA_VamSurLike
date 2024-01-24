@@ -19,10 +19,11 @@ public class VagrantFSM : MonoBehaviour
 
     // Vagrant 정보
     public float attackDistance = 60.0f;
-    public float HP = 2100;
-    public float MaxHP = 2100;
-    public float attackPower = 6.5f;
+    public int HP = 2100;
+    public int MaxHP = 2100;
+    public int attackPower = 10;
     public float speed = 1.0f;
+    public float orbSpeed = 10.0f;
 
     // animator
     Animator anim;
@@ -31,8 +32,7 @@ public class VagrantFSM : MonoBehaviour
     Transform player;
 
     // 공격 투사체
-    [SerializeField]
-    GameObject Orb;
+    public GameObject OrbFactory;
 
     // 투사체가 발사될 위치
     [SerializeField]
@@ -92,6 +92,7 @@ public class VagrantFSM : MonoBehaviour
 
     void Idle()
     {
+        Debug.Log("Idle");
         Vector3 e_Pos = new Vector3(transform.position.x, 0, transform.position.z);
         Vector3 p_Pos = new Vector3(player.position.x, 0, player.position.z);
 
@@ -101,33 +102,40 @@ public class VagrantFSM : MonoBehaviour
             Vector3 dir = (p_Pos - e_Pos).normalized;
         }
         // 그렇지 않으면 공격
-        else
+        else if (Vector3.Distance(e_Pos, p_Pos) <= attackDistance)
         {
             // 10초마다 한 번 공격
             e_State = VagrantState.Attack;
             // 12초마다 한 번 공격
-            e_State = VagrantState.Skill1;
+            //e_State = VagrantState.Skill1;
         }
     }
 
     void Attack()
     {
-        for (int i = 0; i < 5; i++)
-        {
-            ShootOrbs();
-            Instantiate(Orb, missileLaunch.position, Quaternion.identity, transform);
-            i++;
-        }
+        StartCoroutine(ShootOrbs(1.0f));
+        e_State = VagrantState.Skill1;
     }
 
-    void ShootOrbs()
+    IEnumerator ShootOrbs(float duration)
     {
-
+        for (int i = 0; i < 6; i++)
+        {
+            Debug.Log("ShootOrbs");
+            GameObject Orb = Instantiate(OrbFactory);
+            Orb.transform.position = missileLaunch.position;
+            Rigidbody rb = Orb.GetComponent<Rigidbody>();
+            Vector3 playerPos = player.position;
+            Vector3 OrbPos = Orb.transform.position;
+            rb.AddForce((playerPos - OrbPos).normalized * orbSpeed, ForceMode.Impulse);
+            yield return new WaitForSeconds(duration);
+        }
     }
 
     void Skill1()
     {
-        Instantiate(Orb, trackingBomb.position, Quaternion.identity, transform);
+        // 조건식
+        // Instantiate(Orb, trackingBomb.position, Quaternion.identity, transform);
     }
 
     void Skill2()
