@@ -2629,6 +2629,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 377245777}
   m_CullTransparentMesh: 1
+--- !u!1 &422947785
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 422947788}
+  - component: {fileID: 422947787}
+  - component: {fileID: 422947786}
+  m_Layer: 5
+  m_Name: HalfDarkPanel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &422947786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 422947785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.6313726}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &422947787
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 422947785}
+  m_CullTransparentMesh: 1
+--- !u!224 &422947788
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 422947785}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1891247947}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -23, y: -314}
+  m_SizeDelta: {x: 1664, y: 824}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &493461453
 GameObject:
   m_ObjectHideFlags: 0
@@ -3530,6 +3605,7 @@ GameObject:
   - component: {fileID: 650116118}
   - component: {fileID: 650116117}
   - component: {fileID: 650116116}
+  - component: {fileID: 650116119}
   m_Layer: 5
   m_Name: Pause_Option
   m_TagString: Untagged
@@ -3639,6 +3715,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 650116114}
   m_CullTransparentMesh: 1
+--- !u!114 &650116119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650116114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 242d6e2a7e6f51d47b8ec7cb699d9d5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  on_cursorIcon: {fileID: 2800000, guid: eb58e3761d69c8b41af3f31385e07dad, type: 3}
+  original_cursorIcon: {fileID: 2800000, guid: 1e9e943169323ca46a8ed804b7fa1de9, type: 3}
 --- !u!1 &672469216
 GameObject:
   m_ObjectHideFlags: 0
@@ -5277,6 +5367,7 @@ GameObject:
   - component: {fileID: 946626081}
   - component: {fileID: 946626080}
   - component: {fileID: 946626083}
+  - component: {fileID: 946626084}
   m_Layer: 5
   m_Name: Pause_ToTitle
   m_TagString: Untagged
@@ -5410,6 +5501,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccfffd81ac754fd4887970541ebc282e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &946626084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 946626078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 242d6e2a7e6f51d47b8ec7cb699d9d5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  on_cursorIcon: {fileID: 2800000, guid: eb58e3761d69c8b41af3f31385e07dad, type: 3}
+  original_cursorIcon: {fileID: 2800000, guid: 1e9e943169323ca46a8ed804b7fa1de9, type: 3}
 --- !u!1 &971814605
 GameObject:
   m_ObjectHideFlags: 0
@@ -9445,6 +9550,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 1891247946}
+  halfDarkPanel: {fileID: 422947785}
 --- !u!1 &1469594914
 GameObject:
   m_ObjectHideFlags: 0
@@ -9844,6 +9950,8 @@ GameObject:
   - component: {fileID: 1527193539}
   - component: {fileID: 1527193538}
   - component: {fileID: 1527193537}
+  - component: {fileID: 1527193540}
+  - component: {fileID: 1527193541}
   m_Layer: 5
   m_Name: Pause_Resume
   m_TagString: Untagged
@@ -9914,7 +10022,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1527193538}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1527193540}
+        m_TargetAssemblyTypeName: Resume, Assembly-CSharp
+        m_MethodName: PauseMenuOff
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1527193538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9953,6 +10073,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1527193535}
   m_CullTransparentMesh: 1
+--- !u!114 &1527193540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1527193535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 959efe4887f64ad43ae8a13eead02fb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 1891247946}
+  halfDarkPanel: {fileID: 422947785}
+--- !u!114 &1527193541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1527193535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 242d6e2a7e6f51d47b8ec7cb699d9d5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  on_cursorIcon: {fileID: 2800000, guid: eb58e3761d69c8b41af3f31385e07dad, type: 3}
+  original_cursorIcon: {fileID: 2800000, guid: 1e9e943169323ca46a8ed804b7fa1de9, type: 3}
 --- !u!1 &1533348925
 GameObject:
   m_ObjectHideFlags: 0
@@ -11529,6 +11677,7 @@ GameObject:
   - component: {fileID: 1891247947}
   - component: {fileID: 1891247949}
   - component: {fileID: 1891247948}
+  - component: {fileID: 1891247950}
   m_Layer: 5
   m_Name: PauseMenu
   m_TagString: Untagged
@@ -11548,6 +11697,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 422947788}
   - {fileID: 650116115}
   - {fileID: 946626079}
   - {fileID: 1527193536}
@@ -11596,6 +11746,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1891247946}
   m_CullTransparentMesh: 1
+--- !u!114 &1891247950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891247946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5272950098a7744458f0c27000bb18f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1906056582
 GameObject:
   m_ObjectHideFlags: 0
