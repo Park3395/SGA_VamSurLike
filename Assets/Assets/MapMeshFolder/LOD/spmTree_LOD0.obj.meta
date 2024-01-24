@@ -3,7 +3,22 @@ guid: 9b509bc0372acc949ba234c191bf2d7c
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: spmTree_LOD0_0Mat
+    second: {fileID: 2100000, guid: e990ea41fc9568a49a2f4b09235d2c8c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: spmTree_LOD0_1Mat
+    second: {fileID: 2100000, guid: bc13d451b98640b469cb1172ea46c7ae, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: spmTree_LOD0_2Mat
+    second: {fileID: 2100000, guid: baed6e631cbbd914b82d385009fd4ec5, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -67,7 +82,7 @@ ModelImporter:
     secondaryUVMinLightmapResolution: 40
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
-    useFileScale: 1
+    useFileScale: 0
     strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
