@@ -23871,8 +23871,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4667868370430098}
-  - component: {fileID: -1499433502543079556}
-  - component: {fileID: 7177708836935600163}
+  - component: {fileID: -5031467322536252218}
+  - component: {fileID: -7763423530716255287}
+  - component: {fileID: 2118971994386914656}
   m_Layer: 0
   m_Name: Magic Orb
   m_TagString: Untagged
@@ -23902,7 +23903,7 @@ Transform:
   - {fileID: 4162544056945390}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &-1499433502543079556
+--- !u!54 &-5031467322536252218
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -23929,7 +23930,28 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7177708836935600163
+--- !u!135 &-7763423530716255287
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919913695092184}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2118971994386914656
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -23941,6 +23963,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de039304ef35a2d4593d8e5ed64daed3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 600935764020917753, guid: 00c929e3ff358b647994814f89fada93, type: 3}
 --- !u!1 &1940178129794352
 GameObject:
   m_ObjectHideFlags: 0
