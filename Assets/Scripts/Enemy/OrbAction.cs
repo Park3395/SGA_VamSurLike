@@ -4,25 +4,17 @@ using UnityEngine;
 
 public class OrbAction : MonoBehaviour
 {
-    GameObject player;
-    public GameObject enemy;
-    VagrantFSM eFSM;
-    PlayerStat pStat;
+    VagrantFSM fsm;
+    PlayerStat p_Stat;
 
-    private void Start()
-    {
-        player = GameObject.FindGameObjectWithTag("Player");
-        pStat = player.GetComponent<PlayerStat>();
-        eFSM = enemy.GetComponent<VagrantFSM>();
-    }
-
+    // 아무것도 충돌이 되지 않는 상태라 수정중 1/24
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.name == "Player")
         {
             Debug.Log("Collision with Player");
             // 닿았을 때 플레이어의 hp 감소
-            pStat.NowHP -= eFSM.attackPower;
+            //p_Stat.NowHP -= fsm.attackPower;
             Destroy(gameObject);
         }
 

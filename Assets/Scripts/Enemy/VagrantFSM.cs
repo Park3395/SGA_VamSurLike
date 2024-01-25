@@ -9,7 +9,8 @@ public class VagrantFSM : MonoBehaviour
         Spawn,
         Idle,
         Attack,
-        Skill,
+        Skill1,
+        Skill2,
         Hurt,
         Death
     }
@@ -23,10 +24,6 @@ public class VagrantFSM : MonoBehaviour
     public int attackPower = 10;
     public float speed = 1.0f;
     public float orbSpeed = 10.0f;
-    public float attackDelay = 3;
-    public float skillDelay = 10;
-    private float attackTimer;
-    private float skillTimer;
 
     // animator
     Animator anim;
@@ -52,23 +49,10 @@ public class VagrantFSM : MonoBehaviour
         anim = GetComponent<Animator>();
 
         player = GameObject.FindGameObjectWithTag("Player").transform;
-
-        attackTimer = attackDelay;
-        skillTimer = skillDelay;
     }
 
     private void Update()
     {
-        // Vagrant의 상태가 스폰중이 아닐때
-        if (e_State != VagrantState.Spawn)
-        {
-            // 공격과 스킬의 쿨타임
-            if (attackTimer >= 0)
-                attackTimer -= Time.deltaTime;
-            if (skillTimer >= 0)
-                skillTimer -= Time.deltaTime;
-        }
-
         switch (e_State)
         {
             case VagrantState.Spawn:
@@ -80,8 +64,11 @@ public class VagrantFSM : MonoBehaviour
             case VagrantState.Attack:
                 Attack();
                 break;
-            case VagrantState.Skill:
-                Skill();
+            case VagrantState.Skill1:
+                Skill1();
+                break;
+            case VagrantState.Skill2:
+                Skill2();
                 break;
             case VagrantState.Hurt:
                 //Hurt();
@@ -105,38 +92,29 @@ public class VagrantFSM : MonoBehaviour
 
     void Idle()
     {
-        // 플레이어와 몬스터의 거리를 평면좌표계에서 계산하기 위해 y좌표가 0인 벡터생성.
+        Debug.Log("Idle");
         Vector3 e_Pos = new Vector3(transform.position.x, 0, transform.position.z);
         Vector3 p_Pos = new Vector3(player.position.x, 0, player.position.z);
-        transform.forward = p_Pos;
 
         // 플레이어의 위치가 공격 범위 밖이라면 플레이어를 향해 이동
         if (Vector3.Distance(e_Pos, p_Pos) > attackDistance)
         {
             Vector3 dir = (p_Pos - e_Pos).normalized;
         }
-        // 플레이어의 위치가 공격 범위 내에 있고, 공격이 가능한 시간이 되면
-        if (Vector3.Distance(e_Pos, p_Pos) <= attackDistance && attackTimer < 0.0f)
+        // 그렇지 않으면 공격
+        else if (Vector3.Distance(e_Pos, p_Pos) <= attackDistance)
         {
-            // Attack으로 전환
+            // 10초마다 한 번 공격
             e_State = VagrantState.Attack;
-            attackTimer = attackDelay;
-        }
-        // 플레이어의 위치가 공격 범위 내에 있고, skill(tracking bomb) 을 쓸 수 있는 시간이 되면
-        else if (Vector3.Distance(e_Pos, p_Pos) <= attackDistance && skillTimer < 0.0f)
-        {
-            // 애니메이션 재생
-            anim.SetTrigger("TrackingBomb");
-            // Skill1로 전환
-            e_State = VagrantState.Skill;
-            skillTimer = skillDelay;
+            // 12초마다 한 번 공격
+            //e_State = VagrantState.Skill1;
         }
     }
 
     void Attack()
     {
-        StartCoroutine(ShootOrbs(0.5f));
-        e_State = VagrantState.Idle;
+        StartCoroutine(ShootOrbs(1.0f));
+        e_State = VagrantState.Skill1;
     }
 
     IEnumerator ShootOrbs(float duration)
@@ -154,13 +132,15 @@ public class VagrantFSM : MonoBehaviour
         }
     }
 
-    void Skill()
+    void Skill1()
     {
         // 조건식
-        // Tracking Bomb instantiate
         // Instantiate(Orb, trackingBomb.position, Quaternion.identity, transform);
-        e_State = VagrantState.Idle;
-        anim.SetTrigger("TrackingBombToIdle");
+    }
+
+    void Skill2()
+    {
+
     }
 
     // 사망 상태
