@@ -4749,7 +4749,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: c4305187fbd4b464cae2d8ce5e3df9cf, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -19012,7 +19011,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -23954,7 +23952,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &309912019331473104
 MonoBehaviour:
@@ -23968,6 +23966,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de039304ef35a2d4593d8e5ed64daed3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vagrant: {fileID: 4091246757594528072, guid: 00c929e3ff358b647994814f89fada93, type: 3}
 --- !u!1 &1940178129794352
 GameObject:
   m_ObjectHideFlags: 0
