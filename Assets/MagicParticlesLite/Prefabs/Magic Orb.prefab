@@ -23877,7 +23877,7 @@ GameObject:
   - component: {fileID: -5729864967123840087}
   - component: {fileID: -976317448590551156}
   - component: {fileID: 309912019331473104}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Magic Orb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
