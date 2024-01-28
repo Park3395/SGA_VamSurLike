@@ -177,6 +177,8 @@ public class VagrantFSM : MonoBehaviour
         Rigidbody rb = Orb.GetComponent<Rigidbody>();
         rb.velocity = Orb.transform.forward * trackingSpeed;
 
+        
+
         // À¯µµÅº
         //var leadTimePercentage = Mathf.InverseLerp(minDistancePredict, maxDistancePredict, Vector3.Distance(Orb.transform.position, player.transform.position));
 
