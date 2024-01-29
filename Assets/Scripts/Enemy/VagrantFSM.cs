@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class VagrantFSM : MonoBehaviour
 {
@@ -17,41 +18,33 @@ public class VagrantFSM : MonoBehaviour
     VagrantState e_State;
 
     // Vagrant 정보
-    [SerializeField] private float attackDistance = 60.0f;
     [SerializeField] private int HP = 2100;
     [SerializeField] private int MaxHP = 2100;
+    // HP 슬라이더
+    [SerializeField] private Slider hpSlider;
     public int attackPower = 10;
-    [SerializeField] private float speed = 1.0f;
     [SerializeField] private float orbSpeed = 10.0f;
+    [SerializeField] private float attackDistance = 60.0f;
     [SerializeField] private float attackDelay = 3;
     [SerializeField] private float skillDelay = 10;
     [SerializeField] private float attackTimer;
     [SerializeField] private float skillTimer;
 
     // animator
-    Animator anim;
+    private Animator anim;
 
-    // player위치를 받아올 Transform
+    // player 게임오브젝트
     private GameObject player;
 
     // 공격 투사체
     [SerializeField] private GameObject OrbFactory;
-
     // 투사체가 발사될 위치
     [SerializeField] private Transform missileLaunch;
 
     // 유도탄 스킬
+    [SerializeField] private GameObject trackingBomb;
     // 유도탄이 발사될 위치
-    [SerializeField] private Transform trackingBomb;
-    [SerializeField] private float trackingSpeed = 10.0f;
-    [SerializeField] private float trackingRotSpeed = 95;
-    [SerializeField] private float minDistancePredict = 30;
-    [SerializeField] private float maxDistancePredict = 100;
-    [SerializeField] private float maxTimePrediction = 5;
-    Vector3 standardPrediction, deviatedPrediction;
-    [SerializeField] private float deviationAmount = 50;
-    [SerializeField] private float deviationSpeed = 2;
-
+    [SerializeField] private Transform trackingBombPos;
 
     private void Start()
     {
@@ -67,7 +60,7 @@ public class VagrantFSM : MonoBehaviour
 
     private void Update()
     {
-        // 스킬 쿨타임
+        // 스킬 쿨타임 (스폰중이 아닐 때)
         if (e_State != VagrantState.Spawn)
         {
             if (attackTimer >= 0)
@@ -97,6 +90,9 @@ public class VagrantFSM : MonoBehaviour
                 //Death();
                 break;
         }
+
+        // 현재 HP를 슬라이더에 반영
+        hpSlider.value = (float)HP / (float)MaxHP;
     }
 
     void Spawn()
@@ -105,11 +101,13 @@ public class VagrantFSM : MonoBehaviour
         e_State = VagrantState.Idle;
     }
 
+    // 애니메이션 스폰동안 대기
     IEnumerator SpawnAnimation()
     {
         yield return new WaitForSeconds(1.5f);
     }
 
+    // 소환후 상태
     void Idle()
     {
         Debug.Log("Idle");
@@ -135,6 +133,7 @@ public class VagrantFSM : MonoBehaviour
         }
     }
 
+    // 공격
     void Attack()
     {
         StartCoroutine(ShootOrbs(0.5f));
@@ -160,44 +159,17 @@ public class VagrantFSM : MonoBehaviour
     void Skill()
     {
         // Tracking Bomb 인스턴스화
-        // Instantiate(Orb, trackingBomb.position, Quaternion.identity, transform);
-        
         StartCoroutine(ShootDelay());
         
-
         e_State = VagrantState.Idle;
         anim.SetTrigger("TrackingBombToIdle");
     }
 
     IEnumerator ShootDelay()
     {
-        GameObject Orb = Instantiate(OrbFactory);
-        Orb.transform.position = trackingBomb.position;
-        yield return new WaitForSeconds(2.0f);
-        Rigidbody rb = Orb.GetComponent<Rigidbody>();
-        rb.velocity = Orb.transform.forward * trackingSpeed;
-
-        
-
-        // 유도탄
-        //var leadTimePercentage = Mathf.InverseLerp(minDistancePredict, maxDistancePredict, Vector3.Distance(Orb.transform.position, player.transform.position));
-
-        //var predictionTime = Mathf.Lerp(0, maxTimePrediction, leadTimePercentage);
-
-        //// 수정
-        //var standardPrediction = player.transform.position + player.GetComponent<CharacterController>().velocity * predictionTime;
-
-        //var deviation = new Vector3(Mathf.Cos(Time.time * deviationSpeed), 0, 0);
-
-        //var predictionOffset = Orb.transform.TransformDirection(deviation) * deviationAmount * leadTimePercentage;
-
-        //deviatedPrediction = standardPrediction + predictionOffset;
-
-        //var heading = deviatedPrediction - Orb.transform.position;
-
-        //var rotation = Quaternion.LookRotation(heading);
-
-        //rb.MoveRotation(Quaternion.RotateTowards(Orb.transform.rotation, rotation, trackingRotSpeed * Time.deltaTime));
+        yield return new WaitForSeconds(1.5f);
+        GameObject trackingOrb = Instantiate(trackingBomb);
+        trackingOrb.transform.position = trackingBombPos.position;
     }
 
     // 사망 상태
@@ -213,9 +185,6 @@ public class VagrantFSM : MonoBehaviour
     // 사망 상태 처리용 코루틴
     IEnumerator DieProcess()
     {
-        // 캐릭터 컨트롤러를 비활성화한다
-        // cc.enabled = false;
-
         // 2초 동안 기다린 이후 자기자신을 제거한다
         yield return new WaitForSeconds(2.0f);
         print("소멸!");

@@ -27,6 +27,8 @@ public class OrbAction : MonoBehaviour
             Destroy(gameObject);
         }
 
-        Destroy(gameObject);
+        // 충돌체의 레이어가 Ground라면 오브젝트 삭제
+        if (collision.gameObject.layer == 8)
+            Destroy(gameObject);
     }
 }
