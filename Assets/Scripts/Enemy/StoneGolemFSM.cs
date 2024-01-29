@@ -18,24 +18,27 @@ public class StoneGolemFSM : MonoBehaviour
 
     StoneGolemState e_State;
 
-    // 추적 사거리
-    public float findDistance = 40.0f;
-    // 기본 공격 범위
-    public float attackDistance = 6.0f;
-    // 레이저 공격 범위
-    public float skillDistance = 20.0f;
 
-    public float HP = 480;
-    public float MaxHP = 480;
+    [SerializeField] private float HP = 480;
+    [SerializeField] private float MaxHP = 480;
     public float AttackPower = 20;
-    public float AttackDelay = 1.0f;
+    [SerializeField] private float AttackDelay = 1.0f;
+    public int Exp = 0;
+    // 추적 사거리
+    [SerializeField] private float findDistance = 40.0f;
+    // 기본 공격 범위
+    [SerializeField] private float attackDistance = 6.0f;
+    // 레이저 공격 범위
+    [SerializeField] private float skillDistance = 20.0f;
+    [SerializeField] private float skillDelay = 3.0f;
+    [SerializeField] private float skillTimer;
 
     // laser 
-    public float initialLaserDuration = 3.0f;
-    public float fixedLaserDuration = 1.0f;
+    [SerializeField] private float initialLaserDuration = 3.0f;
+    [SerializeField] private float fixedLaserDuration = 1.0f;
 
     // HP 슬라이더
-    public Slider hpSlider;
+    [SerializeField] private Slider hpSlider;
 
     Animator anim;
 

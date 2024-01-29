@@ -18,19 +18,17 @@ public class BeetleFSM : MonoBehaviour
 
     BeetleState e_State;
 
-    // 플레이어를 추적하는 인식거리
-    public float findDistance = 10.0f;
     // 플레이어를 공격하는 인식거리
-    public float attackDistance = 2.0f;
+    [SerializeField] private float attackDistance = 2.0f;
 
     // HP
-    public float HP = 80;
-    public float MaxHP = 80;
+    [SerializeField] private float HP = 80;
+    [SerializeField] private float MaxHP = 80;
     // 공격력
     public float AttackPower = 12;
 
     // HP 슬라이더
-    public Slider hpSlider;
+    [SerializeField] private Slider hpSlider;
 
     Animator anim;
 
@@ -91,7 +89,7 @@ public class BeetleFSM : MonoBehaviour
         // 스폰 애니메이션이 완전히 끝난 후 플레이어를 추적하도록 4.0초의 대기시간을 가진 코루틴함수 사용.
         StartCoroutine(SpawnToRun());
         // 플레이어를 인식할 수 있는 거리 내에 들어오면
-        if (Vector3.Distance(transform.position, player.position) < findDistance)
+        if (Vector3.Distance(transform.position, player.position) >= attackDistance)
         {
             // enum변수의 상태를 Run으로 전환
             e_State = BeetleState.Run;
@@ -109,7 +107,7 @@ public class BeetleFSM : MonoBehaviour
     void Run()
     {
         // 현재 위치가 공격 사거리보다 크다면 플레이어를 향해 이동
-        if (Vector3.Distance(transform.position, player.position) > attackDistance)
+        if (Vector3.Distance(transform.position, player.position) >= attackDistance)
         {
             Vector3 dir = (player.position - transform.position).normalized;
 
