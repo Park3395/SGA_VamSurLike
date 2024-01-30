@@ -15,7 +15,10 @@ public class SelectCommando : MonoBehaviour
     public GameObject bandit_information;
     public GameObject lobby_gunner;
     public GameObject gunner_information;
-
+    public Outline commando_outline;
+    public Outline huntress_outline;
+    public Outline bandit_outline;
+    public Outline gunner_outline;
     //클릭할 시 코만도의 정보와 모델을 제외한 다른 정보와 모델들을 없앤다
     public void OnClick()
     {
@@ -28,6 +31,10 @@ public class SelectCommando : MonoBehaviour
         bandit_information.SetActive(false);
         lobby_gunner.SetActive(false);
         gunner_information.SetActive(false);
+        commando_outline.enabled = true;  //outline은 왜 enabled 일까???
+        huntress_outline.enabled = false;  
+        bandit_outline.enabled = false; 
+        gunner_outline.enabled = false;  
 
     }
     
