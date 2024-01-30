@@ -9,6 +9,13 @@ public class BasicBullet : MonoBehaviour
     float nowt = 0f;
     float maxt = 3f;
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Emeny"))
+        {
+            // 피격함수 호출
+        }
+    }
     private void Awake()
     {
         force = GetComponentInParent<CommandoShootBullet>().shootforce;

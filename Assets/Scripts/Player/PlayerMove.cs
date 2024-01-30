@@ -92,9 +92,7 @@ public class PlayerMove : MonoBehaviour
 
         #region rotate
 
-        Vector3 fromX = new Vector3(focus.position.x, 0, focus.position.z);
-        Vector3 toX = new Vector3(aim.position.x, 0, aim.position.z);
-        float angleX = Vector3.SignedAngle(fromX, toX, this.transform.up);
+        
 
         #endregion
     }
