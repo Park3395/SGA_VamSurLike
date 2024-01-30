@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
 
-public class StoneGolemFSM : MonoBehaviour
+public class StoneGolemFSM : MonoBehaviour, IHitEnemy
 {
     private enum StoneGolemState
     {
@@ -166,7 +166,7 @@ public class StoneGolemFSM : MonoBehaviour
     }
 
     // 데미지 처리 함수
-    public void HitEnemy(int hitPower)
+    public void HitEnemy(float hitPower)
     {
         // 스폰, 피격, 사망 상태일 경우에는 함수 즉시 종료
         if (e_State == StoneGolemState.Spawn || e_State == StoneGolemState.Hurt || e_State == StoneGolemState.Death)

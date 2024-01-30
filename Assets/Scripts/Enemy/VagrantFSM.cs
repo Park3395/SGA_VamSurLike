@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class VagrantFSM : MonoBehaviour
+public class VagrantFSM : MonoBehaviour, IHitEnemy
 {
     public enum VagrantState
     {
@@ -18,8 +18,8 @@ public class VagrantFSM : MonoBehaviour
     VagrantState e_State;
 
     // Vagrant 정보
-    [SerializeField] private int HP = 2100;
-    [SerializeField] private int MaxHP = 2100;
+    [SerializeField] private float HP = 2100;
+    [SerializeField] private float MaxHP = 2100;
     // HP 슬라이더
     [SerializeField] private Slider hpSlider;
     public int attackPower = 10;
@@ -192,7 +192,7 @@ public class VagrantFSM : MonoBehaviour
     }
 
     // 데미지 처리 함수
-    public void HitEnemy(int hitPower)
+    public void HitEnemy(float hitPower)
     {
         // 피격, 사망, 복귀 상태일 경우에는 함수 즉시 종료
         if (e_State == VagrantState.Hurt || e_State == VagrantState.Death)
