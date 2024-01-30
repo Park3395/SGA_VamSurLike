@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI.Table;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -12,13 +13,16 @@ public class PlayerMove : MonoBehaviour
     int jumpingCount = 0;
     // 현재 점프력
     float yVelocity = 0;
+    // 이동 검사
+    bool onMove = false;
+
 
     // 조준점
     [SerializeField]
     Transform aim;
     // 플레이어 정위치
     [SerializeField]
-    Transform focus;
+    Transform front;
 
     Animator anim;
     void Start()
@@ -42,6 +46,18 @@ public class PlayerMove : MonoBehaviour
         // 플레이어 이동을 위한 벡터 설정 및 정규화
         Vector3 dir = new Vector3(h, 0, v);
         dir = dir.normalized;
+
+        if(h != 0 || v != 0)
+        {
+            Quaternion rot = Quaternion.identity; // Quaternion 값을 저장할 변수 선언 및 초기화
+
+            rot.eulerAngles = new Vector3(0, Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg, 0); // 역시 eulerAngles를 이용한 오일러 각도를 Quaternion으로 저장
+
+
+            transform.rotation = rot; // 그 각도로 회전
+        }
+
+
         playRun(dir);
 
         // 플레이어 이동 방향을 카메라가 보는 방향으로 설정
@@ -92,7 +108,6 @@ public class PlayerMove : MonoBehaviour
 
         #region rotate
 
-        
 
         #endregion
     }
