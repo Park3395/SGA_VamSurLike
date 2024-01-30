@@ -440,6 +440,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6014884356893884182, guid: 6f5b83c77a5270c40b363fbdb0be2d1a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7011216187177688089, guid: 6f5b83c77a5270c40b363fbdb0be2d1a, type: 3}
       propertyPath: cam
       value: 
@@ -989,6 +993,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8908316039903871870, guid: 3bbdc5601fa193e42ae151b529e87dd9, type: 3}
+      propertyPath: attackDistance
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8932283455912347305, guid: 3bbdc5601fa193e42ae151b529e87dd9, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -1014,6 +1022,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1193338457873214471, guid: 00c929e3ff358b647994814f89fada93, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3714580820918510578, guid: 00c929e3ff358b647994814f89fada93, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
