@@ -11,14 +11,14 @@ public class ItemSelect : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ItemCardInstantiate();
+        ItemButtonInstantiate();
     }
 
     void Update()
     {        
     }
 
-    void ItemCardInstantiate()
+    void ItemButtonInstantiate()
     {
         // 버튼 프리팹 넣을 배열 초기화
         buttonObjects = new Button[3];
@@ -31,7 +31,6 @@ public class ItemSelect : MonoBehaviour
 
         // 버튼 중복되지않도록 변수2개 생성해서 저장하고 같으면 다시 뽑기
         int button1 =-1, button2=-1;
-
         // 버튼 3개 생성
         for (int i = 0; i < 3; i++)
         {           
@@ -52,5 +51,5 @@ public class ItemSelect : MonoBehaviour
             buttonPosition.x += 480;                 // 다음 버튼 위치 조정
         }
     }
-    
+
 }

@@ -6,8 +6,7 @@ namespace Tarodev {
     public class Missile : MonoBehaviour {
         [Header("REFERENCES")] 
         [SerializeField] private Rigidbody _rb;
-        [SerializeField] private Target _target;
-        [SerializeField] private GameObject _explosionPrefab;
+        GameObject player;
 
         [Header("MOVEMENT")] 
         [SerializeField] private float _speed = 15;
@@ -23,10 +22,15 @@ namespace Tarodev {
         [SerializeField] private float _deviationAmount = 50;
         [SerializeField] private float _deviationSpeed = 2;
 
+        private void Start()
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+        }
+
         private void FixedUpdate() {
             _rb.velocity = transform.forward * _speed;
 
-            var leadTimePercentage = Mathf.InverseLerp(_minDistancePredict, _maxDistancePredict, Vector3.Distance(transform.position, _target.transform.position));
+            var leadTimePercentage = Mathf.InverseLerp(_minDistancePredict, _maxDistancePredict, Vector3.Distance(transform.position, player.transform.position));
 
             PredictMovement(leadTimePercentage);
 
@@ -38,7 +42,7 @@ namespace Tarodev {
         private void PredictMovement(float leadTimePercentage) {
             var predictionTime = Mathf.Lerp(0, _maxTimePrediction, leadTimePercentage);
 
-            _standardPrediction = _target.Rb.position + _target.Rb.velocity * predictionTime;
+            _standardPrediction = player.transform.position + player.GetComponent<CharacterController>().velocity * predictionTime;
         }
 
         private void AddDeviation(float leadTimePercentage) {
@@ -54,20 +58,6 @@ namespace Tarodev {
 
             var rotation = Quaternion.LookRotation(heading);
             _rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, rotation, _rotateSpeed * Time.deltaTime));
-        }
-
-        private void OnCollisionEnter(Collision collision) {
-            if(_explosionPrefab) Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
-            if (collision.transform.TryGetComponent<IExplode>(out var ex)) ex.Explode();
-   
-            Destroy(gameObject);
-        }
-
-        private void OnDrawGizmos() {
-            Gizmos.color = Color.red;
-            Gizmos.DrawLine(transform.position, _standardPrediction);
-            Gizmos.color = Color.green;
-            Gizmos.DrawLine(_standardPrediction, _deviatedPrediction);
         }
     }
 }

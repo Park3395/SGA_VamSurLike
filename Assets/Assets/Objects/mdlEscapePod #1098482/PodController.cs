@@ -6,10 +6,10 @@ using Cinemachine;
 public class PodController : MonoBehaviour
 {
     private Animator animator;
-    public CinemachineVirtualCamera VirtualCamera;
-    private CinemachineBasicMultiChannelPerlin noise;
-    public GameObject Player;
-    public GameObject ExplosionFx;
+    public CinemachineVirtualCamera virtualCamera;
+    public GameObject player;
+    public GameObject explosionFx;
+    public Canvas pressE;
 
     void Start()
     {
@@ -26,9 +26,10 @@ public class PodController : MonoBehaviour
             // 문열리는 애니메이션실행
             animator.Play("PodOpen");
             // 가상카메라 비활성화
-            VirtualCamera.enabled = false;
+            virtualCamera.enabled = false;
             // 플레이어 활성화
-            Player.SetActive(true);
+            player.SetActive(true);
+            pressE.gameObject.SetActive(false);
         }
     }
 
@@ -41,14 +42,17 @@ public class PodController : MonoBehaviour
 
         yield return new WaitForSeconds(1.5f);
         StopShake();
+        pressE.gameObject.SetActive(true);
 
     }
 
     void StopShake()
     {        
-        if (VirtualCamera != null)
+        if (virtualCamera != null)
         {
-            CinemachineBasicMultiChannelPerlin noise = VirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+            CinemachineBasicMultiChannelPerlin noise = 
+                virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+
             if (noise != null)
             {
                 // 화면 떨림 멈춤
@@ -62,7 +66,7 @@ public class PodController : MonoBehaviour
         fx1Transfrom.gameObject.SetActive(false);
 
         // 폭발효과 생성
-        ExplosionFx.SetActive(true);
+        explosionFx.SetActive(true);
 
     }
 }
