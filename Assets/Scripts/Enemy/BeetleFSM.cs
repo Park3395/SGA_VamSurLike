@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class BeetleFSM : MonoBehaviour
+public class BeetleFSM : MonoBehaviour, IHitEnemy
 {
     // 상태를 나타내는 enum 변수
     private enum BeetleState
@@ -155,7 +155,7 @@ public class BeetleFSM : MonoBehaviour
     }
 
     // 데미지 처리 함수
-    public void HitEnemy(int hitPower)
+    public void HitEnemy(float hitPower)
     {
         // 스폰, 피격, 사망 상태일 경우에는 함수 즉시 종료
         if (e_State == BeetleState.Spawn || e_State == BeetleState.Hurt || e_State == BeetleState.Death)
