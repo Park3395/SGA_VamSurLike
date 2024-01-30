@@ -20,8 +20,9 @@ public class PodController : MonoBehaviour
     }
 
     void Update()
-    {        
-        if (Input.GetKeyDown(KeyCode.E))
+    {    
+        // E누르라는 문구가 떠있을때 E누르면
+        if (Input.GetKeyDown(KeyCode.E)&&pressE.gameObject.activeSelf)
         {
             // 문열리는 애니메이션실행
             animator.Play("PodOpen");
