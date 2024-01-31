@@ -4,20 +4,19 @@ using UnityEngine;
 
 public class BeetleHeadButt : MonoBehaviour
 {
-    public GameObject player;
     PlayerStat pStat;
     public GameObject beetle;
     BeetleFSM eFSM;
 
     private void Start()
     {
-        pStat = player.GetComponent<PlayerStat>();
+        pStat = PlayerStat.instance;
         eFSM = beetle.GetComponent<BeetleFSM>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == player)
+        if (other.gameObject.layer == 6)
         {
             pStat.NowHP -= eFSM.AttackPower;
         }

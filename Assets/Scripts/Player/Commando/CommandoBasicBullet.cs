@@ -30,12 +30,12 @@ public class CommandoBasicBullet : MonoBehaviour
         this.transform.Translate(force*speed*Time.deltaTime);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.layer == 9)
+        if (other.gameObject.layer == 9)
         {
             Debug.Log("HitEnemy");
-            collision.gameObject.GetComponent<IHitEnemy>().HitEnemy(dmg);
+            other.gameObject.GetComponent<IHitEnemy>().HitEnemy(dmg);
             Destroy(this.gameObject);
         }
     }
