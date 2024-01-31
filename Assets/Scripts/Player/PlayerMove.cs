@@ -22,6 +22,9 @@ public class PlayerMove : MonoBehaviour
     Transform aim;
     // 플레이어 정위치
     [SerializeField]
+    Transform focus;
+    // 현재 플레이어 정면
+    [SerializeField]
     Transform front;
 
     Animator anim;
@@ -49,12 +52,26 @@ public class PlayerMove : MonoBehaviour
 
         if(h != 0 || v != 0)
         {
-            Quaternion rot = Quaternion.identity; // Quaternion 값을 저장할 변수 선언 및 초기화
+            //Quaternion rot = Quaternion.identity; // Quaternion 값을 저장할 변수 선언 및 초기화
 
-            rot.eulerAngles = new Vector3(0, Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg, 0); // 역시 eulerAngles를 이용한 오일러 각도를 Quaternion으로 저장
+            //rot.eulerAngles = new Vector3(0, Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg, 0); // 역시 eulerAngles를 이용한 오일러 각도를 Quaternion으로 저장
 
 
-            transform.rotation = rot; // 그 각도로 회전
+            //transform.rotation = rot; // 그 각도로 회전
+
+            Vector3 nowF = front.position - focus.position;
+            nowF.Normalize();
+            Vector3 toF = aim.position - focus.position;
+            toF.Normalize();
+
+            nowF.y = 0;
+            toF.y = 0;
+            float angle = Vector3.SignedAngle(nowF, toF, this.transform.up);
+
+            Vector3 rot = Vector3.positiveInfinity;
+            rot = Vector3.RotateTowards(nowF, toF, 360f, Time.deltaTime * PlayerStat.instance.Speed);
+            
+            transform.eulerAngles = rot;
         }
 
 
