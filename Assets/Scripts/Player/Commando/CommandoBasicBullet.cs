@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicBullet : MonoBehaviour
+public class CommandoBasicBullet : MonoBehaviour
 {
     Vector3 force;
     float speed = 10f;
     float nowt = 0f;
     float maxt = 3f;
+
     PlayerStat stat;
     float dmg;
 
@@ -15,7 +16,7 @@ public class BasicBullet : MonoBehaviour
     {
         force = GetComponentInParent<CommandoShootBullet>().shootforce;
 
-        stat = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStat>();
+        stat = PlayerStat.instance;
         dmg = stat.Dmg;
     }
 
