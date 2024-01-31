@@ -25,7 +25,7 @@ public class BeetleFSM : MonoBehaviour, IHitEnemy
     [SerializeField] private float HP = 80;
     [SerializeField] private float MaxHP = 80;
     // 공격력
-    public float AttackPower = 12;
+    public int AttackPower = 12;
 
     // HP 슬라이더
     [SerializeField] private Slider hpSlider;
