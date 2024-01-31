@@ -5,16 +5,7 @@ using UnityEngine;
 
 public class PlayerStat : MonoBehaviour
 {
-    static PlayerStat instance = null;
-    public static PlayerStat Instance()
-    {
-        if(instance == null)
-        {
-            instance = new PlayerStat();
-            DontDestroyOnLoad(instance);
-        }
-        return instance;
-    }
+    public static PlayerStat instance = null;
 
     //// 플레이어 기본 스테이터스 
     #region Base Staus
@@ -130,4 +121,11 @@ public class PlayerStat : MonoBehaviour
 
     #endregion
 
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(this);
+    }
 }
