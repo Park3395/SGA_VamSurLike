@@ -11,7 +11,7 @@ public class Ready : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler //
     //씬 전환
    public void OnClick()
    {
-        SceneManager.LoadScene("jhscene");
+        SceneManager.LoadScene("jhscene 1");
    }
     //준비 아이콘 위에 마우스를 올렸을 때
     public void OnPointerEnter(PointerEventData eventData)
