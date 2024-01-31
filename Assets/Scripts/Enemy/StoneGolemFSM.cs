@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
 
-public class StoneGolemFSM : MonoBehaviour
+public class StoneGolemFSM : MonoBehaviour, IHitEnemy
 {
     private enum StoneGolemState
     {
@@ -22,15 +22,12 @@ public class StoneGolemFSM : MonoBehaviour
     [SerializeField] private float HP = 480;
     [SerializeField] private float MaxHP = 480;
     public float AttackPower = 20;
-    [SerializeField] private float AttackDelay = 1.0f;
     public int Exp = 0;
-    // 추적 사거리
-    [SerializeField] private float findDistance = 40.0f;
     // 기본 공격 범위
     [SerializeField] private float attackDistance = 6.0f;
     // 레이저 공격 범위
     [SerializeField] private float skillDistance = 20.0f;
-    [SerializeField] private float skillDelay = 3.0f;
+    [SerializeField] private float skillDelay = 10.0f;
     [SerializeField] private float skillTimer;
 
     // laser 
@@ -67,6 +64,13 @@ public class StoneGolemFSM : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // 스킬 쿨타임 (스폰중이 아닐 때)
+        if (e_State != StoneGolemState.Spawn)
+        {
+            if (skillTimer >= 0)
+                skillTimer -= Time.deltaTime;
+        }
+
         // 현재 상태를 검사하고 상태별로 정해진 기능을 수행한다
         switch (e_State)
         {
@@ -101,17 +105,12 @@ public class StoneGolemFSM : MonoBehaviour
         transform.forward = player.position;
         // 스폰 애니메이션이 완전히 끝난 후 플레이어를 추적하도록 2.0초의 대기시간을 가진 코루틴함수 사용.
         StartCoroutine(SpawnToRun());
-        // 플레이어를 인식할 수 있는 거리 내에 들어오면
-        if (Vector3.Distance(transform.position, player.position) < findDistance)
-        {
-            // enum변수의 상태를 Skill로 전환
-            e_State = StoneGolemState.Skill;
-        }
     }
 
     IEnumerator SpawnToRun()
     {
         yield return new WaitForSeconds(2.0f);
+        e_State = StoneGolemState.Run;
     }
 
     // 이동 상태
@@ -141,6 +140,12 @@ public class StoneGolemFSM : MonoBehaviour
             Debug.Log("Attack");
             e_State = StoneGolemState.Attack;
         }
+        // 플레이어와의 거리가 스킬 사거리 이내이고, 스킬 쿨타임이 0이라면
+        else if (Vector3.Distance(transform.position, player.position) <= skillDistance && skillTimer < 0.0f)
+        {
+            e_State = StoneGolemState.Skill;
+            skillTimer = skillDelay;
+        }
     }
 
     // 공격 상태
@@ -166,7 +171,7 @@ public class StoneGolemFSM : MonoBehaviour
     }
 
     // 데미지 처리 함수
-    public void HitEnemy(int hitPower)
+    public void HitEnemy(float hitPower)
     {
         // 스폰, 피격, 사망 상태일 경우에는 함수 즉시 종료
         if (e_State == StoneGolemState.Spawn || e_State == StoneGolemState.Hurt || e_State == StoneGolemState.Death)
@@ -204,7 +209,7 @@ public class StoneGolemFSM : MonoBehaviour
     // 레이저 스킬
     void Skill()
     {
-        if (Vector3.Distance(transform.position, player.position) <= skillDistance)
+        if (Vector3.Distance(transform.position, player.position) <= skillDistance && skillTimer < 0.0f)
         {
             // Laser animation 재생
             anim.Play("LaserAiming");
