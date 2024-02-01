@@ -13,9 +13,6 @@ public class PlayerMove : MonoBehaviour
     int jumpingCount = 0;
     // 현재 점프력
     float yVelocity = 0;
-    // 이동 검사
-    bool onMove = false;
-
 
     // 조준점
     [SerializeField]
@@ -23,15 +20,12 @@ public class PlayerMove : MonoBehaviour
     // 플레이어 정위치
     [SerializeField]
     Transform focus;
-    // 현재 플레이어 정면
-    [SerializeField]
-    Transform front;
 
     Animator anim;
     void Start()
     {
         // 전역 변수 초기화
-        pStat = this.GetComponent<PlayerStat>();
+        pStat = PlayerStat.instance;
         cc = this.GetComponent<CharacterController>();
         anim = this.GetComponentInChildren<Animator>();
     }
@@ -99,7 +93,10 @@ public class PlayerMove : MonoBehaviour
             // 저장된 점프력만큼 점프력 설정
             yVelocity = pStat.Jump;
 
-            anim.SetBool("Jumping",true);
+            if (anim.GetBool("Jumping") == true)
+                anim.SetTrigger("AddJump");
+            else
+                anim.SetBool("Jumping", true);
 
             // 점프 횟수 1회 차감
             jumpingCount--;
