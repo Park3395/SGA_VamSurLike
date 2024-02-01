@@ -5,7 +5,7 @@ using UnityEngine;
 public class BasicBullet : MonoBehaviour
 {
     Vector3 force;
-    float speed = 30f;
+    float speed = 180f;
     float nowt = 0f;
     float maxt = 2f;
     PlayerStat stat;
@@ -39,13 +39,12 @@ public class BasicBullet : MonoBehaviour
         #endregion
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (nowt < maxt)
             nowt += Time.deltaTime;
         else
             Destroy(this.gameObject);
-        //Debug.Log(force);
         this.transform.Translate(force*speed*Time.deltaTime);
     }
 

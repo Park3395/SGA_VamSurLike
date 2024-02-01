@@ -693,7 +693,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -800,9 +800,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1961227360420176697, guid: 6f5b83c77a5270c40b363fbdb0be2d1a, type: 3}
+      propertyPath: ShiftAnim_Sub
+      value: CommandoArmature_Jump
+      objectReference: {fileID: 0}
+    - target: {fileID: 1961227360420176697, guid: 6f5b83c77a5270c40b363fbdb0be2d1a, type: 3}
+      propertyPath: ShiftSkillDelay
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4788935603696079045, guid: 6f5b83c77a5270c40b363fbdb0be2d1a, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5353556423827003589, guid: 6f5b83c77a5270c40b363fbdb0be2d1a, type: 3}
+      propertyPath: _jumpCount
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7011216187177688089, guid: 6f5b83c77a5270c40b363fbdb0be2d1a, type: 3}
       propertyPath: cam
