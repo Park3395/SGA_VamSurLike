@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/jhscene 1.unity
     guid: 35168b1f6e51c35469b41cb70a444e5b
+  - enabled: 1
+    path: Assets/Scenes/LoadingScene.unity
+    guid: 92b900444ccf40040aff2aa4faf083df
   m_configObjects: {}
