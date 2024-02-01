@@ -45,7 +45,7 @@ public class BasicBullet : MonoBehaviour
             nowt += Time.deltaTime;
         else
             Destroy(this.gameObject);
-        Debug.Log(force);
+        //Debug.Log(force);
         this.transform.Translate(force*speed*Time.deltaTime);
     }
 

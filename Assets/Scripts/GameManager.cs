@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,19 +11,21 @@ public class GameManager : MonoBehaviour
 
     bool waveStarted = false;
     public Canvas pressECanvas;
+    public Canvas alarmCanvas;
+    public Text alarmText;
 
     public GameObject[] Wave1Monster;
 
 
     void Start()
     {
-        // 나중에 주석 풀예정
+        // 나중에 주석 풀예정, 게임 패배나 승리시 커서 보이게
         //Cursor.visible = false; // 커서 안보이게
         //Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
 
-        elapsedTime = 0f;
-        currentWave = 1;
-        waveDuration = 60.0f;
+        elapsedTime = 0f;       // 경과 시간
+        currentWave = 1;        // 현재 웨이브
+        waveDuration = 60.0f;   // wave의 제한시간(초)
     }
 
 
@@ -30,8 +33,8 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E)&&pressECanvas.gameObject.activeSelf)
         {
+            pressECanvas.gameObject.SetActive(false);
             waveStarted = true;
-            
             // 3초후 첫번째 웨이브 시작하는 함수 호출
             StartCoroutine(FirstWave());
         }
@@ -40,15 +43,14 @@ public class GameManager : MonoBehaviour
             elapsedTime += 1.0f * Time.deltaTime;  // 시간 누적
         }
 
-        if (elapsedTime >= waveDuration) // 60초가 지나면
+        if (elapsedTime >= waveDuration*currentWave) // 60초가 지나면
         {
             currentWave++;
 
-            elapsedTime = 0f;
             StartWave();
         }
 
-        //if (elapsedTime >= waveDuration * 60f)  //몬스터 다잡으면
+        //if ()  //몬스터 다잡으면
         //{
         //    EndWave();
         //}
@@ -57,17 +59,21 @@ public class GameManager : MonoBehaviour
     IEnumerator FirstWave()
     {
         yield return new WaitForSeconds(3.0f);  // 3초 대기
-        Debug.Log("3초후에 웨이브가 시작됩니다");
-        // 5초후에 wave가 시작됩니다 라고 text띄우기
+
+        // 몬스터 웨이브가 다가옵니다 라고 text띄우기
+        alarmCanvas.gameObject.SetActive(true);
         
         yield return new WaitForSeconds(3.0f);  // 3초 대기
         StartWave();
+        //alarmText.text = "웨이브가 시작됩니다";
     }
+
     void StartWave()
     {
-        Debug.Log(currentWave + "Wave가 시작됩니다");
-        
         waveStarted = true;
+        //Debug.Log(currentWave + "Wave가 시작됩니다");
+        alarmText.text = currentWave+"웨이브가 시작됩니다";
+        Invoke("HideCanvas", 3);
 
         // 적 생성 프리팹 비활성화된거 웨이브에따라 활성화, 애니메이션실행
         if(currentWave ==1)
@@ -94,5 +100,10 @@ public class GameManager : MonoBehaviour
 
         // 코루틴으로? 몇초후에 아이템셀렉트 생성함수 불러오기
         // 아이템 선택이후 다음웨이브 시작
+    }
+
+    void HideCanvas()
+    {
+        alarmCanvas.gameObject.SetActive(false);
     }
 }
