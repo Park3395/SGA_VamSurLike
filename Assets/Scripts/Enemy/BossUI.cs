@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class BossUI : MonoBehaviour
 {
     public Text uiHP;
-    VagrantFSM eFSM;
+    public VagrantFSM eFSM;
 
     private void Update()
     {
