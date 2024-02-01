@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public float elapsedTime;   // 경과 시간
-    public int currentWave;    // 현재 웨이브
+    public int currentWave;     // 현재 웨이브
     public float waveDuration;  // wave의 제한시간(초)
 
     bool waveStarted = false;
