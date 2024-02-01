@@ -33,6 +33,7 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
     // laser 
     [SerializeField] private float initialLaserDuration = 3.0f;
     [SerializeField] private float fixedLaserDuration = 1.0f;
+    bool laserCanAttack;
 
     // HP 슬라이더
     [SerializeField] private Slider hpSlider;
@@ -194,8 +195,8 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
         agent.isStopped = true;
         agent.ResetPath();
 
-        // 적 체력이 0보다 크면 피격 상태로 전환
-        if (HP > 0)
+        // 적 체력이 0보다 크거나 레이저공격 상태가 아닐 때 피격 상태로 전환
+        if (HP > 0 || e_State != StoneGolemState.Skill)
         {
             e_State = StoneGolemState.Hurt;
 
@@ -217,16 +218,6 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
     // 레이저 스킬
     void Skill()
     {
-        //if (Vector3.Distance(transform.position, player.position) <= skillDistance && skillTimer < 0.0f)
-        //{
-        //    // Laser animation 재생
-        //    anim.Play("LaserAiming");
-        //    StartCoroutine(ActivateLaser());
-        //}
-        //else
-        //{
-        //    e_State = StoneGolemState.Run;
-        //}
         // Laser animation 재생
         anim.Play("LaserAiming");
         StartCoroutine(ActivateLaser());
@@ -235,6 +226,7 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
     // 레이저 스킬 //
     IEnumerator ActivateLaser()
     {
+        laserCanAttack = false;
         // LineRenderer 컴포넌트를 자식객체의 Inspector에서 찾기.
         LineRenderer lR = GetComponentInChildren<LineRenderer>();
         lR.enabled = true;
@@ -261,6 +253,7 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
         // 1초 동안 레이저가 데미지를 입힐 수 있는 상태
         while (elapsedTime < fixedLaserDuration)
         {
+            laserCanAttack = true;
             anim.SetTrigger("LaserAttack");
             // player의 마지막 위치와 연결
             lR.SetPosition(1, mPos);
@@ -271,11 +264,14 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
 
         // 이 때 플레이어가 레이저에 닿으면 데미지를 입음
         // 데미지 처리 함수. 
-        if (Vector3.Distance(mPos, player.position) < 0.5f)
+        if (laserCanAttack == true && elapsedTime == fixedLaserDuration)
+        {
             pStat.NowHP -= attackPower;
+        }
 
         // 레이저 비활성화
         lR.enabled = false;
+        laserCanAttack=false;
 
         // 레이저 발사 후 1초 대기
         yield return new WaitForSeconds(1.0f);
