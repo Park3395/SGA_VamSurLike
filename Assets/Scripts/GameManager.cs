@@ -35,7 +35,6 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E)&&pressECanvas.gameObject.activeSelf)
         {
             pressECanvas.gameObject.SetActive(false);
-            waveStarted = true;
             // 3초후 첫번째 웨이브 시작하는 함수 호출
             StartCoroutine(FirstWave());
         }
