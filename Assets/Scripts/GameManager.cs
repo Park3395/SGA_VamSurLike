@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     bool waveStarted = false;
     public Canvas pressECanvas;
     public Canvas alarmCanvas;
+    public Canvas itemSelectCanvasPrefab;
     public Text alarmText;
 
     public GameObject[] Wave1Monster;
@@ -19,7 +20,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        // 나중에 주석 풀예정, 게임 패배나 승리시 커서 보이게
+        // 나중에 주석 풀예정, 게임 패배나 승리시, 아이템 선택시 커서 보이게
         //Cursor.visible = false; // 커서 안보이게
         //Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
 
@@ -60,20 +61,18 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(3.0f);  // 3초 대기
 
-        // 몬스터 웨이브가 다가옵니다 라고 text띄우기
+        // 몬스터 웨이브가 다가옵니다 라고 처음에 적혀있음
         alarmCanvas.gameObject.SetActive(true);
         
         yield return new WaitForSeconds(3.0f);  // 3초 대기
         StartWave();
-        //alarmText.text = "웨이브가 시작됩니다";
     }
 
     void StartWave()
     {
         waveStarted = true;
-        //Debug.Log(currentWave + "Wave가 시작됩니다");
         alarmText.text = currentWave+"웨이브가 시작됩니다";
-        Invoke("HideCanvas", 3);
+        Invoke("HideAlarmCanvas", 3);
 
         // 적 생성 프리팹 비활성화된거 웨이브에따라 활성화, 애니메이션실행
         if(currentWave ==1)
@@ -91,19 +90,27 @@ public class GameManager : MonoBehaviour
 
     void EndWave()
     {
-        Debug.Log("1웨이브 종료!");
-        // 웨이브 초기화 또는 다음 웨이브 설정 등의 작업 수행
-        currentWave++;
-        // 변수 초기화
-        elapsedTime = 0f;
-        waveStarted = false;
+        alarmCanvas.gameObject.SetActive(false);
+        alarmText.text = currentWave + "웨이브 종료!";
+        Invoke("HideAlarmCanvas", 3);
 
-        // 코루틴으로? 몇초후에 아이템셀렉트 생성함수 불러오기
+        currentWave++;
+        waveStarted = false;    // 경과시간 잠시 멈추게됨
+
+        // 인보크로 몇초후에 아이템셀렉트 캔버스 생성함수 불러오기
+        Invoke("InstantiateItemSelectCanvas", 3);
+
         // 아이템 선택이후 다음웨이브 시작
     }
 
-    void HideCanvas()
+    void HideAlarmCanvas()
     {
         alarmCanvas.gameObject.SetActive(false);
+    }
+
+    void InstantiateItemSelectCanvas()
+    {
+        Canvas itemSelectCanvas = Instantiate(
+            itemSelectCanvasPrefab, new Vector3(0, 0, 0), Quaternion.identity);
     }
 }
