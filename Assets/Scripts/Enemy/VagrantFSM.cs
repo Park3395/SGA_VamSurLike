@@ -18,10 +18,11 @@ public class VagrantFSM : MonoBehaviour, IHitEnemy
     VagrantState e_State;
 
     // Vagrant 정보
-    [SerializeField] private float HP = 2100;
-    [SerializeField] private float MaxHP = 2100;
+    public float HP = 2100;
+    public float MaxHP = 2100;
     // HP 슬라이더
     [SerializeField] private Slider hpSlider;
+    [SerializeField] private Slider UISlider;
     public int attackPower = 10;
     [SerializeField] private float orbSpeed = 10.0f;
     [SerializeField] private float attackDistance = 60.0f;
@@ -93,6 +94,7 @@ public class VagrantFSM : MonoBehaviour, IHitEnemy
 
         // 현재 HP를 슬라이더에 반영
         hpSlider.value = (float)HP / (float)MaxHP;
+        UISlider.value = (float)HP / (float)MaxHP;
     }
 
     void Spawn()

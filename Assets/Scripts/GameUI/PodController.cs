@@ -5,7 +5,7 @@ using Cinemachine;
 
 public class PodController : MonoBehaviour
 {
-    private Animator animator;
+    private Animator escapePodAnimator;
     public CinemachineVirtualCamera virtualCamera;
     public GameObject player;
     public GameObject explosionFx;
@@ -13,7 +13,7 @@ public class PodController : MonoBehaviour
 
     void Start()
     {
-        animator = GetComponent<Animator>();
+        escapePodAnimator = GetComponent<Animator>();
         
         // 2초후 스폰 애니메이션을 실행하는 함수 호출
         StartCoroutine(DelayedFunction());
@@ -25,12 +25,11 @@ public class PodController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E)&&pressE.gameObject.activeSelf)
         {
             // 문열리는 애니메이션실행
-            animator.Play("PodOpen");
+            escapePodAnimator.Play("PodOpen");
             // 가상카메라 비활성화
             virtualCamera.enabled = false;
             // 플레이어 활성화
             player.SetActive(true);
-            pressE.gameObject.SetActive(false);
         }
     }
 
@@ -39,7 +38,7 @@ public class PodController : MonoBehaviour
         // 2초 대기
         yield return new WaitForSeconds(2.0f);
         // 2초 후에 실행될 함수 호출
-        animator.Play("PodSpawn");
+        escapePodAnimator.Play("PodSpawn");
 
         yield return new WaitForSeconds(1.5f);
         StopShake();
