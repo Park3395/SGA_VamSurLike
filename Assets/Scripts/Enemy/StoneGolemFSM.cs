@@ -19,12 +19,16 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
     StoneGolemState e_State;
 
 
+    // HP 슬라이더
+    [SerializeField] private Slider hpSlider;
     [SerializeField] private float HP = 480;
     [SerializeField] private float MaxHP = 480;
-    [SerializeField] private int attackPower = 20;
+    public int attackPower = 20;
     public int Exp = 0;
+
     // 기본 공격 범위
     [SerializeField] private float attackDistance = 6.0f;
+
     // 레이저 공격 범위
     [SerializeField] private float skillDistance = 20.0f;
     [SerializeField] private float skillDelay = 10.0f;
@@ -34,9 +38,6 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
     [SerializeField] private float initialLaserDuration = 3.0f;
     [SerializeField] private float fixedLaserDuration = 1.0f;
     bool laserCanAttack;
-
-    // HP 슬라이더
-    [SerializeField] private Slider hpSlider;
 
     Animator anim;
 
@@ -173,12 +174,6 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
         }
     }
 
-    // 플레이어의 데미지 처리 함수
-    public void AttackAction()
-    {
-        //player.GetComponent<PlayerMove>().DamageAction(attackPower);
-    }
-
     // 데미지 처리 함수
     public void HitEnemy(float hitPower)
     {
@@ -205,7 +200,7 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
             Hurt();
         }
         // 그렇지 않으면 사망 상태로 전환
-        else
+        else if (HP <= 0)
         {
             e_State = StoneGolemState.Death;
 
@@ -302,6 +297,10 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
     {
         // 진행 중인 피격 코루틴 함수를 중지한다
         StopAllCoroutines();
+        // LineRenderer 컴포넌트를 자식객체의 Inspector에서 찾기.
+        LineRenderer lR = GetComponentInChildren<LineRenderer>();
+        lR.enabled = false;
+
 
         // 사망 상태를 처리하기 위한 코루틴을 실행한다
         StartCoroutine(DieProcess());

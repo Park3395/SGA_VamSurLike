@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HitEvent : MonoBehaviour
+public class unHitEvent : MonoBehaviour
 {
     public GameObject ClapZone;
 
-    public void PlayerHit()
+    public void PlayerUnHit()
     {
-        ClapZone.SetActive(true);
+        ClapZone.SetActive(false);
     }
 }
