@@ -12,8 +12,6 @@ public class CommandoShootBullet : MonoBehaviour
     [SerializeField]
     Transform shootPosR;
 
-    public Vector3 shootforce;
-
     void ShootBulletL()
     {
         Instantiate(basicBullet, shootPosL.position, new Quaternion());
