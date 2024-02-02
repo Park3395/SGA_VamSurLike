@@ -218,7 +218,7 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
         StartCoroutine(ActivateLaser());
     }
 
-    // 레이저 스킬 //
+    // 레이저 스킬 // 벽을 통과하지 않게 수정중.
     IEnumerator ActivateLaser()
     {
         laserCanAttack = false;
@@ -257,7 +257,7 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
             yield return null;
         }
 
-        // 이 때 플레이어가 레이저에 닿으면 데미지를 입음
+        // 이 때 플레이어가 레이저에 닿으면 데미지를 입음// 현재 데미지 입지 않음.
         // 데미지 처리 함수. 
         if (laserCanAttack == true && elapsedTime == fixedLaserDuration)
         {
