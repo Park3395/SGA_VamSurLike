@@ -21,14 +21,18 @@ public class BeetleFSM : MonoBehaviour, IHitEnemy
     // 플레이어를 공격하는 인식거리
     [SerializeField] private float attackDistance = 2.0f;
 
+    // HP 슬라이더
+    [SerializeField] private Slider hpSlider;
+
     // HP
     [SerializeField] private float HP = 80;
     [SerializeField] private float MaxHP = 80;
+
     // 공격력
     public int AttackPower = 12;
 
-    // HP 슬라이더
-    [SerializeField] private Slider hpSlider;
+    // 경험치
+    public int Exp = 0;
 
     Animator anim;
 

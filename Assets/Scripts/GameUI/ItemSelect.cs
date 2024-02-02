@@ -8,10 +8,17 @@ public class ItemSelect : MonoBehaviour
     public Button[] allButtons;     //인스펙터에서 버튼프리팹 넣는곳
     private Button[] buttonObjects; //버튼 Instantiate 할때 쓰는 배열 
 
-    // Start is called before the first frame update
+    private GameManager gameManagerInstance;
+
     void Start()
     {
         ItemButtonInstantiate();
+        gameManagerInstance = FindObjectOfType<GameManager>();
+
+        if (gameManagerInstance == null)
+        {
+            Debug.LogError("GameManager를 찾을 수 없습니다.");
+        }
     }
 
     void Update()
@@ -53,4 +60,62 @@ public class ItemSelect : MonoBehaviour
         }
     }
 
+    public void ButtonArmorPower()
+    {
+        for (int i = 0;i < 3;i++)
+        {
+            Destroy(buttonObjects[i]);
+        }
+        gameManagerInstance.StartWave();
+    }
+    public void ButtonAttackPower()
+    {
+
+        gameManagerInstance.StartWave();
+    }
+    public void ButtonAttackSpeed()
+    {
+
+        gameManagerInstance.StartWave();
+    }
+    public void ButtonCriticalPower()
+    {
+
+        gameManagerInstance.StartWave();
+    }
+    public void ButtonCriticalProbability()
+    {
+
+        gameManagerInstance.StartWave();
+    }
+    public void ButtonDoubleJump()
+    {
+
+        gameManagerInstance.StartWave();
+    }
+    public void ButtonHpRegen()
+    {
+
+        gameManagerInstance.StartWave();
+    }
+    public void ButtonJumpPower()
+    {
+
+        gameManagerInstance.StartWave();
+    }
+    public void ButtonMaxHp()
+    {
+
+        gameManagerInstance.StartWave();
+    }
+    public void ButtonMoveSpeed()
+    {
+
+        gameManagerInstance.StartWave();
+    }
+    public void ButtonShield()
+    {
+
+        gameManagerInstance.StartWave();
+    }
 }

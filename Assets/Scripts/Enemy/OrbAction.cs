@@ -17,9 +17,9 @@ public class OrbAction : MonoBehaviour
     }
 
     
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.name == "Player")
+        if (other.gameObject.name == "Player")
         {
             Debug.Log("Collision with Player");
             // 닿았을 때 플레이어의 hp 감소
@@ -28,7 +28,7 @@ public class OrbAction : MonoBehaviour
         }
 
         // 충돌체의 레이어가 Ground라면 오브젝트 삭제
-        if (collision.gameObject.layer == 8)
+        if (other.gameObject.layer == 8)
             Destroy(gameObject);
     }
 }

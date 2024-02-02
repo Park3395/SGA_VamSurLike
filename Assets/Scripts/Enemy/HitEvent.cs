@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class HitEvent : MonoBehaviour
 {
-    public BeetleFSM bfsm;
+    public GameObject ClapZone;
 
     public void PlayerHit()
     {
-        bfsm.AttackAction();
+        ClapZone.SetActive(true);
     }
 }
