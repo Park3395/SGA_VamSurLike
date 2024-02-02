@@ -23,6 +23,7 @@ public class VagrantFSM : MonoBehaviour, IHitEnemy
     // HP 슬라이더
     [SerializeField] private Slider hpSlider;
     [SerializeField] private Slider UISlider;
+    [SerializeField] private GameObject BossUI;
     public int attackPower = 10;
     [SerializeField] private float orbSpeed = 10.0f;
     [SerializeField] private float attackDistance = 60.0f;
@@ -57,6 +58,7 @@ public class VagrantFSM : MonoBehaviour, IHitEnemy
 
         attackTimer = attackDelay;
         skillTimer = skillDelay;
+        BossUI.SetActive(false);
     }
 
     private void Update()
@@ -107,6 +109,7 @@ public class VagrantFSM : MonoBehaviour, IHitEnemy
     IEnumerator SpawnAnimation()
     {
         yield return new WaitForSeconds(1.5f);
+        BossUI.SetActive(true);
     }
 
     // 소환후 상태
@@ -190,6 +193,7 @@ public class VagrantFSM : MonoBehaviour, IHitEnemy
         // 2초 동안 기다린 이후 자기자신을 제거한다
         yield return new WaitForSeconds(2.0f);
         print("소멸!");
+        BossUI.SetActive(false);
         Destroy(gameObject);
     }
 
