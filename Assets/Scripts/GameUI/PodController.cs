@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.UI;
 
 public class PodController : MonoBehaviour
 {
@@ -10,12 +11,13 @@ public class PodController : MonoBehaviour
     public GameObject player;
     public GameObject explosionFx;
     public Canvas pressE;
+    public Text mapNameText;
 
     void Start()
     {
         escapePodAnimator = GetComponent<Animator>();
         
-        // 2초후 스폰 애니메이션을 실행하는 함수 호출
+        // 3초후 스폰 애니메이션을 실행하는 함수 호출
         StartCoroutine(DelayedFunction());
     }
 
@@ -35,14 +37,19 @@ public class PodController : MonoBehaviour
 
     IEnumerator DelayedFunction()
     {
-        // 2초 대기
+        // 1초 대기
+        yield return new WaitForSeconds(1.0f);
+        mapNameText.gameObject.SetActive(true);
+
         yield return new WaitForSeconds(2.0f);
-        // 2초 후에 실행될 함수 호출
         escapePodAnimator.Play("PodSpawn");
 
         yield return new WaitForSeconds(1.5f);
         StopShake();
         pressE.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(1f);
+        mapNameText.gameObject.SetActive(false);
 
     }
 

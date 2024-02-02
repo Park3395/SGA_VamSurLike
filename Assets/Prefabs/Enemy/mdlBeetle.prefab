@@ -190,7 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43779b3cada732342b52ece4551c705b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 97358173860989684, guid: 4bc19a41415a94f40a5dc04c80b2cd83, type: 3}
+  target: {fileID: 0}
 --- !u!1 &2797675280589047208
 GameObject:
   m_ObjectHideFlags: 0
@@ -1158,10 +1158,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDistance: 4
+  hpSlider: {fileID: 2300587563004284223}
   HP: 80
   MaxHP: 80
   AttackPower: 12
-  hpSlider: {fileID: 2300587563004284223}
+  Exp: 0
 --- !u!65 &1213149564173796045
 BoxCollider:
   m_ObjectHideFlags: 0
