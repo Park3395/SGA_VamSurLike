@@ -35,9 +35,12 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
     [SerializeField] private float skillTimer;
 
     // laser 
-    [SerializeField] private float initialLaserDuration = 3.0f;
-    [SerializeField] private float fixedLaserDuration = 1.0f;
-    bool laserCanAttack;
+    [SerializeField] private Transform laserOrigin;
+    LineRenderer laserLine;
+    public float aimDuration = 3.0f;
+    public float laserRange = 50.0f;
+    // 레이저에 닿는 플레이어 레이어
+    public LayerMask playerLayer;
 
     Animator anim;
 
@@ -67,6 +70,9 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
 
         // 내비게이션 에이전트 컴포넌트 가져오기
         agent = GetComponent<NavMeshAgent>();
+
+        // 레이저
+        laserLine = GetComponentInChildren<LineRenderer>();
     }
 
     // Update is called once per frame
@@ -128,8 +134,9 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
         if (Vector3.Distance(transform.position, player.position) > attackDistance)
         {
             Vector3 dir = (player.position - transform.position).normalized;
-
-            transform.forward = dir;
+            // 플레이어에게 자연스럽게 돌아보도록 quaternion사용.
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), 5 * Time.deltaTime);
+            // transform.forward = dir;
 
             // 에이전트의 이동을 정지하고 경로를 초기화
             agent.isStopped = true;
@@ -151,11 +158,11 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
             e_State = StoneGolemState.Attack;
         }
         // 플레이어와의 거리가 스킬 사거리 이내이고, 스킬 쿨타임이 0이라면
-        if (Vector3.Distance(transform.position, player.position) <= skillDistance && skillTimer < 0.0f)
-        {
-            e_State = StoneGolemState.Skill;
-            skillTimer = skillDelay;
-        }
+        //if (Vector3.Distance(transform.position, player.position) <= skillDistance && skillTimer < 0.0f)
+        //{
+        //    e_State = StoneGolemState.Skill;
+        //    skillTimer = skillDelay;
+        //}
     }
 
     // 공격 상태
@@ -215,61 +222,59 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
     {
         // Laser animation 재생
         anim.Play("LaserAiming");
+        laserLine.enabled = true;
+        // 레이저의 시작 위치 골렘의 눈 laserOrigin
+        laserLine.SetPosition(0, laserOrigin.position);
+        Ray rayOrigin = new Ray(laserOrigin.position, (laserOrigin.position - player.position).normalized);
+        RaycastHit hit;
+
+        // 경과 시간
+        float elapsedTime = 0f;
+
+        // 경과 시간이 초기 레이저 설정 시간(3초)가 될 때까지 조준
+        while (elapsedTime < aimDuration)
+        {
+            // 플레이어까지 라인 생성
+            laserLine.SetPosition(1, player.position);
+            // 레이저 범위까지 쏜 레이저에 닿은 물체가 플레이어가 아니라면
+            if (!Physics.Raycast(rayOrigin, out hit, laserRange, playerLayer))
+            {
+                laserLine.enabled = false;
+                // enum 상태를 Run으로 전환
+                e_State = StoneGolemState.Run;
+            }
+            elapsedTime += Time.deltaTime;
+        }
+
+        laserLine.enabled = false;
         StartCoroutine(ActivateLaser());
     }
 
     // 레이저 스킬 // 벽을 통과하지 않게 수정중.
     IEnumerator ActivateLaser()
     {
-        laserCanAttack = false;
-        // LineRenderer 컴포넌트를 자식객체의 Inspector에서 찾기.
-        LineRenderer lR = GetComponentInChildren<LineRenderer>();
-        lR.enabled = true;
-
-        // LineRenderer의 위치 갯수
-        lR.positionCount = 2;
-
-        // ???? mdlGolem안의 child인 MuzzleLaser의 위치 받아오기.
-        lR.SetPosition(0, GameObject.FindGameObjectWithTag("LaserPos").transform.position);
-        // 경과 시간
-        float elapsedTime = 0f;
-
-        // 경과 시간이 초기 레이저 설정 시간(3초)가 될 때까지 조준
-        while (elapsedTime < initialLaserDuration)
-        {
-            lR.SetPosition(1, player.position);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
+        yield return new WaitForSeconds(0.5f);
         // 플레이어의 마지막 위치를 저장
         Vector3 mPos = player.position;
-        elapsedTime = 0f;
         // 1초 동안 레이저가 데미지를 입힐 수 있는 상태
-        while (elapsedTime < fixedLaserDuration)
+        // 레이저의 시작 위치 골렘의 눈 laserOrigin
+        laserLine.SetPosition(0, laserOrigin.position);
+        Ray rayOrigin = new Ray(laserOrigin.position, (laserOrigin.position - player.position).normalized);
+        RaycastHit hit;
+        laserLine.enabled = true;
+        laserLine.SetPosition(1, mPos);
+        if (Physics.Raycast(rayOrigin, out hit, laserRange, playerLayer))
         {
-            laserCanAttack = true;
-            anim.SetTrigger("LaserAttack");
-            // player의 마지막 위치와 연결
-            lR.SetPosition(1, mPos);
-            elapsedTime += Time.deltaTime;
+            pStat.NowHP -= attackPower;
 
-            yield return null;
+            Debug.Log("laserDamage");
         }
 
         // 이 때 플레이어가 레이저에 닿으면 데미지를 입음// 현재 데미지 입지 않음.
-        // 데미지 처리 함수. 
-        if (laserCanAttack == true && elapsedTime == fixedLaserDuration)
-        {
-            pStat.NowHP -= attackPower;
-        }
+        // 데미지 처리 함수.
 
         // 레이저 비활성화
-        lR.enabled = false;
-        laserCanAttack=false;
-
-        // 레이저 발사 후 1초 대기
-        yield return new WaitForSeconds(1.0f);
+        laserLine.enabled = false;
 
         // enum 상태를 Run으로 전환
         e_State = StoneGolemState.Run;
@@ -297,10 +302,6 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
     {
         // 진행 중인 피격 코루틴 함수를 중지한다
         StopAllCoroutines();
-        // LineRenderer 컴포넌트를 자식객체의 Inspector에서 찾기.
-        LineRenderer lR = GetComponentInChildren<LineRenderer>();
-        lR.enabled = false;
-
 
         // 사망 상태를 처리하기 위한 코루틴을 실행한다
         StartCoroutine(DieProcess());
@@ -314,6 +315,6 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
         // 2초 동안 기다린 이후 자기자신을 제거한다
         yield return new WaitForSeconds(2.0f);
         print("소멸!");
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }
