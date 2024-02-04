@@ -7,6 +7,7 @@ public class ItemSelect : MonoBehaviour
 {
     public Button[] allButtons;     //인스펙터에서 버튼프리팹 넣는곳
     private Button[] buttonObjects; //버튼 Instantiate 할때 쓰는 배열 
+    public Canvas ItemSelectCanvas; // destroy할 캔버스
 
     private GameManager gameManagerInstance;
 
@@ -62,60 +63,60 @@ public class ItemSelect : MonoBehaviour
 
     public void ButtonArmorPower()
     {
-        for (int i = 0;i < 3;i++)
-        {
-            Destroy(buttonObjects[i]);
-        }
-        gameManagerInstance.StartWave();
+        //for (int i = 0;i < 3;i++)
+        //{
+        //    Destroy(buttonObjects[i]);
+        //}
+        Destroy(ItemSelectCanvas);
     }
     public void ButtonAttackPower()
     {
 
-        gameManagerInstance.StartWave();
+        Destroy(ItemSelectCanvas);
     }
     public void ButtonAttackSpeed()
     {
 
-        gameManagerInstance.StartWave();
+        Destroy(ItemSelectCanvas);
     }
     public void ButtonCriticalPower()
     {
 
-        gameManagerInstance.StartWave();
+        Destroy(ItemSelectCanvas);
     }
     public void ButtonCriticalProbability()
     {
 
-        gameManagerInstance.StartWave();
+        Destroy(ItemSelectCanvas);
     }
     public void ButtonDoubleJump()
     {
 
-        gameManagerInstance.StartWave();
+        Destroy(ItemSelectCanvas);
     }
     public void ButtonHpRegen()
     {
 
-        gameManagerInstance.StartWave();
+        Destroy(ItemSelectCanvas);
     }
     public void ButtonJumpPower()
     {
 
-        gameManagerInstance.StartWave();
+        Destroy(ItemSelectCanvas);
     }
     public void ButtonMaxHp()
     {
 
-        gameManagerInstance.StartWave();
+        Destroy(ItemSelectCanvas);
     }
     public void ButtonMoveSpeed()
     {
 
-        gameManagerInstance.StartWave();
+        Destroy(ItemSelectCanvas);
     }
     public void ButtonShield()
     {
 
-        gameManagerInstance.StartWave();
+        Destroy(ItemSelectCanvas);
     }
 }

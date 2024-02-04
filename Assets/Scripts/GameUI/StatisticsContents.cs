@@ -43,11 +43,9 @@ public class StatisticsContents : MonoBehaviour
     void Update()
     {
         // 게임매니저에서 가져오기
-        min = gameManagerInstance.min;
-        sec = gameManagerInstance.sec;
-        float getTime = gameManagerInstance.elapsedTime;    
-        int totalSeconds = (int)getTime;                    // 1.23456 형식 소숫점자리 버림
-        
+        int totalSeconds = gameManagerInstance.totalElapsedTime;
+        min = totalSeconds / 60;
+        sec = totalSeconds % 60;
         time = min.ToString() + ":" + sec.ToString("00");
         timeNumber.text = time;
         timeScore.text = (totalSeconds * 6).ToString();
