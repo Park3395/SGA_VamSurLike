@@ -210,9 +210,6 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
         else if (HP <= 0)
         {
             e_State = StoneGolemState.Death;
-
-            // 사망 애니메이션 재생
-            anim.SetTrigger("Death");
             Die();
         }
     }
