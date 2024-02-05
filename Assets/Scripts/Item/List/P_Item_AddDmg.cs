@@ -10,9 +10,10 @@ public class P_Item_AddDmg : ItemBase
         this.level = 0;
         this.maxlevel = 9;
         this.synergeNum = 1;
+        this.isActive = false;
     }
 
-    public override void itemEffect()
+    public override void getItem()
     {
         PlayerStat.instance.Dmg *= 1.5f;
     }

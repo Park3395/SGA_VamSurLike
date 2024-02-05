@@ -7,9 +7,11 @@ public class A_Item_Granade : ItemBase
     private void Awake()
     {
         this.num = 1;
+        this.delay = 3.0f;
         this.level = 0;
         this.maxlevel = 5;
         this.synergeNum = 1;
+        this.isActive = true;
     }
 
     public override void itemEffect()

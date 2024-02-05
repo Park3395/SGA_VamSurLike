@@ -14,8 +14,10 @@ public class ItemManager : MonoBehaviour
     [SerializeField]
     GameObject LevelCanvas;
 
-    List<ItemBase> PlayerActive;
-    List<ItemBase> PlayerPassive;
+    [SerializeField]
+    public List<ItemBase> PlayerActive;
+    [SerializeField]
+    public List<ItemBase> PlayerPassive;
 
     PlayerStat pStat;
 
@@ -28,12 +30,13 @@ public class ItemManager : MonoBehaviour
 
     private void Update()
     {
-        int levelexp = pStat.Plevel * 100;
+        int levelexp = (pStat.Plevel + 1) * 100;
 
         if (pStat.Pexp >= levelexp)
         {
             Debug.Log("Level Up");
             pStat.Pexp -= levelexp;
+            pStat.Plevel++;
             Time.timeScale = 0;
             LevelCanvas.SetActive(true);
         }
@@ -44,6 +47,7 @@ public class ItemManager : MonoBehaviour
         if (isActive)
         {
             ItemBase item = PlayerActive.Find(x => x.num != num);
+
             if (item == null)
             {
                 PlayerActive.Add(ActiveItems[num]);
