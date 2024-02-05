@@ -188,8 +188,6 @@ public class BeetleFSM : MonoBehaviour, IHitEnemy
         {
             e_State = BeetleState.Death;
 
-            // 사망 애니메이션 재생
-            anim.SetTrigger("Death");
             Die();
         }
     }

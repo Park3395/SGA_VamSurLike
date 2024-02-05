@@ -198,8 +198,9 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
         agent.ResetPath();
 
         // 적 체력이 0보다 크거나 레이저공격 상태가 아닐 때 피격 상태로 전환
-        if (HP > 0 || e_State != StoneGolemState.Skill)
+        if (HP > 0)
         {
+            // 스킬을 사용중이 아닐 때
             e_State = StoneGolemState.Hurt;
 
             // 피격 애니메이션 재생
@@ -207,7 +208,7 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
             Hurt();
         }
         // 그렇지 않으면 사망 상태로 전환
-        else if (HP <= 0)
+        else
         {
             e_State = StoneGolemState.Death;
             Die();
