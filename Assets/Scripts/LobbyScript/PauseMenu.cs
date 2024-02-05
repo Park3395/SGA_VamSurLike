@@ -16,9 +16,9 @@ public class PauseMenu : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-       
-        if(Input.GetKeyDown(KeyCode.Escape))
+    { 
+      
+        if(Input.GetKeyDown(KeyCode.Escape)&&CallOption.OnOption==false)
         {
             if(!gamePaused) //gamePaused를 참으로 해놓고 있었으니 안 됐지....
             {
@@ -26,7 +26,7 @@ public class PauseMenu : MonoBehaviour
                 PauseMenuOn();
             }
             
-            else
+            else if(gamePaused)
             {
                 
                 PauseMenuOff();
@@ -34,25 +34,28 @@ public class PauseMenu : MonoBehaviour
             
         }
 
-       
-          
+
+
 
     }
 
-    void PauseMenuOn()
+   public void PauseMenuOn()
     {
         gamePaused = true;
         pauseMenu.gameObject.SetActive(true);
         halfDarkPanel.gameObject.SetActive(true);
         Time.timeScale = 0.0f;
+        
+
     }
 
-    void PauseMenuOff()
+    public void PauseMenuOff()
     {
-        gamePaused = false;
-        pauseMenu.gameObject.SetActive(false);
-        halfDarkPanel.gameObject.SetActive(false);
-        Time.timeScale = 1.0f;
+       gamePaused = false;
+       pauseMenu.gameObject.SetActive(false);
+       halfDarkPanel.gameObject.SetActive(false);
+       Time.timeScale = 1.0f;
+        
     }
 
 
