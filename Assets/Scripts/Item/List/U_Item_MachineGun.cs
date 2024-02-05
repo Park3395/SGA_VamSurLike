@@ -7,9 +7,12 @@ public class U_Item_MachineGun : ItemBase
     private void Awake()
     {
         this.num = 0;
+        this.delay = 0;
         this.level = 0;
         this.maxlevel = 1;
         this.synergeNum = 0;
+
+        this.isActive = true;
     }
 
     public override void itemEffect()

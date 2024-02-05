@@ -52,7 +52,6 @@ public class BasicBullet : MonoBehaviour
     {
         if (other.gameObject.layer == 9)
         {
-            Debug.Log("HitEnemy");
             other.gameObject.GetComponent<IHitEnemy>().HitEnemy(dmg);
             Destroy(this.gameObject);
         }

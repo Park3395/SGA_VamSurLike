@@ -10,9 +10,10 @@ public class P_Item_AddAtkspd : ItemBase
         this.level = 0;
         this.maxlevel = 9;
         this.synergeNum = 0;
+        this.isActive = false;
     }
 
-    public override void itemEffect()
+    public override void getItem()
     {
         PlayerStat.instance.AttSpd -= 0.05f;
     }
