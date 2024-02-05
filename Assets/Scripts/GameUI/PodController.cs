@@ -27,8 +27,7 @@ public class PodController : MonoBehaviour
         {
             // 문열리는 애니메이션실행
             escapePodAnimator.Play("PodOpen");
-            // 가상카메라 비활성화
-            virtualCamera.enabled = false;
+            
         }
     }
 

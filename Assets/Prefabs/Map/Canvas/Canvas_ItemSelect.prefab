@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3024248749271230599}
   - component: {fileID: 3155334759983741378}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: Panel_LevelUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -203,6 +203,7 @@ MonoBehaviour:
   - {fileID: 868618905513100616, guid: a435dbfc2039c3f4982e0ada843f60ea, type: 3}
   - {fileID: 308608199272317334, guid: 317949fe340c7254484df8b1a373dcbf, type: 3}
   - {fileID: 3934433496127920674, guid: dd2c9e40903403b4197a2841c7e167c1, type: 3}
+  ItemSelectCanvas: {fileID: 0}
 --- !u!1 &8613039207280888033
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,4 +282,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Wave Clear!
+  m_Text: Level Up!

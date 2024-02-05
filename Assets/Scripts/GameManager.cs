@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditorInternal.Profiling.Memory.Experimental;
@@ -17,16 +18,19 @@ public class GameManager : MonoBehaviour
     string time;
     public int sec;
     public int leftSec;
-    public int monsterKillAmount;   // 몬스터피 0으로 만들면 ++ 몬스터 스크립트에서
+    public int monsterKillAmount;
     public int totalElapsedTime;
-    public int currentWave;     // 현재 웨이브
-    public float elapsedTime;   // 경과 시간
+    public int currentWave;        // 현재 웨이브
+    public float elapsedTime;      // 경과 시간
     int playerHP;
 
     bool waveStarted;
     bool gameOver;
+    bool itemSelected;
 
-    //Canvas itemSelectCanvas;    // instantiate로 생성된 객체
+    public CinemachineVirtualCamera virtualCamerainGameManager;
+
+    Canvas itemSelectCanvas;    // instantiate로 생성된 객체
 
     // 현재까지있는 몬스터를 저장할 리스트
     private List<GameObject> currentWaveMonsters = new List<GameObject>();
@@ -44,8 +48,10 @@ public class GameManager : MonoBehaviour
         currentWave = 1;        // 현재 웨이브
 
         totalElapsedTime = 0;
+        monsterKillAmount = 0;
         waveStarted = false;
         gameOver = false;
+        itemSelected = false;
     }
 
 
@@ -65,7 +71,7 @@ public class GameManager : MonoBehaviour
             totalElapsedTime += totalSeconds;
             waveStarted = false;
 
-            // 죽는애니메이션
+            // 죽는애니메이션 넣기
             player.gameObject.SetActive(false);
 
             Invoke("InstantiateLoseCanvas", 3);
@@ -76,7 +82,14 @@ public class GameManager : MonoBehaviour
             pressECanvas.gameObject.SetActive(false);
             // 플레이어 활성화
             player.SetActive(true);
-            // 3초후 첫번째 웨이브 시작하는 함수 호출
+
+            // 가상카메라 비활성화
+            virtualCamerainGameManager = GameObject.FindObjectOfType<CinemachineVirtualCamera>();
+            if (virtualCamerainGameManager != null)
+            {
+                virtualCamerainGameManager.gameObject.SetActive(false);
+            }
+            // 첫웨이브 시작
             StartCoroutine(FirstWave());
         }
 
@@ -96,6 +109,20 @@ public class GameManager : MonoBehaviour
             EndWave();
         }
         
+        if(KilledMonsterAmount()%4==1 && !itemSelected)
+        {
+            Time.timeScale = 0;
+            // 아이템 선택 캔버스 생성
+            itemSelectCanvas = Instantiate(itemSelectCanvasPrefab,
+                new Vector3(0, 0, 0), Quaternion.identity);
+            itemSelected = true;
+
+        }
+        if (KilledMonsterAmount() % 4 == 3 )
+        {            
+            itemSelected = false;
+        }
+
     }
 
     public void StartWave()
@@ -161,16 +188,11 @@ public class GameManager : MonoBehaviour
         alarmCanvas.gameObject.SetActive(false);
     }
 
-    //void InstantiateItemSelectCanvas()
-    //{
-    //    itemSelectCanvas = Instantiate(itemSelectCanvasPrefab,
-    //        new Vector3(0, 0, 0), Quaternion.identity);
-    //}
-    
-    //public void DestroyItemSelectCanvas()
-    //{
-    //    Destroy(itemSelectCanvas);
-    //}
+    public void InstantiateItemSelectCanvas()
+    {
+        itemSelectCanvas = Instantiate(itemSelectCanvasPrefab,
+                new Vector3(0, 0, 0), Quaternion.identity);
+    }
 
     void InstantiateLoseCanvas()
     {
@@ -184,18 +206,26 @@ public class GameManager : MonoBehaviour
         foreach (GameObject monster in currentWaveMonsters)
         {
             // 몬스터가 하나라도 활성화되어 있으면 false반환
-            //if (monster.gameObject.activeSelf==true)
-            //{
-            //    return false;
-            //}
-            // 몬스터 죽으면 destroy 일경우
-            if(monster != null)
+            if (monster.gameObject.activeSelf == true)
             {
                 return false;
-            }
+            }            
         }
 
         // 현재 웨이브에 속한 몬스터들이 모두 죽었다면 true 반환
         return true;
+    }
+
+    int KilledMonsterAmount()
+    {
+        monsterKillAmount = 0;
+        foreach (GameObject monster in currentWaveMonsters)
+        {
+            if (!monster.activeSelf)
+            {
+                monsterKillAmount++;
+            }
+        }
+        return monsterKillAmount;
     }
 }

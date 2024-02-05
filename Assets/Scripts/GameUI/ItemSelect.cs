@@ -7,7 +7,7 @@ public class ItemSelect : MonoBehaviour
 {
     public Button[] allButtons;     //인스펙터에서 버튼프리팹 넣는곳
     private Button[] buttonObjects; //버튼 Instantiate 할때 쓰는 배열 
-    public Canvas ItemSelectCanvas; // destroy할 캔버스
+    public GameObject ItemSelectCanvas; // destroy할 캔버스
 
     private GameManager gameManagerInstance;
 
@@ -16,10 +16,14 @@ public class ItemSelect : MonoBehaviour
         ItemButtonInstantiate();
         gameManagerInstance = FindObjectOfType<GameManager>();
 
-        if (gameManagerInstance == null)
-        {
-            Debug.LogError("GameManager를 찾을 수 없습니다.");
-        }
+        //ItemSelectCanvas = GameObject.Find("Canvas_ItemSelect");
+        //if (ItemSelectCanvas == null)
+        //{
+        //    Debug.Log("ItemSelectCanvas를 찾을 수 없습니다.");
+        //}
+        //else
+        //    Debug.Log("ItemSelectCanvas를 찾았습니다.");
+
     }
 
     void Update()
@@ -63,60 +67,101 @@ public class ItemSelect : MonoBehaviour
 
     public void ButtonArmorPower()
     {
-        //for (int i = 0;i < 3;i++)
-        //{
-        //    Destroy(buttonObjects[i]);
-        //}
-        Destroy(ItemSelectCanvas);
+        ItemSelectCanvas = GameObject.Find("Canvas_ItemSelect(Clone)");
+        if (ItemSelectCanvas != null)
+        {
+            Destroy(ItemSelectCanvas);
+        }
+        Time.timeScale = 1;
     }
     public void ButtonAttackPower()
     {
-
-        Destroy(ItemSelectCanvas);
+        ItemSelectCanvas = GameObject.Find("Canvas_ItemSelect(Clone)");
+        if (ItemSelectCanvas != null)
+        {
+            Destroy(ItemSelectCanvas);
+        }
+        Time.timeScale = 1;
     }
     public void ButtonAttackSpeed()
     {
-
-        Destroy(ItemSelectCanvas);
+        ItemSelectCanvas = GameObject.Find("Canvas_ItemSelect(Clone)");
+        if (ItemSelectCanvas != null)
+        {
+            Destroy(ItemSelectCanvas);
+        }
+        Time.timeScale = 1;
     }
     public void ButtonCriticalPower()
     {
-
-        Destroy(ItemSelectCanvas);
+        ItemSelectCanvas = GameObject.Find("Canvas_ItemSelect(Clone)");
+        if (ItemSelectCanvas != null)
+        {
+            Destroy(ItemSelectCanvas);
+        }
+        Time.timeScale = 1;
     }
     public void ButtonCriticalProbability()
     {
-
-        Destroy(ItemSelectCanvas);
+        ItemSelectCanvas = GameObject.Find("Canvas_ItemSelect(Clone)");
+        if (ItemSelectCanvas != null)
+        {
+            Destroy(ItemSelectCanvas);
+        }
+        Time.timeScale = 1;
     }
     public void ButtonDoubleJump()
     {
-
-        Destroy(ItemSelectCanvas);
+        ItemSelectCanvas = GameObject.Find("Canvas_ItemSelect(Clone)");
+        if (ItemSelectCanvas != null)
+        {
+            Destroy(ItemSelectCanvas);
+        }
+        Time.timeScale = 1;
     }
     public void ButtonHpRegen()
     {
-
-        Destroy(ItemSelectCanvas);
+        ItemSelectCanvas = GameObject.Find("Canvas_ItemSelect(Clone)");
+        if (ItemSelectCanvas != null)
+        {
+            Destroy(ItemSelectCanvas);
+        }
+        Time.timeScale = 1;
     }
     public void ButtonJumpPower()
     {
-
-        Destroy(ItemSelectCanvas);
+        ItemSelectCanvas = GameObject.Find("Canvas_ItemSelect(Clone)");
+        if (ItemSelectCanvas != null)
+        {
+            Destroy(ItemSelectCanvas);
+        }
+        Time.timeScale = 1;
     }
     public void ButtonMaxHp()
     {
-
-        Destroy(ItemSelectCanvas);
+        ItemSelectCanvas = GameObject.Find("Canvas_ItemSelect(Clone)");
+        if (ItemSelectCanvas != null)
+        {
+            Destroy(ItemSelectCanvas);
+        }
+        Time.timeScale = 1;
     }
     public void ButtonMoveSpeed()
     {
-
-        Destroy(ItemSelectCanvas);
+        ItemSelectCanvas = GameObject.Find("Canvas_ItemSelect(Clone)");
+        if (ItemSelectCanvas != null)
+        {
+            Destroy(ItemSelectCanvas);
+        }
+        Time.timeScale = 1;
     }
     public void ButtonShield()
     {
-
-        Destroy(ItemSelectCanvas);
+        ItemSelectCanvas = GameObject.Find("Canvas_ItemSelect(Clone)");
+        if (ItemSelectCanvas != null)
+        {
+            Destroy(ItemSelectCanvas);
+        }
+        Time.timeScale = 1;
     }
 }

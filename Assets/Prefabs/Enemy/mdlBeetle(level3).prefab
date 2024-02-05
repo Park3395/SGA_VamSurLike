@@ -2562,7 +2562,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 5
+  m_Speed: 10
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -2588,8 +2588,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDistance: 4
   hpSlider: {fileID: 1343242340986258560}
-  HP: 80
-  MaxHP: 80
+  HP: 150
+  MaxHP: 150
   AttackPower: 12
   Exp: 0
   isDie: 0

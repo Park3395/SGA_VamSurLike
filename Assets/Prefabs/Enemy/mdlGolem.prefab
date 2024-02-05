@@ -1250,8 +1250,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpSlider: {fileID: 711284849305941708}
-  HP: 480
-  MaxHP: 480
+  HP: 150
+  MaxHP: 150
   attackPower: 20
   isDie: 0
   Exp: 0
@@ -1275,7 +1275,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 10
+  m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
