@@ -122,9 +122,9 @@ public class BeetleFSM : MonoBehaviour, IHitEnemy
         // 현재 위치가 공격 사거리보다 크다면 플레이어를 향해 이동
         if (Vector3.Distance(transform.position, player.position) >= attackDistance)
         {
-            Vector3 dir = (player.position - transform.position).normalized;
+            //Vector3 dir = (player.position - transform.position).normalized;
 
-            transform.forward = dir;
+            //transform.forward = dir;
 
             // 에이전트의 이동을 정지하고 경로를 초기화
             agent.isStopped = true;
