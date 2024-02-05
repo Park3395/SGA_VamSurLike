@@ -33,6 +33,7 @@ public class BeetleFSM : MonoBehaviour, IHitEnemy
 
     // 경험치
     public int Exp = 0;
+    public bool isDie;
 
     Animator anim;
 
@@ -56,6 +57,14 @@ public class BeetleFSM : MonoBehaviour, IHitEnemy
 
         // 내비게이션 에이전트 컴포넌트 가져오기
         agent = GetComponent<NavMeshAgent>();
+
+        isDie = false;
+    }
+
+    void OnEnable()
+    {
+        e_State = BeetleState.Spawn;
+        HP = MaxHP;
     }
 
     // Update is called once per frame
@@ -211,6 +220,7 @@ public class BeetleFSM : MonoBehaviour, IHitEnemy
 
     void Die()
     {
+        isDie = true;
         // 진행 중인 피격 코루틴 함수를 중지한다
         StopAllCoroutines();
 
@@ -225,6 +235,6 @@ public class BeetleFSM : MonoBehaviour, IHitEnemy
         // 2초 동안 기다린 이후 자기자신을 제거한다
         yield return new WaitForSeconds(2.0f);
         print("소멸!");
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

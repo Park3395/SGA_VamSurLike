@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class CommandoShootBullet : MonoBehaviour
 {
-    [SerializeField]
     GameObject basicBullet;
-
-    [SerializeField]
     Transform shootPosL;
-    [SerializeField]
     Transform shootPosR;
+
+    private void Awake()
+    {
+        shootPosL = GetComponentInParent<PlayerSkill>().ShootPos;
+        shootPosR = GetComponentInParent<PlayerSkill>().ShootPos_Sub;
+        basicBullet = GetComponentInParent<PlayerSkill>().basicBullet;
+    }
 
     void ShootBulletL()
     {

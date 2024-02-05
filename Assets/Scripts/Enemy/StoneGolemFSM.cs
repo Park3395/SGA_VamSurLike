@@ -24,6 +24,8 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
     [SerializeField] private float HP = 480;
     [SerializeField] private float MaxHP = 480;
     public int attackPower = 20;
+
+    public bool isDie;
     public int Exp = 0;
 
     // 기본 공격 범위
@@ -73,6 +75,14 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
 
         // 레이저
         laserLine = GetComponentInChildren<LineRenderer>();
+
+        isDie = false;
+    }
+
+    void OnEnable()
+    {
+        e_State = StoneGolemState.Spawn;
+        HP = MaxHP;
     }
 
     // Update is called once per frame
@@ -298,6 +308,8 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
 
     void Die()
     {
+
+        isDie = true;
         // 진행 중인 피격 코루틴 함수를 중지한다
         StopAllCoroutines();
 
