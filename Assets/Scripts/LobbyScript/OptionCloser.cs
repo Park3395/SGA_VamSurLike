@@ -10,5 +10,6 @@ public class OptionCloser : MonoBehaviour
     public void OnClick()
     {
         Option.SetActive(false);
+        CallOption.OnOption = false;
     }
 }
