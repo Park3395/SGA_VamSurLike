@@ -34,14 +34,7 @@ public class StatisticsContents : MonoBehaviour
     void Start()
     {
         gameManagerInstance = FindObjectOfType<GameManager>();
-
-        // 캔버스 instantiate할때 계산되도록 Update있는내용 Start에
-
-    }
-
-
-    void Update()
-    {
+        
         // 게임매니저에서 가져오기
         int totalSeconds = gameManagerInstance.totalElapsedTime;
         min = totalSeconds / 60;
@@ -52,12 +45,25 @@ public class StatisticsContents : MonoBehaviour
 
         int getwave = gameManagerInstance.currentWave;
         waveNumber.text = getwave.ToString();
+        waveScore.text = (getwave * 100).ToString();
 
-        //killScore.text;
+        int killAmount = gameManagerInstance.monsterKillAmount;
+        killNumber.text = killAmount.ToString();
+        killScore.text = (killAmount * 10).ToString();
+
+        itemAmountNumber.text = gameManagerInstance.itemIndices.Count.ToString();
+        itemAmountScore.text = (gameManagerInstance.itemIndices.Count*110).ToString();
+
         //damageScore.text;
         //damagedScore.text;
-        waveScore.text = (getwave * 100).ToString();
-        //itemAmountScore.text;
-        //totalScore.text=(totalSeconds * 6+getwave * 100).ToString();
+
+        totalScore.text = (totalSeconds * 6 + getwave * 100 + killAmount * 10
+            + gameManagerInstance.itemIndices.Count * 110).ToString();
+
+    }
+
+    void Update()
+    {
+        
     }
 }
