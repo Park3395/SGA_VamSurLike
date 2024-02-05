@@ -42,15 +42,15 @@ public class PlayerStat : MonoBehaviour
 
 
     // 플레이어 레벨
-    [SerializeField] float _PLevel = 0;
-    public float Plevel
+    [SerializeField] int _PLevel = 0;
+    public int Plevel
     {
         get { return _PLevel; }
         set { _PLevel = value; }
     }
     // 플레이어 경험치
-    [SerializeField] float _Pexp = 0;
-    public float Pexp
+    [SerializeField] int _Pexp = 0;
+    public int Pexp
     {
         get { return _Pexp; }
         set { _Pexp = value; }
