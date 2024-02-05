@@ -115,7 +115,6 @@ public class VagrantFSM : MonoBehaviour, IHitEnemy
     // 소환후 상태
     void Idle()
     {
-        Debug.Log("Idle");
         Vector3 e_Pos = new Vector3(transform.position.x, 0, transform.position.z);
         Vector3 p_Pos = new Vector3(player.transform.position.x, 0, player.transform.position.z);
         //transform.forward = p_Pos;
@@ -177,26 +176,6 @@ public class VagrantFSM : MonoBehaviour, IHitEnemy
         trackingOrb.transform.position = trackingBombPos.position;
     }
 
-    // 사망 상태
-    void Death()
-    {
-        // 진행 중인 피격 코루틴 함수를 중지한다
-        StopAllCoroutines();
-
-        // 사망 상태를 처리하기 위한 코루틴을 실행한다
-        StartCoroutine(DieProcess());
-    }
-
-    // 사망 상태 처리용 코루틴
-    IEnumerator DieProcess()
-    {
-        // 2초 동안 기다린 이후 자기자신을 제거한다
-        yield return new WaitForSeconds(2.0f);
-        print("소멸!");
-        BossUI.SetActive(false);
-        Destroy(gameObject);
-    }
-
     // 데미지 처리 함수
     public void HitEnemy(float hitPower)
     {
@@ -226,7 +205,7 @@ public class VagrantFSM : MonoBehaviour, IHitEnemy
             e_State = VagrantState.Death;
 
             // 사망 애니메이션 재생
-            anim.SetTrigger("Death");
+            //anim.SetTrigger("Death");
             Death();
         }
     }
@@ -246,5 +225,25 @@ public class VagrantFSM : MonoBehaviour, IHitEnemy
 
         // 현재 상태를 이동으로 전환한다
         e_State = VagrantState.Idle;
+    }
+
+    // 사망 상태
+    void Death()
+    {
+        // 진행 중인 피격 코루틴 함수를 중지한다
+        StopAllCoroutines();
+
+        // 사망 상태를 처리하기 위한 코루틴을 실행한다
+        StartCoroutine(DieProcess());
+    }
+
+    // 사망 상태 처리용 코루틴
+    IEnumerator DieProcess()
+    {
+        // 2초 동안 기다린 이후 자기자신을 제거한다
+        yield return new WaitForSeconds(2.0f);
+        print("소멸!");
+        BossUI.SetActive(false);
+        Destroy(gameObject);
     }
 }

@@ -41,27 +41,27 @@ public class PlayerSkill : MonoBehaviour
     // 스킬 이벤트 호출 함수
     virtual protected void LeftClickSkill()
     {
-        nowLCSTime = LeftSkillDelay;
+        nowLCSTime = LeftSkillDelay * PlayerStat.instance.AttSpd;
     }
     virtual protected void Sft_BtnSkill()
     {
-        nowSSTime = ShiftSkillDelay;
+        nowSSTime = ShiftSkillDelay * PlayerStat.instance.AttSpd;
     }
     virtual protected void RightClickSkill()
     {
-        nowRCSTime = RightSkillDelay;
+        nowRCSTime = RightSkillDelay * PlayerStat.instance.AttSpd;
     }
     virtual protected void E_BtnSkill()
     {
-        nowESTime = EButtonDelay;
+        nowESTime = EButtonDelay * PlayerStat.instance.AttSpd;
     }
     virtual protected void R_BtnSkill()
     {
-        nowRSTime = RButtonDelay;
+        nowRSTime = RButtonDelay * PlayerStat.instance.AttSpd;
     }
     virtual protected void Q_BtnSkill()
     {
-        nowQSTime = QButtonDelay;
+        nowQSTime = QButtonDelay * PlayerStat.instance.AttSpd;
     }
 
     protected void Update()
