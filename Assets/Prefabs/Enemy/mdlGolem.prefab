@@ -1227,7 +1227,7 @@ PrefabInstance:
       addedObject: {fileID: 3131050985233743191}
     - targetCorrespondingSourceObject: {fileID: -167898499748451524, guid: 40730127b06fad548b9dfc691e91511e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8859885840966160741}
+      addedObject: {fileID: 4013893951284409716}
     - targetCorrespondingSourceObject: {fileID: -8609678357796969780, guid: 40730127b06fad548b9dfc691e91511e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6505096100331037741}
@@ -1253,8 +1253,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpSlider: {fileID: 711284849305941708}
-  HP: 150
-  MaxHP: 150
+  HP: 100
+  MaxHP: 100
   attackPower: 20
   isDie: 0
   Exp: 0
@@ -1417,7 +1417,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: -167898499748451524, guid: 40730127b06fad548b9dfc691e91511e, type: 3}
   m_PrefabInstance: {fileID: 969045812339657961}
   m_PrefabAsset: {fileID: 0}
---- !u!120 &8859885840966160741
+--- !u!120 &4013893951284409716
 LineRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0

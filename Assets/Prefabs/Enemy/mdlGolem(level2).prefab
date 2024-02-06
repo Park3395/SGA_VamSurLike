@@ -2396,8 +2396,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpSlider: {fileID: 2920777981579687122}
-  HP: 200
-  MaxHP: 200
+  HP: 150
+  MaxHP: 150
   attackPower: 20
   isDie: 0
   Exp: 0
