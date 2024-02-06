@@ -1314,8 +1314,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDistance: 4
   hpSlider: {fileID: 2221137621371908432}
-  HP: 100
-  MaxHP: 100
+  HP: 75
+  MaxHP: 75
   AttackPower: 12
   Exp: 0
   isDie: 0
