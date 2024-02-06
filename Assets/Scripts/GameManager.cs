@@ -43,8 +43,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         // 나중에 주석 풀예정, 게임 패배나 승리시, 아이템 선택시 커서 보이게
-        //Cursor.visible = false; // 커서 안보이게
-        //Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
+        Cursor.visible = false; // 커서 안보이게
+        Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
 
         elapsedTime = 0f;       // 경과 시간
         currentWave = 1;        // 현재 웨이브

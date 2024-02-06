@@ -18,4 +18,9 @@ public class ContinueButtonScript : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         //SceneManager.LoadScene("jhscene 1");
     }
+
+    public void MoveToStartScene()
+    {
+        SceneManager.LoadScene("StartScene");
+    }
 }
