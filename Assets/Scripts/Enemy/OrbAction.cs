@@ -12,7 +12,7 @@ public class OrbAction : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        pStat = player.GetComponent<PlayerStat>();
+        pStat = PlayerStat.instance;
         eFSM = vagrant.GetComponent<VagrantFSM>();
     }
 
