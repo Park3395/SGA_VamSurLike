@@ -70,6 +70,13 @@ public class BeetleFSM : MonoBehaviour, IHitEnemy
     // Update is called once per frame
     void Update()
     {
+
+        // 플레이어가 죽었다면 정지.
+        if (GameObject.FindGameObjectWithTag("Player") == null)
+        {
+            anim.Play("Idle");
+        }
+
         // 현재 상태를 검사하고 상태별로 정해진 기능을 수행한다
         switch (e_State)
         {
@@ -171,7 +178,7 @@ public class BeetleFSM : MonoBehaviour, IHitEnemy
     public void HitEnemy(float hitPower)
     {
         // 스폰, 피격, 사망 상태일 경우에는 함수 즉시 종료
-        if (e_State == BeetleState.Spawn || e_State == BeetleState.Hurt || e_State == BeetleState.Death)
+        if (e_State == BeetleState.Spawn || e_State == BeetleState.Death)
         {
             return;
         }
