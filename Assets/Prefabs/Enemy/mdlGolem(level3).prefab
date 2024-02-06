@@ -2079,10 +2079,9 @@ MonoBehaviour:
   isDie: 0
   Exp: 0
   attackDistance: 6
-  skillDistance: 20
   skillDelay: 10
   skillTimer: 0
-  laserOrigin: {fileID: 0}
+  laserOrigin: {fileID: 3212699499927566427}
   aimDuration: 3
   laserRange: 50
   playerLayer:
