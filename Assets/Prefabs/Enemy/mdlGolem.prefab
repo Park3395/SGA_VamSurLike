@@ -1227,7 +1227,7 @@ PrefabInstance:
       addedObject: {fileID: 3131050985233743191}
     - targetCorrespondingSourceObject: {fileID: -167898499748451524, guid: 40730127b06fad548b9dfc691e91511e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8859885840966160741}
+      addedObject: {fileID: 4013893951284409716}
     - targetCorrespondingSourceObject: {fileID: -8609678357796969780, guid: 40730127b06fad548b9dfc691e91511e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6505096100331037741}
@@ -1261,6 +1261,7 @@ MonoBehaviour:
   attackDistance: 6
   skillDelay: 10
   skillTimer: 0
+  laserOrigin: {fileID: 1655618923671270837}
   laserOrigin: {fileID: 1655618923671270837}
   aimDuration: 3
   laserRange: 50
@@ -1417,7 +1418,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: -167898499748451524, guid: 40730127b06fad548b9dfc691e91511e, type: 3}
   m_PrefabInstance: {fileID: 969045812339657961}
   m_PrefabAsset: {fileID: 0}
---- !u!120 &8859885840966160741
+--- !u!120 &4013893951284409716
 LineRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
