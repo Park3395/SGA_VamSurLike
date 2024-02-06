@@ -45,6 +45,7 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
     // 조준 후 마지막 플레이어 위치
     Vector3 mPos;
     bool isAiming;
+    bool isShoot;
 
     Animator anim;
 
@@ -180,6 +181,7 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
         else
         {
             isAiming = true;
+            isShoot = false;
             e_State = StoneGolemState.Skill;
         }
     }
@@ -237,20 +239,12 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
     // 레이저 스킬
     void Skill()
     {
-        StartCoroutine(ActivateLaser());
-    }
-
-    // 레이저 스킬 // 벽을 통과하지 않게 수정중.
-    IEnumerator ActivateLaser()
-    {
         agent.isStopped = true;
 
         // Laser animation 재생
         anim.Play("LaserAiming");
         if (isAiming)
         {
-            laserLine.enabled = true;
-
             // 레이저의 시작 위치 골렘의 눈 laserOrigin
             laserLine.SetPosition(0, laserOrigin.position);
 
@@ -262,26 +256,19 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
                 // 플레이어까지 라인 생성
                 laserLine.SetPosition(1, player.position);
                 elapsedTime += Time.deltaTime;
-                if (elapsedTime == aimDuration)
-                {
-                    mPos = player.position;
-                }
             }
+            mPos = player.position;
+            isAiming = false;
         }
-        yield return new WaitForSeconds(aimDuration);
-        laserLine.enabled = false;
-        isAiming = false;
-        yield return new WaitForSeconds(0.5f);
-        if (!isAiming)
+        if (isShoot)
         {
-            laserLine.enabled = true;
-            Ray rayOrigin = new Ray(laserOrigin.position, (laserOrigin.position - mPos).normalized);
+            Debug.Log(mPos);
+            Ray rayOrigin = new Ray(laserOrigin.position, (mPos - laserOrigin.position).normalized);
             RaycastHit hit;
             anim.SetTrigger("LaserAttack");
 
             // 1초 동안 레이저가 데미지를 입힐 수 있는 상태
-            // 레이저의 시작 위치 골렘의 눈 laserOrigin
-            laserLine.SetPosition(0, laserOrigin.position);
+            // 레이저의 끝점을 플레이어의 마지막 위치로 변경
             laserLine.SetPosition(1, mPos);
             if (Physics.Raycast(rayOrigin, out hit))
             {
@@ -293,12 +280,29 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
                 }
             }
         }
+        StartCoroutine(ActivateLaser());
+    }
+
+    // 레이저 스킬 // 벽을 통과하지 않게 수정중.
+    IEnumerator ActivateLaser()
+    {
+        laserLine.enabled = true;
+        yield return new WaitForSeconds(aimDuration);
+            laserLine.enabled = false;
+            isShoot = true;
+        yield return new WaitForSeconds(0.5f);
+        //isAiming = false;
+        //isShoot = true;
+        laserLine.enabled = true;
         yield return new WaitForSeconds(0.5f);
         // 레이저 비활성화
         laserLine.enabled = false;
+        isAiming = false;
+        isShoot = false;
 
         // enum 상태를 Run으로 전환
         e_State = StoneGolemState.Run;
+        // 쿨타임
         skillTimer = skillDelay;
         anim.SetTrigger("SkillToRun");
     }
