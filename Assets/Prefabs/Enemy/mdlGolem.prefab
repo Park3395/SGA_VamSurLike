@@ -1262,11 +1262,12 @@ MonoBehaviour:
   skillDelay: 10
   skillTimer: 0
   laserOrigin: {fileID: 1655618923671270837}
+  laserOrigin: {fileID: 1655618923671270837}
   aimDuration: 3
   laserRange: 50
   playerLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!195 &1878837008558291748
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1333,7 +1334,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
