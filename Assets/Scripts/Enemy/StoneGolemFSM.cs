@@ -106,7 +106,7 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
         // 플레이어가 죽었다면 정지.
         if ( GameObject.FindGameObjectWithTag("Player") == null)
         {
-            anim.Play("Idle");
+            anim.enabled = false;
         }
 
         // 현재 상태를 검사하고 상태별로 정해진 기능을 수행한다
