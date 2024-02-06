@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
     public int totalElapsedTime;
     public int currentWave;        // 현재 웨이브
     public float elapsedTime;      // 경과 시간
+    public int totalDamaged;       // 플레이어가 받은 데미지 총합
+    public int totalDamage;        // 플레이어가 가한 데미지
     int playerHP;
 
     bool waveStarted;

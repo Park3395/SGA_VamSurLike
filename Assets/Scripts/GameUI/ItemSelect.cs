@@ -71,7 +71,7 @@ public class ItemSelect : MonoBehaviour
         gameManagerInstance.itemIndices.Add("Dmg");
         // 플레이어 스탯 스크립트의 변수 변경
         playerStat = PlayerStat.instance;
-        playerStat.Dmg += 5;
+        playerStat.Dmg += 10;
         // 아이템 선택 캔버스 없애기
         ItemSelectCanvas = GameObject.Find("Canvas_ItemSelect(Clone)");
         if (ItemSelectCanvas != null)
@@ -88,7 +88,7 @@ public class ItemSelect : MonoBehaviour
         gameManagerInstance = FindObjectOfType<GameManager>();
         gameManagerInstance.itemIndices.Add("AttSpd");
         playerStat = PlayerStat.instance;
-        playerStat.AttSpd += 0.1f;
+        playerStat.AttSpd -= 0.1f;
         ItemSelectCanvas = GameObject.Find("Canvas_ItemSelect(Clone)");
         if (ItemSelectCanvas != null)
         {
@@ -163,7 +163,7 @@ public class ItemSelect : MonoBehaviour
         gameManagerInstance = FindObjectOfType<GameManager>();
         gameManagerInstance.itemIndices.Add("Jump");
         playerStat = PlayerStat.instance;
-        playerStat.Jump += 0.1f;
+        playerStat.Jump += 0.03f;
         ItemSelectCanvas = GameObject.Find("Canvas_ItemSelect(Clone)");
         if (ItemSelectCanvas != null)
         {
@@ -178,7 +178,7 @@ public class ItemSelect : MonoBehaviour
         gameManagerInstance = FindObjectOfType<GameManager>();
         gameManagerInstance.itemIndices.Add("MaxHP");
         playerStat = PlayerStat.instance;
-        playerStat.MaxHP += 10;  
+        playerStat.MaxHP += 20;  
         ItemSelectCanvas = GameObject.Find("Canvas_ItemSelect(Clone)");
         if (ItemSelectCanvas != null)
         {
@@ -208,7 +208,7 @@ public class ItemSelect : MonoBehaviour
         gameManagerInstance = FindObjectOfType<GameManager>();
         gameManagerInstance.itemIndices.Add("Barrier");
         playerStat = PlayerStat.instance;
-        playerStat.Barrier += 10;
+        playerStat.Barrier += 40;
         ItemSelectCanvas = GameObject.Find("Canvas_ItemSelect(Clone)");
         if (ItemSelectCanvas != null)
         {
