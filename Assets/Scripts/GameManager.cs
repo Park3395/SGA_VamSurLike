@@ -1,7 +1,6 @@
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,6 +22,8 @@ public class GameManager : MonoBehaviour
     public int totalElapsedTime;
     public int currentWave;        // 현재 웨이브
     public float elapsedTime;      // 경과 시간
+    public int totalDamaged;       // 플레이어가 받은 데미지 총합
+    public int totalDamage;        // 플레이어가 가한 데미지
     int playerHP;
 
     bool waveStarted;
@@ -38,14 +39,15 @@ public class GameManager : MonoBehaviour
     public GameObject[] Wave1Monster;
     public GameObject[] Wave2Monster;
     public GameObject[] Wave3Monster;
+    public GameObject[] Wave4Monster;
 
     public List<string> itemIndices = new List<string>(); //아이템 뭐얻었는지 저장하는 리스트
 
     void Start()
     {
         // 나중에 주석 풀예정, 게임 패배나 승리시, 아이템 선택시 커서 보이게
-        //Cursor.visible = false; // 커서 안보이게
-        //Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
+        Cursor.visible = false; // 커서 안보이게
+        Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
 
         elapsedTime = 0f;       // 경과 시간
         currentWave = 1;        // 현재 웨이브
@@ -126,12 +128,12 @@ public class GameManager : MonoBehaviour
             itemSelected = false;
         }
 
-        if (KilledMonsterAmount() == 17 && !gameOver)
-        {
-            gameOver = true;
-            Destroy(alarmCanvas);
-            Invoke("InstantiateWinCanvas", 3);
-        }
+        //if (KilledMonsterAmount() == 17 && !gameOver)
+        //{
+        //    gameOver = true;
+        //    Destroy(alarmCanvas);
+        //    Invoke("InstantiateWinCanvas", 3);
+        //}
 
     }
 
@@ -174,6 +176,17 @@ public class GameManager : MonoBehaviour
             if (Wave3Monster != null)
             {
                 foreach (GameObject obj in Wave3Monster)
+                {
+                    obj.SetActive(true);
+                    currentWaveMonsters.Add(obj);
+                }
+            }
+        }
+        if (currentWave == 4)
+        {
+            if (Wave4Monster != null)
+            {
+                foreach (GameObject obj in Wave4Monster)
                 {
                     obj.SetActive(true);
                     currentWaveMonsters.Add(obj);

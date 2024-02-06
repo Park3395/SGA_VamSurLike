@@ -232,7 +232,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uBC29\uC5B4\uB9C9 +10"
+  m_Text: "\uBC29\uC5B4\uB9C9 +40"
 --- !u!1 &8823480046988268406
 GameObject:
   m_ObjectHideFlags: 0

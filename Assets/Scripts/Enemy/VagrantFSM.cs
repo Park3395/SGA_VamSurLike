@@ -180,7 +180,7 @@ public class VagrantFSM : MonoBehaviour, IHitEnemy
     public void HitEnemy(float hitPower)
     {
         // 피격, 사망, 복귀 상태일 경우에는 함수 즉시 종료
-        if (e_State == VagrantState.Hurt || e_State == VagrantState.Death)
+        if (e_State == VagrantState.Death|| e_State == VagrantState.Skill)
         {
             return;
         }

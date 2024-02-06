@@ -18,6 +18,9 @@ public class ItemSelect : MonoBehaviour
     void Start()
     {
         ItemButtonInstantiate();
+
+        Cursor.visible = true; // 커서 보이게
+        Cursor.lockState = CursorLockMode.None;   // 커서 움직이게
     }
 
     void Update()
@@ -68,7 +71,7 @@ public class ItemSelect : MonoBehaviour
         gameManagerInstance.itemIndices.Add("Dmg");
         // 플레이어 스탯 스크립트의 변수 변경
         playerStat = PlayerStat.instance;
-        playerStat.Dmg += 5;
+        playerStat.Dmg += 10;
         // 아이템 선택 캔버스 없애기
         ItemSelectCanvas = GameObject.Find("Canvas_ItemSelect(Clone)");
         if (ItemSelectCanvas != null)
@@ -77,19 +80,23 @@ public class ItemSelect : MonoBehaviour
         }
         // 시간흐름 다시 되돌리기
         Time.timeScale = 1;
+        Cursor.visible = false; // 커서 안보이게
+        Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
     }
     public void ButtonAttackSpeed()
     {
         gameManagerInstance = FindObjectOfType<GameManager>();
         gameManagerInstance.itemIndices.Add("AttSpd");
         playerStat = PlayerStat.instance;
-        playerStat.AttSpd += 0.1f;
+        playerStat.AttSpd -= 0.1f;
         ItemSelectCanvas = GameObject.Find("Canvas_ItemSelect(Clone)");
         if (ItemSelectCanvas != null)
         {
             Destroy(ItemSelectCanvas);
         }
         Time.timeScale = 1;
+        Cursor.visible = false; // 커서 안보이게
+        Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
     }
     public void ButtonCriticalPower()
     {
@@ -103,6 +110,8 @@ public class ItemSelect : MonoBehaviour
             Destroy(ItemSelectCanvas);
         }
         Time.timeScale = 1;
+        Cursor.visible = false; // 커서 안보이게
+        Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
     }
     public void ButtonCriticalProbability()
     {
@@ -116,6 +125,8 @@ public class ItemSelect : MonoBehaviour
             Destroy(ItemSelectCanvas);
         }
         Time.timeScale = 1;
+        Cursor.visible = false; // 커서 안보이게
+        Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
     }
     public void ButtonDoubleJump()
     {
@@ -129,6 +140,8 @@ public class ItemSelect : MonoBehaviour
             Destroy(ItemSelectCanvas);
         }
         Time.timeScale = 1;
+        Cursor.visible = false; // 커서 안보이게
+        Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
     }
     public void ButtonHpRegen()
     {
@@ -142,32 +155,38 @@ public class ItemSelect : MonoBehaviour
             Destroy(ItemSelectCanvas);
         }
         Time.timeScale = 1;
+        Cursor.visible = false; // 커서 안보이게
+        Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
     }
     public void ButtonJumpPower()
     {
         gameManagerInstance = FindObjectOfType<GameManager>();
         gameManagerInstance.itemIndices.Add("Jump");
         playerStat = PlayerStat.instance;
-        playerStat.Jump += 0.1f;
+        playerStat.Jump += 0.03f;
         ItemSelectCanvas = GameObject.Find("Canvas_ItemSelect(Clone)");
         if (ItemSelectCanvas != null)
         {
             Destroy(ItemSelectCanvas);
         }
         Time.timeScale = 1;
+        Cursor.visible = false; // 커서 안보이게
+        Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
     }
     public void ButtonMaxHp()
     {
         gameManagerInstance = FindObjectOfType<GameManager>();
         gameManagerInstance.itemIndices.Add("MaxHP");
         playerStat = PlayerStat.instance;
-        playerStat.MaxHP += 10;  
+        playerStat.MaxHP += 20;  
         ItemSelectCanvas = GameObject.Find("Canvas_ItemSelect(Clone)");
         if (ItemSelectCanvas != null)
         {
             Destroy(ItemSelectCanvas);
         }
         Time.timeScale = 1;
+        Cursor.visible = false; // 커서 안보이게
+        Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
     }
     public void ButtonMoveSpeed()
     {
@@ -181,18 +200,22 @@ public class ItemSelect : MonoBehaviour
             Destroy(ItemSelectCanvas);
         }
         Time.timeScale = 1;
+        Cursor.visible = false; // 커서 안보이게
+        Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
     }
     public void ButtonShield()
     {
         gameManagerInstance = FindObjectOfType<GameManager>();
         gameManagerInstance.itemIndices.Add("Barrier");
         playerStat = PlayerStat.instance;
-        playerStat.Barrier += 10;
+        playerStat.Barrier += 40;
         ItemSelectCanvas = GameObject.Find("Canvas_ItemSelect(Clone)");
         if (ItemSelectCanvas != null)
         {
             Destroy(ItemSelectCanvas);
         }
         Time.timeScale = 1;
+        Cursor.visible = false; // 커서 안보이게
+        Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
     }
 }

@@ -2396,16 +2396,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpSlider: {fileID: 2920777981579687122}
-  HP: 200
-  MaxHP: 200
+  HP: 150
+  MaxHP: 150
   attackPower: 20
   isDie: 0
   Exp: 0
   attackDistance: 6
-  skillDistance: 20
   skillDelay: 10
   skillTimer: 0
-  laserOrigin: {fileID: 0}
+  laserOrigin: {fileID: 3254730651414057954}
   aimDuration: 3
   laserRange: 50
   playerLayer:
