@@ -32,6 +32,9 @@ public class StatisticsContents : MonoBehaviour
 
     void Start()
     {
+        Cursor.visible = true; // 커서 보이게
+        Cursor.lockState = CursorLockMode.None;   // 커서 움직이게
+
         gameManagerInstance = FindObjectOfType<GameManager>();
         
         // 게임매니저에서 가져오기

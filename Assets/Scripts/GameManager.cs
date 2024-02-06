@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] Wave1Monster;
     public GameObject[] Wave2Monster;
     public GameObject[] Wave3Monster;
+    public GameObject[] Wave4Monster;
 
     public List<string> itemIndices = new List<string>(); //아이템 뭐얻었는지 저장하는 리스트
 
@@ -125,12 +126,12 @@ public class GameManager : MonoBehaviour
             itemSelected = false;
         }
 
-        if (KilledMonsterAmount() == 17 && !gameOver)
-        {
-            gameOver = true;
-            Destroy(alarmCanvas);
-            Invoke("InstantiateWinCanvas", 3);
-        }
+        //if (KilledMonsterAmount() == 17 && !gameOver)
+        //{
+        //    gameOver = true;
+        //    Destroy(alarmCanvas);
+        //    Invoke("InstantiateWinCanvas", 3);
+        //}
 
     }
 
@@ -173,6 +174,17 @@ public class GameManager : MonoBehaviour
             if (Wave3Monster != null)
             {
                 foreach (GameObject obj in Wave3Monster)
+                {
+                    obj.SetActive(true);
+                    currentWaveMonsters.Add(obj);
+                }
+            }
+        }
+        if (currentWave == 4)
+        {
+            if (Wave4Monster != null)
+            {
+                foreach (GameObject obj in Wave4Monster)
                 {
                     obj.SetActive(true);
                     currentWaveMonsters.Add(obj);

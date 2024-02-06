@@ -18,6 +18,9 @@ public class ItemSelect : MonoBehaviour
     void Start()
     {
         ItemButtonInstantiate();
+
+        Cursor.visible = true; // 커서 보이게
+        Cursor.lockState = CursorLockMode.None;   // 커서 움직이게
     }
 
     void Update()
@@ -77,6 +80,8 @@ public class ItemSelect : MonoBehaviour
         }
         // 시간흐름 다시 되돌리기
         Time.timeScale = 1;
+        Cursor.visible = false; // 커서 안보이게
+        Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
     }
     public void ButtonAttackSpeed()
     {
@@ -90,6 +95,8 @@ public class ItemSelect : MonoBehaviour
             Destroy(ItemSelectCanvas);
         }
         Time.timeScale = 1;
+        Cursor.visible = false; // 커서 안보이게
+        Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
     }
     public void ButtonCriticalPower()
     {
@@ -103,6 +110,8 @@ public class ItemSelect : MonoBehaviour
             Destroy(ItemSelectCanvas);
         }
         Time.timeScale = 1;
+        Cursor.visible = false; // 커서 안보이게
+        Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
     }
     public void ButtonCriticalProbability()
     {
@@ -116,6 +125,8 @@ public class ItemSelect : MonoBehaviour
             Destroy(ItemSelectCanvas);
         }
         Time.timeScale = 1;
+        Cursor.visible = false; // 커서 안보이게
+        Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
     }
     public void ButtonDoubleJump()
     {
@@ -129,6 +140,8 @@ public class ItemSelect : MonoBehaviour
             Destroy(ItemSelectCanvas);
         }
         Time.timeScale = 1;
+        Cursor.visible = false; // 커서 안보이게
+        Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
     }
     public void ButtonHpRegen()
     {
@@ -142,6 +155,8 @@ public class ItemSelect : MonoBehaviour
             Destroy(ItemSelectCanvas);
         }
         Time.timeScale = 1;
+        Cursor.visible = false; // 커서 안보이게
+        Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
     }
     public void ButtonJumpPower()
     {
@@ -155,6 +170,8 @@ public class ItemSelect : MonoBehaviour
             Destroy(ItemSelectCanvas);
         }
         Time.timeScale = 1;
+        Cursor.visible = false; // 커서 안보이게
+        Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
     }
     public void ButtonMaxHp()
     {
@@ -168,6 +185,8 @@ public class ItemSelect : MonoBehaviour
             Destroy(ItemSelectCanvas);
         }
         Time.timeScale = 1;
+        Cursor.visible = false; // 커서 안보이게
+        Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
     }
     public void ButtonMoveSpeed()
     {
@@ -181,6 +200,8 @@ public class ItemSelect : MonoBehaviour
             Destroy(ItemSelectCanvas);
         }
         Time.timeScale = 1;
+        Cursor.visible = false; // 커서 안보이게
+        Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
     }
     public void ButtonShield()
     {
@@ -194,5 +215,7 @@ public class ItemSelect : MonoBehaviour
             Destroy(ItemSelectCanvas);
         }
         Time.timeScale = 1;
+        Cursor.visible = false; // 커서 안보이게
+        Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
     }
 }
