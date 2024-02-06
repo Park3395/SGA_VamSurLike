@@ -43,9 +43,9 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
     // 레이저에 닿는 플레이어 레이어
     public LayerMask playerLayer;
     // 조준 후 마지막 플레이어 위치
-    Vector3 mPos;
     bool isAiming;
-    bool isShoot;
+    public GameObject laserFactory;
+    public float laserSpeed = 5.0f;
 
     Animator anim;
 
@@ -57,6 +57,8 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
 
     // 내비게이션 메쉬 컴포넌트
     NavMeshAgent agent;
+
+    int enumerCount = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -80,6 +82,7 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
         laserLine = GetComponentInChildren<LineRenderer>();
 
         isDie = false;
+        skillTimer = skillDelay;
     }
 
     void OnEnable()
@@ -87,22 +90,23 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
         isDie = false;
         e_State = StoneGolemState.Spawn;
         HP = MaxHP;
+        skillTimer = skillDelay;
     }
 
     // Update is called once per frame
     void Update()
     {
         // 스킬 쿨타임 (스폰중이 아닐 때)
-        if (e_State != StoneGolemState.Spawn)
-        {
-            if (skillTimer >= 0)
-                skillTimer -= Time.deltaTime;
-        }
+        
+        if (skillTimer >= 0)
+            skillTimer -= Time.deltaTime;
+
+        Debug.Log("skillTimer" + skillTimer);
 
         // 플레이어가 죽었다면 정지.
         if ( GameObject.FindGameObjectWithTag("Player") == null)
         {
-            anim.Play("Idle");
+            anim.enabled = false;
         }
 
         // 현재 상태를 검사하고 상태별로 정해진 기능을 수행한다
@@ -150,39 +154,33 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
     // 이동 상태
     void Run()
     {
-        // 현재 위치가 공격 사거리보다 크고, 스킬이 쿨타임이면 플레이어를 향해 이동
-        if (Vector3.Distance(transform.position, player.position) > attackDistance && skillTimer > 0.0f)
-        {
-            //Vector3 dir = (player.position - transform.position).normalized;
-            //// 플레이어에게 자연스럽게 돌아보도록 quaternion사용.
-            //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), 5 * Time.deltaTime);
-            //// transform.forward = dir;
-
-            // 에이전트의 이동을 정지하고 경로를 초기화
-            agent.isStopped = true;
-            agent.ResetPath();
-
-            // 내비게이션으로 접근하는 최소 거리를 공격 가능한 거리로 설정
-            agent.stoppingDistance = attackDistance;
-
-            // 내비게이션의 목적지를 플레이어의 위치로 설정
-            agent.destination = player.position;
-
-            anim.SetTrigger("SpawnToRun");
-        }
-        // 플레이어와의 거리가 공격 사거리 이내고, 스킬이 쿨타임이라면
-        else if (Vector3.Distance(transform.position, player.position) <= attackDistance && skillTimer > 0.0f)
-        {
-            // enum변수 상태를 Attack으로 전환
-            Debug.Log("Attack");
-            e_State = StoneGolemState.Attack;
-        }
-        // 스킬 쿨타임이 아니라면
-        else
+        if (skillTimer <0.0f)
         {
             isAiming = true;
-            isShoot = false;
             e_State = StoneGolemState.Skill;
+        }
+        else
+        {
+            if (Vector3.Distance(transform.position, player.position) >= attackDistance)
+            {
+                agent.isStopped = true;
+                agent.ResetPath();
+
+                // 내비게이션으로 접근하는 최소 거리를 공격 가능한 거리로 설정
+                agent.stoppingDistance = attackDistance;
+
+                // 내비게이션의 목적지를 플레이어의 위치로 설정
+                agent.destination = player.position;
+
+                anim.SetTrigger("SpawnToRun");
+            }
+            // 플레이어와의 거리가 공격 사거리 이내고, 스킬이 쿨타임이라면
+            else
+            {
+                // enum변수 상태를 Attack으로 전환
+                Debug.Log("Attack");
+                e_State = StoneGolemState.Attack;
+            }
         }
     }
 
@@ -257,54 +255,38 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
                 laserLine.SetPosition(1, player.position);
                 elapsedTime += Time.deltaTime;
             }
-            mPos = player.position;
-            isAiming = false;
-        }
-        if (isShoot)
-        {
-            Debug.Log(mPos);
-            Ray rayOrigin = new Ray(laserOrigin.position, (mPos - laserOrigin.position).normalized);
-            RaycastHit hit;
             anim.SetTrigger("LaserAttack");
-
-            // 1초 동안 레이저가 데미지를 입힐 수 있는 상태
-            // 레이저의 끝점을 플레이어의 마지막 위치로 변경
-            laserLine.SetPosition(1, mPos);
-            if (Physics.Raycast(rayOrigin, out hit))
-            {
-                if (hit.collider.CompareTag("Player"))
-                {
-                    pStat.NowHP -= attackPower;
-
-                    Debug.Log("laserDamage");
-                }
-            }
         }
+        
         StartCoroutine(ActivateLaser());
     }
 
     // 레이저 스킬 // 벽을 통과하지 않게 수정중.
     IEnumerator ActivateLaser()
     {
-        laserLine.enabled = true;
-        yield return new WaitForSeconds(aimDuration);
+        if (enumerCount == 0)
+        {
+            enumerCount = 1;
+            laserLine.enabled = true;
+            yield return new WaitForSeconds(aimDuration);
             laserLine.enabled = false;
-            isShoot = true;
-        yield return new WaitForSeconds(0.5f);
-        //isAiming = false;
-        //isShoot = true;
-        laserLine.enabled = true;
-        yield return new WaitForSeconds(0.5f);
-        // 레이저 비활성화
-        laserLine.enabled = false;
-        isAiming = false;
-        isShoot = false;
+            isAiming = false;
 
-        // enum 상태를 Run으로 전환
-        e_State = StoneGolemState.Run;
-        // 쿨타임
-        skillTimer = skillDelay;
-        anim.SetTrigger("SkillToRun");
+            GameObject laser = Instantiate(laserFactory);
+            laser.transform.position = laserOrigin.transform.position;
+            Rigidbody rb = laser.GetComponent<Rigidbody>();
+            Vector3 playerPos = player.transform.position;
+            Vector3 laserPos = laser.transform.position;
+            rb.AddForce((playerPos - laserPos).normalized * laserSpeed, ForceMode.Impulse);
+
+            // enum 상태를 Run으로 전환
+            e_State = StoneGolemState.Run;
+            // 쿨타임
+            skillTimer = skillDelay;
+            anim.SetTrigger("SkillToRun");
+
+            enumerCount = 0;
+        }
     }
 
     // 피격 상태

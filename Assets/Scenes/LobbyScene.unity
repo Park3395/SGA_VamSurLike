@@ -11709,6 +11709,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -9000291133176240973, guid: 7b3381a8ffcb79440af3dbf37e151282, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7b3381a8ffcb79440af3dbf37e151282, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.65
@@ -11757,11 +11761,23 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7181811118937868003, guid: 7b3381a8ffcb79440af3dbf37e151282, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7b3381a8ffcb79440af3dbf37e151282, type: 3}
       propertyPath: m_Name
       value: Lobby_Huntress
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7b3381a8ffcb79440af3dbf37e151282, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6776491349860911571, guid: 7b3381a8ffcb79440af3dbf37e151282, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8333212944260196047, guid: 7b3381a8ffcb79440af3dbf37e151282, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -12465,6 +12481,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lobby_Bandit
       objectReference: {fileID: 0}
+    - target: {fileID: 7554217781660770668, guid: dbd13a8460f0cbc49900ce7678ace15c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662076947911477035, guid: dbd13a8460f0cbc49900ce7678ace15c, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: cb7610b615debfc4682cd67a62f9dc29, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
