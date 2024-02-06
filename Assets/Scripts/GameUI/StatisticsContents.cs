@@ -34,32 +34,36 @@ public class StatisticsContents : MonoBehaviour
     void Start()
     {
         gameManagerInstance = FindObjectOfType<GameManager>();
-
-        // 캔버스 instantiate할때 계산되도록 Update있는내용 Start에
-
-    }
-
-
-    void Update()
-    {
-        // 게임매니저에서 가져오기
-        min = gameManagerInstance.min;
-        sec = gameManagerInstance.sec;
-        float getTime = gameManagerInstance.elapsedTime;    
-        int totalSeconds = (int)getTime;                    // 1.23456 형식 소숫점자리 버림
         
+        // 게임매니저에서 가져오기
+        int totalSeconds = gameManagerInstance.totalElapsedTime;
+        min = totalSeconds / 60;
+        sec = totalSeconds % 60;
         time = min.ToString() + ":" + sec.ToString("00");
         timeNumber.text = time;
         timeScore.text = (totalSeconds * 6).ToString();
 
         int getwave = gameManagerInstance.currentWave;
         waveNumber.text = getwave.ToString();
+        waveScore.text = (getwave * 100).ToString();
 
-        //killScore.text;
+        int killAmount = gameManagerInstance.monsterKillAmount;
+        killNumber.text = killAmount.ToString();
+        killScore.text = (killAmount * 10).ToString();
+
+        itemAmountNumber.text = gameManagerInstance.itemIndices.Count.ToString();
+        itemAmountScore.text = (gameManagerInstance.itemIndices.Count*110).ToString();
+
         //damageScore.text;
         //damagedScore.text;
-        waveScore.text = (getwave * 100).ToString();
-        //itemAmountScore.text;
-        //totalScore.text=(totalSeconds * 6+getwave * 100).ToString();
+
+        totalScore.text = (totalSeconds * 6 + getwave * 100 + killAmount * 10
+            + gameManagerInstance.itemIndices.Count * 110).ToString();
+
+    }
+
+    void Update()
+    {
+        
     }
 }

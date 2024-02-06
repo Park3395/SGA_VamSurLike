@@ -33,6 +33,7 @@ public class BeetleFSM : MonoBehaviour, IHitEnemy
 
     // 경험치
     public int Exp = 0;
+    public bool isDie;
 
     Animator anim;
 
@@ -56,11 +57,26 @@ public class BeetleFSM : MonoBehaviour, IHitEnemy
 
         // 내비게이션 에이전트 컴포넌트 가져오기
         agent = GetComponent<NavMeshAgent>();
+
+        isDie = false;
+    }
+
+    void OnEnable()
+    {
+        e_State = BeetleState.Spawn;
+        HP = MaxHP;
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        // 플레이어가 죽었다면 정지.
+        if (GameObject.FindGameObjectWithTag("Player") == null)
+        {
+            anim.Play("Idle");
+        }
+
         // 현재 상태를 검사하고 상태별로 정해진 기능을 수행한다
         switch (e_State)
         {
@@ -113,9 +129,9 @@ public class BeetleFSM : MonoBehaviour, IHitEnemy
         // 현재 위치가 공격 사거리보다 크다면 플레이어를 향해 이동
         if (Vector3.Distance(transform.position, player.position) >= attackDistance)
         {
-            Vector3 dir = (player.position - transform.position).normalized;
+            //Vector3 dir = (player.position - transform.position).normalized;
 
-            transform.forward = dir;
+            //transform.forward = dir;
 
             // 에이전트의 이동을 정지하고 경로를 초기화
             agent.isStopped = true;
@@ -162,7 +178,7 @@ public class BeetleFSM : MonoBehaviour, IHitEnemy
     public void HitEnemy(float hitPower)
     {
         // 스폰, 피격, 사망 상태일 경우에는 함수 즉시 종료
-        if (e_State == BeetleState.Spawn || e_State == BeetleState.Hurt || e_State == BeetleState.Death)
+        if (e_State == BeetleState.Spawn || e_State == BeetleState.Death)
         {
             return;
         }
@@ -188,8 +204,6 @@ public class BeetleFSM : MonoBehaviour, IHitEnemy
         {
             e_State = BeetleState.Death;
 
-            // 사망 애니메이션 재생
-            anim.SetTrigger("Death");
             Die();
         }
     }
@@ -213,6 +227,7 @@ public class BeetleFSM : MonoBehaviour, IHitEnemy
 
     void Die()
     {
+        isDie = true;
         // 진행 중인 피격 코루틴 함수를 중지한다
         StopAllCoroutines();
 
@@ -227,6 +242,6 @@ public class BeetleFSM : MonoBehaviour, IHitEnemy
         // 2초 동안 기다린 이후 자기자신을 제거한다
         yield return new WaitForSeconds(2.0f);
         print("소멸!");
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

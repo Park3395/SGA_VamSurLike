@@ -8,7 +8,6 @@ public class PodController : MonoBehaviour
 {
     private Animator escapePodAnimator;
     public CinemachineVirtualCamera virtualCamera;
-    public GameObject player;
     public GameObject explosionFx;
     public Canvas pressE;
     public Text mapNameText;
@@ -28,10 +27,7 @@ public class PodController : MonoBehaviour
         {
             // 문열리는 애니메이션실행
             escapePodAnimator.Play("PodOpen");
-            // 가상카메라 비활성화
-            virtualCamera.enabled = false;
-            // 플레이어 활성화
-            player.SetActive(true);
+            
         }
     }
 
@@ -46,10 +42,10 @@ public class PodController : MonoBehaviour
 
         yield return new WaitForSeconds(1.5f);
         StopShake();
-        pressE.gameObject.SetActive(true);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         mapNameText.gameObject.SetActive(false);
+        pressE.gameObject.SetActive(true);
 
     }
 

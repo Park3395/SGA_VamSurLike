@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerSkill : MonoBehaviour
 {
+    #region Animation
     // 애니메이션 이름
     [SerializeField]
     protected string LeftClickAnim;
@@ -17,7 +18,9 @@ public class PlayerSkill : MonoBehaviour
     protected string RButtonAnim;
     [SerializeField]
     protected string QButtonAnim;
+    #endregion
 
+    #region SkillDelay
     // 스킬 쿨타임
     [SerializeField]
     protected float LeftSkillDelay;
@@ -37,31 +40,46 @@ public class PlayerSkill : MonoBehaviour
     [SerializeField]
     protected float QButtonDelay;
     float nowQSTime = 0f;
+    #endregion
 
+    public GameObject basicBullet;
+    public Transform ShootPos;
+    public Transform ShootPos_Sub;
+
+    public ItemBase[] onKeyItems;              // 0 : RightClick, 1 : Q, 2 : E, 3 : R
+    
     // 스킬 이벤트 호출 함수
     virtual protected void LeftClickSkill()
     {
-        nowLCSTime = LeftSkillDelay;
+        nowLCSTime = LeftSkillDelay * PlayerStat.instance.AttSpd;
     }
     virtual protected void Sft_BtnSkill()
     {
-        nowSSTime = ShiftSkillDelay;
+        nowSSTime = ShiftSkillDelay * PlayerStat.instance.AttSpd;
     }
     virtual protected void RightClickSkill()
     {
-        nowRCSTime = RightSkillDelay;
+        nowRCSTime = RightSkillDelay * PlayerStat.instance.AttSpd;
+        if (onKeyItems[0] != null)
+            onKeyItems[0].itemEffect();
     }
     virtual protected void E_BtnSkill()
     {
-        nowESTime = EButtonDelay;
+        nowESTime = EButtonDelay * PlayerStat.instance.AttSpd;
+        if (onKeyItems[1] != null)
+            onKeyItems[1].itemEffect();
     }
     virtual protected void R_BtnSkill()
     {
-        nowRSTime = RButtonDelay;
+        nowRSTime = RButtonDelay * PlayerStat.instance.AttSpd;
+        if (onKeyItems[2] != null)
+            onKeyItems[2].itemEffect();
     }
     virtual protected void Q_BtnSkill()
     {
-        nowQSTime = QButtonDelay;
+        nowQSTime = QButtonDelay * PlayerStat.instance.AttSpd;
+        if (onKeyItems[3] != null)
+            onKeyItems[3].itemEffect();
     }
 
     protected void Update()
@@ -70,10 +88,13 @@ public class PlayerSkill : MonoBehaviour
 
         #region BasicSkills
 
+        // 좌클릭 한번 했을 때
         if (Input.GetMouseButtonDown(0) && nowLCSTime <= 0 )
         {
             LeftClickSkill();
         }
+
+        // 좌클릭 누르고 있을 때
         if(Input.GetMouseButton(0))
         {
             if (nowLCSTime <= 0)

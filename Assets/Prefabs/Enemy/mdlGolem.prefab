@@ -1227,7 +1227,7 @@ PrefabInstance:
       addedObject: {fileID: 3131050985233743191}
     - targetCorrespondingSourceObject: {fileID: -167898499748451524, guid: 40730127b06fad548b9dfc691e91511e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7295909426446540114}
+      addedObject: {fileID: 8859885840966160741}
     - targetCorrespondingSourceObject: {fileID: -8609678357796969780, guid: 40730127b06fad548b9dfc691e91511e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6505096100331037741}
@@ -1253,16 +1253,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpSlider: {fileID: 711284849305941708}
-  HP: 480
-  MaxHP: 480
+  HP: 150
+  MaxHP: 150
   attackPower: 20
+  isDie: 0
   Exp: 0
   attackDistance: 6
-  skillDistance: 20
   skillDelay: 10
   skillTimer: 0
-  initialLaserDuration: 3
-  fixedLaserDuration: 1
+  laserOrigin: {fileID: 1655618923671270837}
+  aimDuration: 3
+  laserRange: 50
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!195 &1878837008558291748
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1273,7 +1277,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 0
+  m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -1403,12 +1407,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 40730127b06fad548b9dfc691e91511e, type: 3}
   m_PrefabInstance: {fileID: 969045812339657961}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1655618923671270837 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -7238605477250926244, guid: 40730127b06fad548b9dfc691e91511e, type: 3}
+  m_PrefabInstance: {fileID: 969045812339657961}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8131600129321461717 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -167898499748451524, guid: 40730127b06fad548b9dfc691e91511e, type: 3}
   m_PrefabInstance: {fileID: 969045812339657961}
   m_PrefabAsset: {fileID: 0}
---- !u!120 &7295909426446540114
+--- !u!120 &8859885840966160741
 LineRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
@@ -1416,7 +1425,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8131600129321461717}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1452,7 +1461,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -1460,8 +1469,8 @@ LineRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.025974274
-        value: 0.10526276
+        time: 0
+        value: 0.1
         inSlope: 0
         outSlope: 0
         tangentMode: 0

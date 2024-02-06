@@ -52,6 +52,28 @@ public class CommandoSkill : PlayerSkill
         onSft = true;
     }
 
+    // 이하 애니메이션 추가
+    protected override void E_BtnSkill()
+    {
+        base.E_BtnSkill();
+    }
+
+    protected override void Q_BtnSkill()
+    {
+        base.Q_BtnSkill();
+    }
+
+    protected override void RightClickSkill()
+    {
+        base.RightClickSkill();
+    }
+
+    protected override void R_BtnSkill()
+    {
+        base.R_BtnSkill();
+    }
+    //
+
     private void Start()
     {
         anim = GetComponentInChildren<Animator>();
