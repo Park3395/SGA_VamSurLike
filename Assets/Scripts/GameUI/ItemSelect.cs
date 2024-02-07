@@ -15,6 +15,9 @@ public class ItemSelect : MonoBehaviour
     // 게임매니저 스크립트 가져오기
     private GameManager gameManagerInstance;
 
+    public Image[] itemSpriteHolder;
+    public Sprite[] ItemSprites;
+
     void Start()
     {
         ItemButtonInstantiate();
@@ -82,6 +85,7 @@ public class ItemSelect : MonoBehaviour
         Time.timeScale = 1;
         Cursor.visible = false; // 커서 안보이게
         Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
+        ShowItemUI();
     }
     public void ButtonAttackSpeed()
     {
@@ -97,6 +101,7 @@ public class ItemSelect : MonoBehaviour
         Time.timeScale = 1;
         Cursor.visible = false; // 커서 안보이게
         Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
+        ShowItemUI();
     }
     public void ButtonCriticalPower()
     {
@@ -112,6 +117,7 @@ public class ItemSelect : MonoBehaviour
         Time.timeScale = 1;
         Cursor.visible = false; // 커서 안보이게
         Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
+        ShowItemUI();
     }
     public void ButtonCriticalProbability()
     {
@@ -127,6 +133,7 @@ public class ItemSelect : MonoBehaviour
         Time.timeScale = 1;
         Cursor.visible = false; // 커서 안보이게
         Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
+        ShowItemUI();
     }
     public void ButtonDoubleJump()
     {
@@ -142,6 +149,7 @@ public class ItemSelect : MonoBehaviour
         Time.timeScale = 1;
         Cursor.visible = false; // 커서 안보이게
         Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
+        ShowItemUI();
     }
     public void ButtonHpRegen()
     {
@@ -157,6 +165,7 @@ public class ItemSelect : MonoBehaviour
         Time.timeScale = 1;
         Cursor.visible = false; // 커서 안보이게
         Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
+        ShowItemUI();
     }
     public void ButtonJumpPower()
     {
@@ -172,6 +181,7 @@ public class ItemSelect : MonoBehaviour
         Time.timeScale = 1;
         Cursor.visible = false; // 커서 안보이게
         Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
+        ShowItemUI();
     }
     public void ButtonMaxHp()
     {
@@ -187,6 +197,7 @@ public class ItemSelect : MonoBehaviour
         Time.timeScale = 1;
         Cursor.visible = false; // 커서 안보이게
         Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
+        ShowItemUI();
     }
     public void ButtonMoveSpeed()
     {
@@ -202,6 +213,7 @@ public class ItemSelect : MonoBehaviour
         Time.timeScale = 1;
         Cursor.visible = false; // 커서 안보이게
         Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
+        ShowItemUI();
     }
     public void ButtonShield()
     {
@@ -217,5 +229,59 @@ public class ItemSelect : MonoBehaviour
         Time.timeScale = 1;
         Cursor.visible = false; // 커서 안보이게
         Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
+        ShowItemUI();
+    }
+
+    public void ShowItemUI()
+    {
+        // 씬에있는 게임메니저로 접근
+        gameManagerInstance = FindObjectOfType<GameManager>();
+
+        for (int i = 0; i < gameManagerInstance.itemIndices.Count; i++)
+        {
+            switch (gameManagerInstance.itemIndices[i])
+            {
+                case "Dmg":
+                    itemSpriteHolder[i].sprite = ItemSprites[0];
+                    itemSpriteHolder[i].color = Color.white;
+                    break;
+                case "AttSpd":
+                    itemSpriteHolder[i].sprite = ItemSprites[1];
+                    itemSpriteHolder[i].color = Color.white;
+                    break;
+                case "Cridmg":
+                    itemSpriteHolder[i].sprite = ItemSprites[2];
+                    itemSpriteHolder[i].color = Color.white;
+                    break;
+                case "Cri":
+                    itemSpriteHolder[i].sprite = ItemSprites[3];
+                    itemSpriteHolder[i].color = Color.white;
+                    break;
+                case "JumpCount":
+                    itemSpriteHolder[i].sprite = ItemSprites[4];
+                    itemSpriteHolder[i].color = Color.white;
+                    break;
+                case "HPregen":
+                    itemSpriteHolder[i].sprite = ItemSprites[5];
+                    itemSpriteHolder[i].color = Color.white;
+                    break;
+                case "Jump":
+                    itemSpriteHolder[i].sprite = ItemSprites[6];
+                    itemSpriteHolder[i].color = Color.white;
+                    break;
+                case "MaxHP":
+                    itemSpriteHolder[i].sprite = ItemSprites[7];
+                    itemSpriteHolder[i].color = Color.white;
+                    break;
+                case "Speed":
+                    itemSpriteHolder[i].sprite = ItemSprites[8];
+                    itemSpriteHolder[i].color = Color.white;
+                    break;
+                case "Barrier":
+                    itemSpriteHolder[i].sprite = ItemSprites[9];
+                    itemSpriteHolder[i].color = Color.white;
+                    break;
+            }
+        }
     }
 }
