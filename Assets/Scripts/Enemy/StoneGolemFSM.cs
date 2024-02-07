@@ -139,22 +139,21 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
     // 스폰 상태
     void Spawn()
     {
+        agent.isStopped = true;
         // StoneGolem이 플레이어를 바라보도록 설정
         transform.forward = player.position;
-        // 스폰 애니메이션이 완전히 끝난 후 플레이어를 추적하도록 2.0초의 대기시간을 가진 코루틴함수 사용.
-        StartCoroutine(SpawnToRun());
-    }
-
-    IEnumerator SpawnToRun()
-    {
-        yield return new WaitForSeconds(2.0f);
-        e_State = StoneGolemState.Run;
+        // 스폰 애니메이션이 끝난 후 Run으로 전환
+        if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+        {
+            e_State = StoneGolemState.Run;
+        }
     }
 
     // 이동 상태
     void Run()
     {
-        if (skillTimer <0.0f)
+        anim.SetTrigger("SpawnToRun");
+        if (skillTimer <0.0f && !anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
         {
             isAiming = true;
             e_State = StoneGolemState.Skill;
@@ -163,6 +162,7 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
         {
             if (Vector3.Distance(transform.position, player.position) >= attackDistance)
             {
+
                 agent.isStopped = true;
                 agent.ResetPath();
 
@@ -172,7 +172,6 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
                 // 내비게이션의 목적지를 플레이어의 위치로 설정
                 agent.destination = player.position;
 
-                anim.SetTrigger("SpawnToRun");
             }
             // 플레이어와의 거리가 공격 사거리 이내고, 스킬이 쿨타임이라면
             else
@@ -190,6 +189,7 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
         // 플레이어가 공격 범위 내라면 공격을 시작한다
         if (Vector3.Distance(transform.position, player.position) <= attackDistance)
         {
+            agent.isStopped = true;
             anim.Play("Attack");
         }
         // 공격 범위를 벗어났다면 현재 상태를 Run으로 전환한다 (재추격)
@@ -238,7 +238,6 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
     void Skill()
     {
         agent.isStopped = true;
-
         // Laser animation 재생
         anim.Play("LaserAiming");
         if (isAiming)
@@ -255,7 +254,6 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
                 laserLine.SetPosition(1, player.position);
                 elapsedTime += Time.deltaTime;
             }
-            anim.SetTrigger("LaserAttack");
         }
         
         StartCoroutine(ActivateLaser());
@@ -271,6 +269,7 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
             yield return new WaitForSeconds(aimDuration);
             laserLine.enabled = false;
             isAiming = false;
+            anim.SetTrigger("LaserAttack");
 
             GameObject laser = Instantiate(laserFactory);
             laser.transform.position = laserOrigin.transform.position;
