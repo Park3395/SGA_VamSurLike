@@ -104,10 +104,16 @@ public class BeetleFSM : MonoBehaviour, IHitEnemy
     // 스폰 상태
     void Spawn()
     {
+        agent.isStopped = true;
         // beetle이 플레이어를 바라보도록 설정
         transform.forward = player.position;
         // 스폰 애니메이션이 완전히 끝난 후 플레이어를 추적하도록 4.0초의 대기시간을 가진 코루틴함수 사용.
         StartCoroutine(SpawnToRun());
+    }
+
+    IEnumerator SpawnToRun()
+    {
+        yield return new WaitForSeconds(4.0f);
         // 플레이어를 인식할 수 있는 거리 내에 들어오면
         if (Vector3.Distance(transform.position, player.position) >= attackDistance)
         {
@@ -118,21 +124,12 @@ public class BeetleFSM : MonoBehaviour, IHitEnemy
         }
     }
 
-    IEnumerator SpawnToRun()
-    {
-        yield return new WaitForSeconds(4.0f);
-    }
-
     // 이동 상태
     void Run()
     {
         // 현재 위치가 공격 사거리보다 크다면 플레이어를 향해 이동
         if (Vector3.Distance(transform.position, player.position) >= attackDistance)
         {
-            //Vector3 dir = (player.position - transform.position).normalized;
-
-            //transform.forward = dir;
-
             // 에이전트의 이동을 정지하고 경로를 초기화
             agent.isStopped = true;
             agent.ResetPath();
@@ -146,8 +143,10 @@ public class BeetleFSM : MonoBehaviour, IHitEnemy
         // 플레이어와의 거리가 공격 사거리 이내라면
         else
         {
+            // 에이전트의 이동을 정지.
+            agent.isStopped = true;
+
             // enum변수 상태를 Attack으로 전환
-            Debug.Log("Attack");
             e_State = BeetleState.Attack;
         }
     }
@@ -155,23 +154,25 @@ public class BeetleFSM : MonoBehaviour, IHitEnemy
     // 공격 상태
     void Attack()
     {
+        Debug.Log("Attack");
         // 플레이어가 공격 범위 내라면 공격을 시작한다
         if (Vector3.Distance(transform.position, player.position) <= attackDistance)
         {
-            anim.Play("Attack");
+            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+            {
+                anim.Play("Attack");
+            }
         }
         // 공격 범위를 벗어났다면 현재 상태를 Run으로 전환한다 (재추격)
         else
         {
-            e_State = BeetleState.Run;
-            anim.SetTrigger("AttackToRun");
+            // 애니메이션이 종료가 되었다면
+            if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+            {
+                e_State = BeetleState.Run;
+                anim.SetTrigger("AttackToRun");
+            }
         }
-    }
-
-    // 플레이어의 데미지 처리 함수
-    public void AttackAction()
-    {
-        //player.GetComponent<PlayerMove>().DamageAction(attackPower);
     }
 
     // 데미지 처리 함수
@@ -227,6 +228,7 @@ public class BeetleFSM : MonoBehaviour, IHitEnemy
 
     void Die()
     {
+        agent.isStopped = true;
         isDie = true;
         // 진행 중인 피격 코루틴 함수를 중지한다
         StopAllCoroutines();

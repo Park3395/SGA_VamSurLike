@@ -116,6 +116,7 @@ public class GameManager : MonoBehaviour
 
         if (KilledMonsterAmount() % 4 == 1 && !itemSelected)
         {
+            // 플레이어 점프 내려가도록.. y축힘 0?
             Time.timeScale = 0;
             // 아이템 선택 캔버스 생성
             itemSelectCanvas = Instantiate(itemSelectCanvasPrefab,
@@ -148,50 +149,68 @@ public class GameManager : MonoBehaviour
         Invoke("HideAlarmCanvas", 3);
 
         // 웨이브에따라 적 생성 
-        if (currentWave ==1)
+        if (currentWave == 1)
         {
-            if (Wave1Monster != null)
-            {
-                foreach (GameObject obj in Wave1Monster)
-                {
-                    //미리 배치한 비활성화된 몬스터 활성화
-                    obj.SetActive(true);
-                    currentWaveMonsters.Add(obj);
-                }
-            }
+            //if (Wave1Monster != null)
+            //{
+            //    foreach (GameObject obj in Wave1Monster)
+            //    {
+            //        //미리 배치한 비활성화된 몬스터 활성화
+            //        obj.SetActive(true);
+            //        currentWaveMonsters.Add(obj);
+            //    }
+            //}
+            StartCoroutine(ActivateMonstersWithDelay(Wave1Monster));
         }
         if (currentWave == 2)
         {
-            if (Wave2Monster != null)
-            {
-                foreach (GameObject obj in Wave2Monster)
-                {
-                    obj.SetActive(true);
-                    currentWaveMonsters.Add(obj);
-                }
-            }
+            //if (Wave2Monster != null)
+            //{
+            //    foreach (GameObject obj in Wave2Monster)
+            //    {
+            //        obj.SetActive(true);
+            //        currentWaveMonsters.Add(obj);
+            //    }
+            //}
+            StartCoroutine(ActivateMonstersWithDelay(Wave2Monster));
         }
         if (currentWave == 3)
         {
-            if (Wave3Monster != null)
-            {
-                foreach (GameObject obj in Wave3Monster)
-                {
-                    obj.SetActive(true);
-                    currentWaveMonsters.Add(obj);
-                }
-            }
+            //if (Wave3Monster != null)
+            //{
+            //    foreach (GameObject obj in Wave3Monster)
+            //    {
+            //        obj.SetActive(true);
+            //        currentWaveMonsters.Add(obj);
+            //    }
+            //}
+            StartCoroutine(ActivateMonstersWithDelay(Wave3Monster));
         }
         if (currentWave == 4)
         {
-            if (Wave4Monster != null)
-            {
-                foreach (GameObject obj in Wave4Monster)
-                {
-                    obj.SetActive(true);
-                    currentWaveMonsters.Add(obj);
-                }
-            }
+            //if (Wave4Monster != null)
+            //{
+            //    foreach (GameObject obj in Wave4Monster)
+            //    {
+            //        obj.SetActive(true);
+            //        currentWaveMonsters.Add(obj);
+            //    }
+            //}
+            StartCoroutine(ActivateMonstersWithDelay(Wave4Monster));
+        }
+    }
+
+    // 코루틴 함수 정의
+    IEnumerator ActivateMonstersWithDelay(GameObject[] monsters)
+    {
+        foreach (GameObject obj in monsters)
+        {
+            // 비활성화된 몬스터 활성화
+            obj.SetActive(true);
+            currentWaveMonsters.Add(obj);
+
+            // 2초 생성딜레이
+            yield return new WaitForSeconds(2f);
         }
     }
 

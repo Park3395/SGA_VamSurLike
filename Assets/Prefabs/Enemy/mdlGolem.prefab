@@ -787,6 +787,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 40730127b06fad548b9dfc691e91511e, type: 3}
+      propertyPath: m_TagString
+      value: StoneGolem
+      objectReference: {fileID: 0}
     - target: {fileID: 1243017521952085670, guid: 40730127b06fad548b9dfc691e91511e, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -1267,6 +1271,8 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+  laserFactory: {fileID: 287976341882553389, guid: c148b3f005da2554b9002e31c61e9342, type: 3}
+  laserSpeed: 10
 --- !u!195 &1878837008558291748
 NavMeshAgent:
   m_ObjectHideFlags: 0
