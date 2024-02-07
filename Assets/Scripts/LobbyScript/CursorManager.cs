@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class CursorManager : MonoBehaviour
 {
-   public GameObject pauseoption = GameObject.Find("pauseoption"); //pauseoption을 찾는다
+    public GameObject pauseoption;
+
+    private void Start()
+    {
+        GameObject pauseoption = GameObject.Find("pauseoption"); //pauseoption을 찾는다
+    }
     void Update()
     {
        
