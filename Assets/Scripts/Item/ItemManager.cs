@@ -21,6 +21,9 @@ public class ItemManager : MonoBehaviour
 
     PlayerStat pStat;
 
+    [SerializeField]
+    Canvas ItemSelect;
+
     private void Start()
     {
         pStat = PlayerStat.instance;
@@ -37,12 +40,11 @@ public class ItemManager : MonoBehaviour
             Debug.Log("Level Up");
             pStat.Pexp -= levelexp;
             pStat.Plevel++;
-            Time.timeScale = 0;
-            LevelCanvas.SetActive(true);
+            Instantiate(ItemSelect, new Vector3(0, 0, 0), Quaternion.identity);
         }
     }
 
-    private void selectItem(int num, bool isActive)
+    public ItemBase selectItem(int num, bool isActive)
     {
         if (isActive)
         {
@@ -63,6 +65,8 @@ public class ItemManager : MonoBehaviour
                     PlayerActive.Remove(item);
                     PlayerActive.Add(UpgradeItems[num]);
                 }
+
+            return PlayerActive.Find(x => x.num == num);
         }
         else
         {
@@ -75,6 +79,8 @@ public class ItemManager : MonoBehaviour
             {
                 item.level++;
             }
+
+            return PlayerPassive.Find(x=>x.num == num);
         }
     }
 }

@@ -6,6 +6,7 @@ public class P_Item_AddAtkspd : ItemBase
 {
     private void Awake()
     {
+        this.itemname = "P_AddAtkSpd";
         this.num = 0;
         this.level = 0;
         this.maxlevel = 9;

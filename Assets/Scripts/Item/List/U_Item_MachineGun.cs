@@ -6,6 +6,7 @@ public class U_Item_MachineGun : ItemBase
 {
     private void Awake()
     {
+        this.itemname = "U_MachineGun";
         this.num = 0;
         this.delay = 0;
         this.level = 0;

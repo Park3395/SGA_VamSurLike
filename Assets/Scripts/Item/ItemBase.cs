@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ItemBase : MonoBehaviour
 {
+    public string itemname;
     public int num;
     public float delay;
 

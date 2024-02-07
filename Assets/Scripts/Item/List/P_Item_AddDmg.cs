@@ -6,6 +6,7 @@ public class P_Item_AddDmg : ItemBase
 {
     private void Awake()
     {
+        this.itemname = "P_AddDmg";
         this.num = 1;
         this.level = 0;
         this.maxlevel = 9;

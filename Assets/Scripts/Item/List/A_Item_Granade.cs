@@ -6,6 +6,7 @@ public class A_Item_Granade : ItemBase
 {
     private void Awake()
     {
+        this.itemname = "A_Granade";
         this.num = 1;
         this.delay = 3.0f;
         this.level = 0;

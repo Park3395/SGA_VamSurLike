@@ -8,6 +8,7 @@ public class A_Item_RapidShoot : ItemBase
 
     private void Awake()
     {
+        this.itemname = "A_RapidShoot";
         this.num = 0;
         this.delay = 2.0f;
         this.level = 0;
