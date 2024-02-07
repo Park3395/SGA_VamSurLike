@@ -14,9 +14,12 @@ public class ItemSelect : MonoBehaviour
     //List<string> itemIndices = new List<string>(); //아이템 뭐얻었는지 저장하는 리스트
     // 게임매니저 스크립트 가져오기
     private GameManager gameManagerInstance;
+    public GameObject InventoryCanvas; // Canvas 에 대한 참조
 
-    public Image[] itemSpriteHolder;
-    public Sprite[] ItemSprites;
+    public Image[] itemSpriteHolder2;
+    public Sprite[] ItemSprites2;
+
+    int loopNum;
 
     void Start()
     {
@@ -49,10 +52,16 @@ public class ItemSelect : MonoBehaviour
         {
             int buttonIndex;
 
+            loopNum = 0;
             // 중복되지 않은 랜덤한 인덱스 찾기
             do
             {
                 buttonIndex = UnityEngine.Random.Range(0, 10);
+                if (loopNum >= 100)
+                { // 루프가 너무 많이 돌 경우에 무한 루프를 방지하기 위해 종료합니다.
+                    Debug.LogError("버튼 생성에 문제가 발생했습니다. 루프가 너무 많이 돌았습니다.");
+                    break;
+                }
             } while (uniqueIndices.Contains(buttonIndex));
 
             // 찾은 인덱스를 리스트에 추가
@@ -101,6 +110,7 @@ public class ItemSelect : MonoBehaviour
         Time.timeScale = 1;
         Cursor.visible = false; // 커서 안보이게
         Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
+        FindImageHolder();
         ShowItemUI();
     }
     public void ButtonCriticalPower()
@@ -117,6 +127,7 @@ public class ItemSelect : MonoBehaviour
         Time.timeScale = 1;
         Cursor.visible = false; // 커서 안보이게
         Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
+        FindImageHolder();
         ShowItemUI();
     }
     public void ButtonCriticalProbability()
@@ -133,6 +144,7 @@ public class ItemSelect : MonoBehaviour
         Time.timeScale = 1;
         Cursor.visible = false; // 커서 안보이게
         Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
+        FindImageHolder();
         ShowItemUI();
     }
     public void ButtonDoubleJump()
@@ -149,6 +161,7 @@ public class ItemSelect : MonoBehaviour
         Time.timeScale = 1;
         Cursor.visible = false; // 커서 안보이게
         Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
+        FindImageHolder();
         ShowItemUI();
     }
     public void ButtonHpRegen()
@@ -165,6 +178,7 @@ public class ItemSelect : MonoBehaviour
         Time.timeScale = 1;
         Cursor.visible = false; // 커서 안보이게
         Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
+        FindImageHolder();
         ShowItemUI();
     }
     public void ButtonJumpPower()
@@ -181,6 +195,7 @@ public class ItemSelect : MonoBehaviour
         Time.timeScale = 1;
         Cursor.visible = false; // 커서 안보이게
         Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
+        FindImageHolder();
         ShowItemUI();
     }
     public void ButtonMaxHp()
@@ -197,6 +212,7 @@ public class ItemSelect : MonoBehaviour
         Time.timeScale = 1;
         Cursor.visible = false; // 커서 안보이게
         Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
+        FindImageHolder();
         ShowItemUI();
     }
     public void ButtonMoveSpeed()
@@ -213,6 +229,7 @@ public class ItemSelect : MonoBehaviour
         Time.timeScale = 1;
         Cursor.visible = false; // 커서 안보이게
         Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
+        FindImageHolder();
         ShowItemUI();
     }
     public void ButtonShield()
@@ -229,6 +246,7 @@ public class ItemSelect : MonoBehaviour
         Time.timeScale = 1;
         Cursor.visible = false; // 커서 안보이게
         Cursor.lockState = CursorLockMode.Locked;   // 커서 안움직이게
+        FindImageHolder();
         ShowItemUI();
     }
 
@@ -242,46 +260,68 @@ public class ItemSelect : MonoBehaviour
             switch (gameManagerInstance.itemIndices[i])
             {
                 case "Dmg":
-                    itemSpriteHolder[i].sprite = ItemSprites[0];
-                    itemSpriteHolder[i].color = Color.white;
+                    itemSpriteHolder2[i].sprite = ItemSprites2[0];
+                    itemSpriteHolder2[i].color = Color.white;
                     break;
                 case "AttSpd":
-                    itemSpriteHolder[i].sprite = ItemSprites[1];
-                    itemSpriteHolder[i].color = Color.white;
+                    itemSpriteHolder2[i].sprite = ItemSprites2[1];
+                    itemSpriteHolder2[i].color = Color.white;
                     break;
                 case "Cridmg":
-                    itemSpriteHolder[i].sprite = ItemSprites[2];
-                    itemSpriteHolder[i].color = Color.white;
+                    itemSpriteHolder2[i].sprite = ItemSprites2[2];
+                    itemSpriteHolder2[i].color = Color.white;
                     break;
                 case "Cri":
-                    itemSpriteHolder[i].sprite = ItemSprites[3];
-                    itemSpriteHolder[i].color = Color.white;
+                    itemSpriteHolder2[i].sprite = ItemSprites2[3];
+                    itemSpriteHolder2[i].color = Color.white;
                     break;
                 case "JumpCount":
-                    itemSpriteHolder[i].sprite = ItemSprites[4];
-                    itemSpriteHolder[i].color = Color.white;
+                    itemSpriteHolder2[i].sprite = ItemSprites2[4];
+                    itemSpriteHolder2[i].color = Color.white;
                     break;
                 case "HPregen":
-                    itemSpriteHolder[i].sprite = ItemSprites[5];
-                    itemSpriteHolder[i].color = Color.white;
+                    itemSpriteHolder2[i].sprite = ItemSprites2[5];
+                    itemSpriteHolder2[i].color = Color.white;
                     break;
                 case "Jump":
-                    itemSpriteHolder[i].sprite = ItemSprites[6];
-                    itemSpriteHolder[i].color = Color.white;
+                    itemSpriteHolder2[i].sprite = ItemSprites2[6];
+                    itemSpriteHolder2[i].color = Color.white;
                     break;
                 case "MaxHP":
-                    itemSpriteHolder[i].sprite = ItemSprites[7];
-                    itemSpriteHolder[i].color = Color.white;
+                    itemSpriteHolder2[i].sprite = ItemSprites2[7];
+                    itemSpriteHolder2[i].color = Color.white;
                     break;
                 case "Speed":
-                    itemSpriteHolder[i].sprite = ItemSprites[8];
-                    itemSpriteHolder[i].color = Color.white;
+                    itemSpriteHolder2[i].sprite = ItemSprites2[8];
+                    itemSpriteHolder2[i].color = Color.white;
                     break;
                 case "Barrier":
-                    itemSpriteHolder[i].sprite = ItemSprites[9];
-                    itemSpriteHolder[i].color = Color.white;
+                    itemSpriteHolder2[i].sprite = ItemSprites2[9];
+                    itemSpriteHolder2[i].color = Color.white;
                     break;
             }
+        }
+    }
+
+    void FindImageHolder()
+    {
+        // Canvas 내에 있는 Panel을 찾습니다.
+        InventoryCanvas = GameObject.Find("Canvas_wave,time,item");
+        Transform panelTransform = InventoryCanvas.transform.Find("Panel_Item");
+        if (panelTransform != null)
+        {            
+            // Panel 하위의 모든 자식 오브젝트를 찾아 배열에 저장합니다.
+            int childCount = panelTransform.childCount;
+            Debug.Log(childCount);
+            itemSpriteHolder2 = new Image[childCount];
+            for (int i = 0; i < childCount; i++)
+            {
+                itemSpriteHolder2[i] = panelTransform.GetChild(i).GetComponent<Image>();
+            }
+        }
+        else
+        {
+            Debug.LogError("Panel을 찾을 수 없습니다.");
         }
     }
 }

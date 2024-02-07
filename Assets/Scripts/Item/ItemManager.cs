@@ -37,7 +37,7 @@ public class ItemManager : MonoBehaviour
             Debug.Log("Level Up");
             pStat.Pexp -= levelexp;
             pStat.Plevel++;
-            Time.timeScale = 0;
+            Time.timeScale = 0.1f;
             LevelCanvas.SetActive(true);
         }
     }
