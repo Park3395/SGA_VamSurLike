@@ -5,9 +5,7 @@ using UnityEngine.UI;
 
 public class ContentsRightPanel : MonoBehaviour
 {
-    private ItemSelect itemSelectInstance;
-
-    //public List<string> itemIndices = new List<string>();
+    private ItemSelect itemSelectInstance;  //안쓰는듯
 
     public Image[] itemSpriteHolder;
     public Sprite[] ItemSprites;
