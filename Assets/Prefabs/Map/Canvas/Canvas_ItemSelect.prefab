@@ -203,20 +203,9 @@ MonoBehaviour:
   - {fileID: 308608199272317334, guid: 317949fe340c7254484df8b1a373dcbf, type: 3}
   - {fileID: 3934433496127920674, guid: dd2c9e40903403b4197a2841c7e167c1, type: 3}
   ItemSelectCanvas: {fileID: 0}
-  itemSpriteHolder:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  ItemSprites:
+  InventoryCanvas: {fileID: 0}
+  itemSpriteHolder2: []
+  ItemSprites2:
   - {fileID: 21300000, guid: 5c8bf88fd3061c547b5000e3087854d2, type: 3}
   - {fileID: 21300000, guid: 6ef2bbdb7104472429dd4e436f18b2b1, type: 3}
   - {fileID: 21300000, guid: 7bba71e416267184cab4a9528a74070e, type: 3}
