@@ -75,6 +75,7 @@ public class ItemSelect : MonoBehaviour
         // ��ư 3�� ����
         for (int i = 0; i < 3; i++)
         {
+            Debug.Log("포문진입완");
             int buttonIndex;
 
             loopNum = 0;

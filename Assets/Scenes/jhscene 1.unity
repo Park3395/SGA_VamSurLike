@@ -824,7 +824,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pressECanvas: {fileID: 1443828506}
   alarmCanvas: {fileID: 1453972321716168950}
-  itemSelectCanvasPrefab: {fileID: 2964034548509708303, guid: cd452f18c37a60a448db2fcb1b3e5ba7, type: 3}
+  itemSelectCanvasPrefab: {fileID: 4595377876595417577, guid: 225042ba6eb21864ab76d678b2ee4851, type: 3}
   loseCanvasPrefab: {fileID: 4247402190924724124, guid: 60774deedb5ada242b9083e1faaee00c, type: 3}
   WinCanvasPrefab: {fileID: 3251451954242816620, guid: 606037ac83c10424a85bdd2316cb1042, type: 3}
   alarmText: {fileID: 8639957773459147351}
