@@ -21,7 +21,7 @@ public class ItemSelect : MonoBehaviour
     public Image[] itemSpriteHolder;
     public Sprite[] ItemSprites;
 
-
+    PlayerStat playerStat;
 
     ////////////////// �߰� ///////////////////////
 
@@ -46,6 +46,8 @@ public class ItemSelect : MonoBehaviour
 
         Cursor.visible = true; // Ŀ�� ���̰�
         Cursor.lockState = CursorLockMode.None;   // Ŀ�� �����̰�
+
+        playerStat = PlayerStat.instance;
 
         ////////////////// �߰� ///////////////////////
         buttons = new ItemData[3];
