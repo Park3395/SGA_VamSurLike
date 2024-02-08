@@ -25,7 +25,6 @@ public class ItemSelect : MonoBehaviour
 
     ////////////////// �߰� ///////////////////////
 
-    [SerializeField]
     ItemManager IM;
 
     struct ItemData
@@ -40,18 +39,9 @@ public class ItemSelect : MonoBehaviour
 
     int loopNum;
 
-    void Start()
+    void Awake()
     {
         ItemButtonInstantiate();
-
-        Cursor.visible = true; // Ŀ�� ���̰�
-        Cursor.lockState = CursorLockMode.None;   // Ŀ�� �����̰�
-
-        playerStat = PlayerStat.instance;
-
-        ////////////////// �߰� ///////////////////////
-        buttons = new ItemData[3];
-        ////////////////// �߰� ///////////////////////
     }
 
     void Update()
@@ -60,6 +50,12 @@ public class ItemSelect : MonoBehaviour
 
     void ItemButtonInstantiate()
     {
+        Cursor.visible = true; // Ŀ�� ���̰�
+        Cursor.lockState = CursorLockMode.None;   // Ŀ�� �����̰�
+
+        playerStat = PlayerStat.instance;
+        IM = ItemManager.instance;
+        buttons = new ItemData[3];
         // ��ư ������ ���� �迭 �ʱ�ȭ
         buttonObjects = new Button[3];
 
@@ -93,7 +89,7 @@ public class ItemSelect : MonoBehaviour
             uniqueIndices.Add(buttonIndex);
 
             ////////////////// �߰� ///////////////////////
-            if (buttonIndex > 5)
+            if (buttonIndex >= 5)
             {
                 buttons[i].isActive = true;
                 buttons[i].num = buttonIndex % 5;
@@ -105,6 +101,9 @@ public class ItemSelect : MonoBehaviour
             }
             ////////////////// �߰� ///////////////////////
 
+            Debug.Log(buttons[i].isActive);
+            Debug.Log(buttons[i].num);
+
             // ��ư ������ Instantiate
             buttonObjects[i] = Instantiate(allButtons[buttonIndex],
                 buttonPosition, Quaternion.identity);
@@ -113,7 +112,8 @@ public class ItemSelect : MonoBehaviour
 
 
             ////////////////// ���õ��� �ִ� ������ �̸� ���� ���� ///////////////////////
-            ItemBase item = IM.selectItem(buttons[i].num,buttons[i].isActive);
+            ItemBase item = new ItemBase();
+            item = IM.selectItem(buttons[i].num,buttons[i].isActive,false);
             buttonObjects[i].transform.Find("LvText").GetComponent<Text>().text = String.Format("Lv {0} / Lv {1}", item.level, item.maxlevel);
 
             /////////////////////////////////////////////////////////////////
@@ -127,14 +127,15 @@ public class ItemSelect : MonoBehaviour
     ////////////////// �߰� ///////////////////////
     public void onItemButton()
     {
+        Debug.Log("Click");
         ItemBase item = new ItemBase();
 
-        if(this == buttonObjects[0])
-            item = IM.selectItem(buttons[0].num,buttons[0].isActive);
+        if (this == buttonObjects[0])
+            item = IM.selectItem(buttons[0].num, buttons[0].isActive, true);
         else if (this == buttonObjects[1])
-            item = IM.selectItem(buttons[1].num, buttons[1].isActive);
+            item = IM.selectItem(buttons[1].num, buttons[1].isActive, true);
         else if (this == buttonObjects[2])
-            item = IM.selectItem(buttons[2].num, buttons[2].isActive);
+            item = IM.selectItem(buttons[2].num, buttons[2].isActive, true);
 
         // ���ӸŴ����� �ִ� ����Ʈ�� ������ �������ߴ��� ����
         gameManagerInstance = FindObjectOfType<GameManager>();
@@ -154,6 +155,7 @@ public class ItemSelect : MonoBehaviour
         Cursor.visible = false; // Ŀ�� �Ⱥ��̰�
         Cursor.lockState = CursorLockMode.Locked;   // Ŀ�� �ȿ����̰�
         ShowItemUI();
+        FindImageHolder();
     }
     public void ButtonAttackSpeed()
     {

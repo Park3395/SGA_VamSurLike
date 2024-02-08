@@ -9,11 +9,11 @@ public class U_Item_RoundImpact : ItemBase
     private void Awake()
     {
         this.itemname = "RoundImpact";
-        this.num = 2;
+        this.num = 12;
         this.delay = 3.0f;
         this.level = 0;
         this.maxlevel = 1;
-        this.synergeNum = 2;
+        this.synergeNum = 7;
 
         this.isActive = true;
 
