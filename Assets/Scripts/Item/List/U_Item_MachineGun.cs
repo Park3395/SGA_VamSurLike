@@ -11,11 +11,11 @@ public class U_Item_MachineGun : ItemBase
     private void Awake()
     {
         this.itemname = "MachineGun";
-        this.num = 0;
+        this.num = 10;
         this.delay = 0;
         this.level = 0;
         this.maxlevel = 1;
-        this.synergeNum = 0;
+        this.synergeNum = 5;
 
         this.isActive = true;
 
