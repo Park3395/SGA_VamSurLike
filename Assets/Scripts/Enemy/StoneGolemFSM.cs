@@ -101,7 +101,7 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
         if (skillTimer >= 0)
             skillTimer -= Time.deltaTime;
 
-        Debug.Log("skillTimer" + skillTimer);
+        //Debug.Log("skillTimer" + skillTimer);
 
         // 플레이어가 죽었다면 정지.
         if ( GameObject.FindGameObjectWithTag("Player") == null)

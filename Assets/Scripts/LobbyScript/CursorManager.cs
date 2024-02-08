@@ -14,7 +14,7 @@ public class CursorManager : MonoBehaviour
     }
     void Update()
     {
-        ItemSelectCanvas = GameObject.Find("Canvas_ItemSelect(Clone)");
+        ItemSelectCanvas = GameObject.Find("Demo_Canvas_ItemSelect(Clone)");
 
         if (pauseoption.activeSelf == true) //pauseoption이 활성화 상태일 때
         {

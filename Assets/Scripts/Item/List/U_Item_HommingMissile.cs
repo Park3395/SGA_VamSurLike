@@ -9,11 +9,11 @@ public class U_Item_HommingMissile : ItemBase
     private void Awake()
     {
         this.itemname = "HommingMissile";
-        this.num = 1;
+        this.num = 11;
         this.delay = 3.0f;
         this.level = 0;
         this.maxlevel = 1;
-        this.synergeNum = 1;
+        this.synergeNum = 6;
 
         this.isActive = true;
 

@@ -1,9 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ItemManager : MonoBehaviour
 {
+    public static ItemManager instance = null;
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(this);
+    }
+
     [SerializeField]
     ItemBase[] ActiveItems;
     [SerializeField]
@@ -44,43 +55,51 @@ public class ItemManager : MonoBehaviour
         }
     }
 
-    public ItemBase selectItem(int num, bool isActive)
+    public ItemBase selectItem(int num, bool isActive, bool isSelect)
     {
         if (isActive)
         {
-            ItemBase item = PlayerActive.Find(x => x.num != num);
-
+            ItemBase item = new ItemBase();
+            item = PlayerActive.Find(x => x.num != num);
+            
             if (item == null)
             {
-                PlayerActive.Add(ActiveItems[num]);
+                if(isSelect)
+                {
+                    PlayerActive.Add(ActiveItems[num]);
+                    return PlayerActive.Find(x => x.num == num);
+                }
+                else
+                    return ActiveItems[num];
             }
             else
             {
-                item.level++;
+                if (item.level == item.maxlevel)
+                    if (PlayerPassive.Find(x => x.synergeNum == num))
+                    {
+                        PlayerActive.Remove(item);
+                        PlayerActive.Add(UpgradeItems[num]);
+                    }
+                return PlayerActive.Find(x => x.num == num);
             }
-
-            if(item.level == item.maxlevel)
-                if(PlayerPassive.Find(x=>x.synergeNum == num))
-                {
-                    PlayerActive.Remove(item);
-                    PlayerActive.Add(UpgradeItems[num]);
-                }
-
-            return PlayerActive.Find(x => x.num == num);
         }
         else
         {
-            ItemBase item = PlayerPassive.Find(x => x.num != num);
+            ItemBase item = new ItemBase();
+            item = PlayerPassive.Find(x => x.num != num);
+            
             if (item == null)
             {
-                PlayerPassive.Add(PassiveItems[num]);
+                if(isSelect)
+                {
+                    PlayerPassive.Add(PassiveItems[num]);
+                    return PlayerPassive.Find(x => x.num == num);
+                }
+                else
+                    return PassiveItems[num];
             }
             else
-            {
-                item.level++;
-            }
-
-            return PlayerPassive.Find(x=>x.num == num);
+                return PlayerPassive.Find(x => x.num == num);
         }
     }
 }
