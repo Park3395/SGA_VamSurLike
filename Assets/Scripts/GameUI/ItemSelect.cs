@@ -49,9 +49,6 @@ public class ItemSelect : MonoBehaviour
 
         playerStat = PlayerStat.instance;
 
-        ////////////////// �߰� ///////////////////////
-        buttons = new ItemData[3];
-        ////////////////// �߰� ///////////////////////
     }
 
     void Update()
@@ -60,6 +57,9 @@ public class ItemSelect : MonoBehaviour
 
     void ItemButtonInstantiate()
     {
+
+        IM = ItemManager.instance;
+        buttons = new ItemData[3];
         // ��ư ������ ���� �迭 �ʱ�ȭ
         buttonObjects = new Button[3];
 
@@ -75,7 +75,6 @@ public class ItemSelect : MonoBehaviour
         // ��ư 3�� ����
         for (int i = 0; i < 3; i++)
         {
-            Debug.Log("포문진입완");
             int buttonIndex;
 
             loopNum = 0;
@@ -105,6 +104,9 @@ public class ItemSelect : MonoBehaviour
                 buttons[i].num = buttonIndex;
             }
             ////////////////// �߰� ///////////////////////
+
+            Debug.Log(buttons[i].isActive);
+            Debug.Log(buttons[i].num);
 
             // ��ư ������ Instantiate
             buttonObjects[i] = Instantiate(allButtons[buttonIndex],
@@ -155,6 +157,7 @@ public class ItemSelect : MonoBehaviour
         Cursor.visible = false; // Ŀ�� �Ⱥ��̰�
         Cursor.lockState = CursorLockMode.Locked;   // Ŀ�� �ȿ����̰�
         ShowItemUI();
+        FindImageHolder();
     }
     public void ButtonAttackSpeed()
     {
