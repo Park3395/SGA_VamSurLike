@@ -7,6 +7,9 @@ public class PlayerStat : MonoBehaviour
 {
     public static PlayerStat instance = null;
 
+    private GameManager gameManagerInstance;
+    public int previousHP;
+
     //// 플레이어 기본 스테이터스 
     #region Base Staus
 
@@ -127,5 +130,20 @@ public class PlayerStat : MonoBehaviour
             instance = this;
         else
             Destroy(this);
+    }
+
+    private void Start()
+    {
+        previousHP = NowHP;
+        gameManagerInstance = FindObjectOfType<GameManager>();
+    }
+
+    private void Update()
+    {
+        if(previousHP != NowHP)
+        {
+            gameManagerInstance.totalDamaged += (previousHP - NowHP);
+            previousHP = NowHP;
+        }
     }
 }
