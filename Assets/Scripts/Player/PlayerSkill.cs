@@ -45,6 +45,7 @@ public class PlayerSkill : MonoBehaviour
     public GameObject basicBullet;
     public Transform ShootPos;
     public Transform ShootPos_Sub;
+    public Transform Body;
 
     public ItemBase[] onKeyItems;              // 0 : RightClick, 1 : Q, 2 : E, 3 : R
     

@@ -2,21 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class P_Item_AddAtkspd : ItemBase
+public class P_Item_AddHp : ItemBase
 {
     private void Awake()
     {
-        this.itemname = "AddAtkSpd";
-        this.num = 0;
+        this.itemname = "AddHp";
+        this.num = 4;
         this.level = 0;
-        this.maxlevel = 9;
-        this.synergeNum = 0;
+        this.maxlevel = 6;
+        this.synergeNum = 4;
         this.isActive = false;
     }
 
     public override void getItem()
     {
         base.getItem();
-        PlayerStat.instance.AttSpd -= 0.05f;
+        PlayerStat.instance.MaxHP = (int)(PlayerStat.instance.MaxHP * 1.5f);
     }
 }

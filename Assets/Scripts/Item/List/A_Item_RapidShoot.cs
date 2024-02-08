@@ -8,7 +8,7 @@ public class A_Item_RapidShoot : ItemBase
 
     private void Awake()
     {
-        this.itemname = "A_RapidShoot";
+        this.itemname = "RapidShoot";
         this.num = 0;
         this.delay = 2.0f;
         this.level = 0;
@@ -29,7 +29,7 @@ public class A_Item_RapidShoot : ItemBase
     {
         while(duration > 0)
         {
-            Instantiate(ItemObj, shootPos.position, new Quaternion());
+            Instantiate(ItemObj, shootPos.position, Quaternion.identity);
             yield return new WaitForSeconds(0.2f);
             duration -= Time.deltaTime;
             Debug.Log(duration);

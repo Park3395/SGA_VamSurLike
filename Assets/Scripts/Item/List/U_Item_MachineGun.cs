@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class U_Item_MachineGun : ItemBase
 {
+    Transform shootPos;
+    bool isOn = false;
+    float t;
+
     private void Awake()
     {
-        this.itemname = "U_MachineGun";
+        this.itemname = "MachineGun";
         this.num = 0;
         this.delay = 0;
         this.level = 0;
@@ -14,21 +18,29 @@ public class U_Item_MachineGun : ItemBase
         this.synergeNum = 0;
 
         this.isActive = true;
+
+        this.shootPos = GetComponentInParent<PlayerSkill>().Body;
     }
 
     public override void itemEffect()
     {
-        StartCoroutine(RapidShoot(level * 0.5f));
+        isOn = !isOn;
     }
-
-    IEnumerator RapidShoot(float duration)
+    private void Update()
     {
-        while (duration > 0)
+        if(isOn)
         {
-            Instantiate(ItemObj);
-            yield return new WaitForSeconds(0.2f);
-            duration -= Time.deltaTime;
+            if (t < 0f)
+            {
+                Instantiate(ItemObj,this.shootPos.position,Quaternion.identity);
+                t = 0.2f;
+            }
+            else
+                t -= Time.deltaTime;
         }
-        yield return null;
+        else
+        {
+            t = 0.2f;
+        }
     }
 }

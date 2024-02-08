@@ -27,6 +27,7 @@ public class ItemBase : MonoBehaviour
     {
         level++;
 
+        // 액티브 아이템이면 키 할당
         if(isActive)
         {
             ItemBase[] keyItem = GetComponentInParent<PlayerSkill>().onKeyItems;

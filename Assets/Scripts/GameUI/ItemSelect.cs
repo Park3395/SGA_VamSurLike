@@ -83,7 +83,7 @@ public class ItemSelect : MonoBehaviour
             if (buttonIndex > 5)
             {
                 buttons[i].isActive = true;
-                buttons[i].num = buttonIndex % 6;
+                buttons[i].num = buttonIndex % 5;
             }
             else
             {
@@ -96,7 +96,17 @@ public class ItemSelect : MonoBehaviour
             buttonObjects[i] = Instantiate(allButtons[buttonIndex],
                 buttonPosition, Quaternion.identity);
             // 캔버스의 자식으로 설정해서 화면에 보이게
-            buttonObjects[i].transform.SetParent(transform);    
+            buttonObjects[i].transform.SetParent(transform);
+
+
+            ////////////////// 선택된적 있는 아이템 이면 레벨 변경 ///////////////////////
+            ItemBase item = IM.selectItem(buttons[i].num,buttons[i].isActive);
+            buttonObjects[i].transform.Find("LvText").GetComponent<Text>().text = String.Format("Lv {0} / Lv {1}", item.level, item.maxlevel);
+
+            /////////////////////////////////////////////////////////////////
+            
+
+            ////////////////// 추가 ///////////////////////
             buttonPosition.x += 480;    // 다음 버튼 위치 조정
         }
     }
