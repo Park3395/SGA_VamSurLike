@@ -10,6 +10,7 @@ public class BasicBullet : MonoBehaviour
     float maxt = 2f;
     PlayerStat stat;
     float dmg;
+    // 데미지 팝업을 띄울 위치
 
     private void Awake()
     {
@@ -53,6 +54,8 @@ public class BasicBullet : MonoBehaviour
         if (other.gameObject.layer == 9)
         {
             other.gameObject.GetComponent<IHitEnemy>().HitEnemy(dmg);
+            // 데미지 팝업 띄울 위치 변경중.
+            Damage_PopUp_Generator.current.CreatePopUp(other.gameObject.transform.position, dmg.ToString());
             Destroy(this.gameObject);
         }
         else
