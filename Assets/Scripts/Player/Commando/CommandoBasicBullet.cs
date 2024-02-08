@@ -11,6 +11,8 @@ public class BasicBullet : MonoBehaviour
     PlayerStat stat;
     float dmg;
 
+    private GameManager gameManagerInstance;
+
     private void Awake()
     {
         stat = PlayerStat.instance;
@@ -53,6 +55,8 @@ public class BasicBullet : MonoBehaviour
         if (other.gameObject.layer == 9)
         {
             other.gameObject.GetComponent<IHitEnemy>().HitEnemy(dmg);
+            gameManagerInstance = FindObjectOfType<GameManager>();
+            gameManagerInstance.totalDamage += (int)dmg;
             Destroy(this.gameObject);
         }
         else
