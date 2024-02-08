@@ -59,8 +59,7 @@ public class ItemManager : MonoBehaviour
     {
         if (isActive)
         {
-            ItemBase item = new ItemBase();
-            item = PlayerActive.Find(x => x.num != num);
+            ItemBase item = PlayerActive.Find(x => x.num != num);
             
             if (item == null)
             {
@@ -85,8 +84,7 @@ public class ItemManager : MonoBehaviour
         }
         else
         {
-            ItemBase item = new ItemBase();
-            item = PlayerPassive.Find(x => x.num != num);
+            ItemBase item = PlayerPassive.Find(x => x.num != num);
             
             if (item == null)
             {

@@ -154,7 +154,7 @@ public class BeetleFSM : MonoBehaviour, IHitEnemy
     // 공격 상태
     void Attack()
     {
-        Debug.Log("Attack");
+        //Debug.Log("Attack");
         // 플레이어가 공격 범위 내라면 공격을 시작한다
         if (Vector3.Distance(transform.position, player.position) <= attackDistance)
         {

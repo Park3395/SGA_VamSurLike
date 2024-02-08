@@ -1,12 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class ItemSelect : MonoBehaviour
 {
     public Button[] allButtons;     //�ν����Ϳ��� ��ư������ �ִ°�
+    [SerializeField]
     private Button[] buttonObjects; //��ư Instantiate �Ҷ� ���� �迭 
     public GameObject ItemSelectCanvas; // destroy�� ĵ����
 
@@ -112,12 +115,18 @@ public class ItemSelect : MonoBehaviour
 
 
             ////////////////// ���õ��� �ִ� ������ �̸� ���� ���� ///////////////////////
-            ItemBase item = new ItemBase();
-            item = IM.selectItem(buttons[i].num,buttons[i].isActive,false);
+            ItemBase item = IM.selectItem(buttons[i].num,buttons[i].isActive,false);
             buttonObjects[i].transform.Find("LvText").GetComponent<Text>().text = String.Format("Lv {0} / Lv {1}", item.level, item.maxlevel);
 
+            if (i == 0)
+                buttonObjects[i].onClick.AddListener(onItemButton1);
+            else if (i == 1)
+                buttonObjects[i].onClick.AddListener(onItemButton2);
+            else if (i == 2)
+                buttonObjects[i].onClick.AddListener(onItemButton3);
+
             /////////////////////////////////////////////////////////////////
-            
+
 
             ////////////////// �߰� ///////////////////////
             buttonPosition.x += 480;    // ���� ��ư ��ġ ����
@@ -125,21 +134,66 @@ public class ItemSelect : MonoBehaviour
     }
 
     ////////////////// �߰� ///////////////////////
-    public void onItemButton()
+    public void onItemButton1()
     {
-        Debug.Log("Click");
-        ItemBase item = new ItemBase();
-
-        if (this == buttonObjects[0])
-            item = IM.selectItem(buttons[0].num, buttons[0].isActive, true);
-        else if (this == buttonObjects[1])
-            item = IM.selectItem(buttons[1].num, buttons[1].isActive, true);
-        else if (this == buttonObjects[2])
-            item = IM.selectItem(buttons[2].num, buttons[2].isActive, true);
+        Debug.Log("Click1");
+        ItemBase item = IM.selectItem(buttons[0].num, buttons[0].isActive, true);
 
         // ���ӸŴ����� �ִ� ����Ʈ�� ������ �������ߴ��� ����
-        gameManagerInstance = FindObjectOfType<GameManager>();
-        gameManagerInstance.itemIndices.Add(item.itemname);
+        //gameManagerInstance = FindObjectOfType<GameManager>();
+        //gameManagerInstance.itemIndices.Add(item.itemname);
+
+        item.getItem();
+
+        // ������ ���� ĵ���� ���ֱ�
+        ItemSelectCanvas = GameObject.Find("Canvas_ItemSelect(Clone)");
+        if (ItemSelectCanvas != null)
+        {
+            Destroy(ItemSelectCanvas);
+        }
+
+        // �ð��帧 �ٽ� �ǵ�����
+        Time.timeScale = 1;
+        Cursor.visible = false; // Ŀ�� �Ⱥ��̰�
+        Cursor.lockState = CursorLockMode.Locked;   // Ŀ�� �ȿ����̰�
+        ShowItemUI();
+        FindImageHolder();
+    }
+
+    public void onItemButton2()
+    {
+        Debug.Log("Click2");
+        ItemBase item = IM.selectItem(buttons[1].num, buttons[1].isActive, true);
+
+        // ���ӸŴ����� �ִ� ����Ʈ�� ������ �������ߴ��� ����
+        //gameManagerInstance = FindObjectOfType<GameManager>();
+        //gameManagerInstance.itemIndices.Add(item.itemname);
+
+        item.getItem();
+
+        // ������ ���� ĵ���� ���ֱ�
+        ItemSelectCanvas = GameObject.Find("Canvas_ItemSelect(Clone)");
+        if (ItemSelectCanvas != null)
+        {
+            Destroy(ItemSelectCanvas);
+        }
+
+        // �ð��帧 �ٽ� �ǵ�����
+        Time.timeScale = 1;
+        Cursor.visible = false; // Ŀ�� �Ⱥ��̰�
+        Cursor.lockState = CursorLockMode.Locked;   // Ŀ�� �ȿ����̰�
+        ShowItemUI();
+        FindImageHolder();
+    }
+
+    public void onItemButton3()
+    {
+        Debug.Log("Click3");
+        ItemBase item  = IM.selectItem(buttons[2].num, buttons[2].isActive, true);
+
+        // ���ӸŴ����� �ִ� ����Ʈ�� ������ �������ߴ��� ����
+        //gameManagerInstance = FindObjectOfType<GameManager>();
+        //gameManagerInstance.itemIndices.Add(item.itemname);
 
         item.getItem();
 
