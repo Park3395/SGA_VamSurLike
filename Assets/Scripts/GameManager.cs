@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public GameObject timeAndWavePanel;
     public GameObject player;
     public GameObject bossPrefab;
+    public GameObject[] medKits;
 
     string time;
     public int sec;
@@ -60,6 +61,8 @@ public class GameManager : MonoBehaviour
         waveStarted = false;
         gameOver = false;
         itemSelected = false;
+
+        InvokeRepeating("MedkitSetActive", 20f, 40f);
     }
 
 
@@ -255,5 +258,10 @@ public class GameManager : MonoBehaviour
             }
         }
         return monsterKillAmount;
+    }
+
+    void MedkitSetActive()
+    {
+        medKits[Random.Range(0, medKits.Length)].gameObject.SetActive(true);
     }
 }
