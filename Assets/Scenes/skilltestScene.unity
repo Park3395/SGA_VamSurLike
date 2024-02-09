@@ -827,6 +827,8 @@ MonoBehaviour:
   currentWaveText: {fileID: 674822985}
   timeAndWavePanel: {fileID: 2012592475}
   player: {fileID: 1793797779}
+  bossPrefab: {fileID: 0}
+  medKits: []
   sec: 0
   leftSec: 0
   monsterKillAmount: 0
