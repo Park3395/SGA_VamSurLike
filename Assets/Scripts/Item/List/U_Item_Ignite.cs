@@ -20,12 +20,21 @@ public class U_Item_Ignite : ItemBase
 
         this.isActive = true;
 
-        this.basic = GetComponentInParent<PlayerSkill>().basicBullet;
+    }
+    public override void getItem()
+    {
+        base.getItem();
     }
 
     public override void itemEffect()
     {
-        if(this.isActivate)
+        if(!once)
+        {
+            this.basic = GetComponentInParent<PlayerSkill>().basicBullet;
+            once = true;
+        }
+
+        if (this.isActivate)
         {
             this.isActivate = false;
             GetComponentInParent<PlayerSkill>().basicBullet = this.basic;

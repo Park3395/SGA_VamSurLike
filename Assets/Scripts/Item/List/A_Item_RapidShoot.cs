@@ -16,13 +16,22 @@ public class A_Item_RapidShoot : ItemBase
         this.synergeNum = 0;
         this.isActive = true;
 
-        this.ItemObj = GetComponentInParent<PlayerSkill>().basicBullet;
-        this.shootPos = GetComponentInParent<PlayerSkill>().ShootPos;
+    }
+    public override void getItem()
+    {
+        base.getItem();
     }
 
     public override void itemEffect()
     {
-        StartCoroutine(RapidShoot(level * 0.005f));
+        if (!once)
+        {
+            this.ItemObj = GetComponentInParent<PlayerSkill>().basicBullet;
+            this.shootPos = GetComponentInParent<PlayerSkill>().ShootPos;
+            once = true;
+        }
+
+        StartCoroutine(RapidShoot(level * 0.05f));
     }
 
     IEnumerator RapidShoot(float duration)

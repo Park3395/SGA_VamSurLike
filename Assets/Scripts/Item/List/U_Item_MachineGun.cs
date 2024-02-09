@@ -19,11 +19,20 @@ public class U_Item_MachineGun : ItemBase
 
         this.isActive = true;
 
-        this.shootPos = GetComponentInParent<PlayerSkill>().Body;
+    }
+    public override void getItem()
+    {
+        base.getItem();
     }
 
     public override void itemEffect()
     {
+        if(!once)
+        {
+            this.shootPos = GetComponentInParent<PlayerSkill>().Body;
+            once = true;
+        }
+
         isOn = !isOn;
     }
     private void Update()

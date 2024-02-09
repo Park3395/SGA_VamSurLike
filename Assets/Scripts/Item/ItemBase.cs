@@ -15,6 +15,8 @@ public class ItemBase : MonoBehaviour
 
     public bool isActive;
 
+    protected bool once = false;
+
     [SerializeField]
     protected GameObject ItemObj;
 
@@ -31,12 +33,19 @@ public class ItemBase : MonoBehaviour
         if(isActive)
         {
             ItemBase[] keyItem = GetComponentInParent<PlayerSkill>().onKeyItems;
-            for(int i = 0;i<4;i++)
+
+            for (int i = 0; i < 4; i++)
             {
-                if (keyItem[i] != null)
+                if (keyItem[i] == null)
                 {
-                    keyItem[i] = this;
+                    Debug.Log("skill Activated");
+                    keyItem[i] = this.GetComponent<ItemBase>();
                     break;
+                }
+                else
+                {
+                    if(keyItem[i].num == this.num)
+                        break;
                 }
             }
         }

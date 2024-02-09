@@ -48,7 +48,12 @@ public class PlayerSkill : MonoBehaviour
     public Transform Body;
 
     public ItemBase[] onKeyItems;              // 0 : RightClick, 1 : Q, 2 : E, 3 : R
-    
+
+    private void Awake()
+    {
+        onKeyItems = new ItemBase[4];
+    }
+
     // 스킬 이벤트 호출 함수
     virtual protected void LeftClickSkill()
     {
@@ -60,27 +65,43 @@ public class PlayerSkill : MonoBehaviour
     }
     virtual protected void RightClickSkill()
     {
-        nowRCSTime = RightSkillDelay * PlayerStat.instance.AttSpd;
         if (onKeyItems[0] != null)
+        {
             onKeyItems[0].itemEffect();
+            RightSkillDelay = onKeyItems[0].delay;
+        }
+
+        nowRCSTime = RightSkillDelay * PlayerStat.instance.AttSpd;
     }
     virtual protected void E_BtnSkill()
     {
-        nowESTime = EButtonDelay * PlayerStat.instance.AttSpd;
         if (onKeyItems[1] != null)
+        {
             onKeyItems[1].itemEffect();
+            EButtonDelay = onKeyItems[1].delay;
+        }
+
+        nowESTime = EButtonDelay * PlayerStat.instance.AttSpd;
     }
     virtual protected void R_BtnSkill()
     {
-        nowRSTime = RButtonDelay * PlayerStat.instance.AttSpd;
         if (onKeyItems[2] != null)
+        {
             onKeyItems[2].itemEffect();
+            RButtonDelay = onKeyItems[2].delay;
+        }
+
+        nowRSTime = RButtonDelay * PlayerStat.instance.AttSpd;
     }
     virtual protected void Q_BtnSkill()
     {
-        nowQSTime = QButtonDelay * PlayerStat.instance.AttSpd;
         if (onKeyItems[3] != null)
+        {
             onKeyItems[3].itemEffect();
+            QButtonDelay = onKeyItems[3].delay;
+        }
+
+        nowQSTime = QButtonDelay * PlayerStat.instance.AttSpd;
     }
 
     protected void Update()

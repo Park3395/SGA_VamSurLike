@@ -17,11 +17,20 @@ public class U_Item_RoundImpact : ItemBase
 
         this.isActive = true;
 
-        shootPos = GetComponentInParent<PlayerSkill>().Body;
+    }
+    public override void getItem()
+    {
+        base.getItem();
     }
 
     public override void itemEffect()
     {
+        if(!once)
+        {
+            this.shootPos = GetComponentInParent<PlayerSkill>().Body;
+            once = true;
+        }
+
         Instantiate(ItemObj,shootPos.position,Quaternion.identity);
     }
 }

@@ -17,11 +17,20 @@ public class U_Item_HommingMissile : ItemBase
 
         this.isActive = true;
 
-        this.shootPos = GetComponentInParent<PlayerSkill>().Body;
+    }
+    public override void getItem()
+    {
+        base.getItem();
     }
 
     public override void itemEffect()
     {
+        if(!once)
+        {
+            this.shootPos = GetComponentInParent<PlayerSkill>().Body;
+            once = true;
+        }
+
         StartCoroutine(Homming());
     }
 

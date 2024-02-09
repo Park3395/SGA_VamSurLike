@@ -20,11 +20,20 @@ public class A_Item_DeathExplosion : ItemBase
 
         this.isActive = true;
 
-        this.basic = GetComponentInParent<PlayerSkill>().basicBullet;
+    }
+    public override void getItem()
+    {
+        base.getItem();
     }
 
     public override void itemEffect()
     {
+        if(!once)
+        {
+            this.basic = GetComponentInParent<PlayerSkill>().basicBullet;
+            once = true;
+        }
+
         if (this.isActivate)
         {
             this.isActivate = false;

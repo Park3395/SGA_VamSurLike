@@ -29,14 +29,12 @@ public class ItemSelect : MonoBehaviour
     ////////////////// �߰� ///////////////////////
 
     ItemManager IM;
-
+    ItemBase[] itemArray;
     struct ItemData
     {
         public int num;
         public bool isActive;
     }
-
-    ItemData[] buttons;
 
     ////////////////// �߰� ///////////////////////
 
@@ -58,9 +56,10 @@ public class ItemSelect : MonoBehaviour
 
         playerStat = PlayerStat.instance;
         IM = ItemManager.instance;
-        buttons = new ItemData[3];
+
         // ��ư ������ ���� �迭 �ʱ�ȭ
         buttonObjects = new Button[3];
+        itemArray = new ItemBase[3];
 
         // ��ư ��ġ
         Vector3 buttonPosition = new Vector3();
@@ -94,18 +93,14 @@ public class ItemSelect : MonoBehaviour
             ////////////////// �߰� ///////////////////////
             if (buttonIndex >= 5)
             {
-                buttons[i].isActive = true;
-                buttons[i].num = buttonIndex % 5;
+                itemArray[i] = IM.checkInstantiate(buttonIndex % 5, true, this.gameObject);
             }
             else
             {
-                buttons[i].isActive = false;
-                buttons[i].num = buttonIndex;
+                itemArray[i] = IM.checkInstantiate(buttonIndex, false, this.gameObject);
             }
-            ////////////////// �߰� ///////////////////////
 
-            Debug.Log(buttons[i].isActive);
-            Debug.Log(buttons[i].num);
+            ////////////////// �߰� ///////////////////////
 
             // ��ư ������ Instantiate
             buttonObjects[i] = Instantiate(allButtons[buttonIndex],
@@ -115,8 +110,11 @@ public class ItemSelect : MonoBehaviour
 
 
             ////////////////// ���õ��� �ִ� ������ �̸� ���� ���� ///////////////////////
-            ItemBase item = IM.selectItem(buttons[i].num,buttons[i].isActive,false);
-            buttonObjects[i].transform.Find("LvText").GetComponent<Text>().text = String.Format("Lv {0} / Lv {1}", item.level, item.maxlevel);
+            buttonObjects[i].transform.Find("LvText").GetComponent<Text>().text
+                = String.Format($"Lv {itemArray[i].level} / Lv {itemArray[i].maxlevel}");
+            
+            //buttonObjects[i].transform.GetChild(2).GetComponent<Text>().text
+            //    = String.Format($"Lv {temp.level} / Lv {temp.maxlevel}");
 
             if (i == 0)
                 buttonObjects[i].onClick.AddListener(onItemButton1);
@@ -137,13 +135,12 @@ public class ItemSelect : MonoBehaviour
     public void onItemButton1()
     {
         Debug.Log("Click1");
-        ItemBase item = IM.selectItem(buttons[0].num, buttons[0].isActive, true);
+        IM.selectItem(itemArray[0]);
 
         // ���ӸŴ����� �ִ� ����Ʈ�� ������ �������ߴ��� ����
         //gameManagerInstance = FindObjectOfType<GameManager>();
         //gameManagerInstance.itemIndices.Add(item.itemname);
 
-        item.getItem();
 
         // ������ ���� ĵ���� ���ֱ�
         ItemSelectCanvas = GameObject.Find("Canvas_ItemSelect(Clone)");
@@ -163,13 +160,12 @@ public class ItemSelect : MonoBehaviour
     public void onItemButton2()
     {
         Debug.Log("Click2");
-        ItemBase item = IM.selectItem(buttons[1].num, buttons[1].isActive, true);
+        IM.selectItem(itemArray[1]);
 
         // ���ӸŴ����� �ִ� ����Ʈ�� ������ �������ߴ��� ����
         //gameManagerInstance = FindObjectOfType<GameManager>();
         //gameManagerInstance.itemIndices.Add(item.itemname);
 
-        item.getItem();
 
         // ������ ���� ĵ���� ���ֱ�
         ItemSelectCanvas = GameObject.Find("Canvas_ItemSelect(Clone)");
@@ -189,13 +185,12 @@ public class ItemSelect : MonoBehaviour
     public void onItemButton3()
     {
         Debug.Log("Click3");
-        ItemBase item  = IM.selectItem(buttons[2].num, buttons[2].isActive, true);
+        IM.selectItem(itemArray[2]);
 
         // ���ӸŴ����� �ִ� ����Ʈ�� ������ �������ߴ��� ����
         //gameManagerInstance = FindObjectOfType<GameManager>();
         //gameManagerInstance.itemIndices.Add(item.itemname);
 
-        item.getItem();
 
         // ������ ���� ĵ���� ���ֱ�
         ItemSelectCanvas = GameObject.Find("Canvas_ItemSelect(Clone)");

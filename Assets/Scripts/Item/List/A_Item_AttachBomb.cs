@@ -17,7 +17,6 @@ public class A_Item_AttachBomb : ItemBase
 
         this.isActive = true;
 
-        shootPos = GetComponentInParent<PlayerSkill>().ShootPos;
     }
     public override void getItem()
     {
@@ -27,6 +26,12 @@ public class A_Item_AttachBomb : ItemBase
 
     public override void itemEffect()
     {
+        if(!once)
+        {
+            this.shootPos = GetComponentInParent<PlayerSkill>().ShootPos;
+            once = true;
+        }
+
         StartCoroutine(AttachBomb(this.level));
     }
 

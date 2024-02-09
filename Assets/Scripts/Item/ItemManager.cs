@@ -55,49 +55,63 @@ public class ItemManager : MonoBehaviour
         }
     }
 
-    public ItemBase selectItem(int num, bool isActive, bool isSelect)
+    public ItemBase checkInstantiate(int num, bool isActive, GameObject Target)
     {
-        if (isActive)
+        ItemBase temp;
+        if(isActive)
         {
-            ItemBase item = PlayerActive.Find(x => x.num != num);
-            
-            if (item == null)
+            temp = PlayerActive.Find(x => x.num == num);
+
+            if (temp == null)
+                return Instantiate(ActiveItems[num], Target.transform);
+            else
+                return temp;
+        }
+        else
+        {
+            temp = PlayerPassive.Find(x => x.num == num);
+
+            if (temp == null)
+                return Instantiate(PassiveItems[num], Target.transform);
+            else
+                return temp;
+        }
+    }
+
+    public void selectItem(ItemBase Item)
+    {
+        if(Item.isActive)
+        {
+            ItemBase pItem = PlayerActive.Find(x => x.num == Item.num);
+            if (pItem == null)
             {
-                if(isSelect)
-                {
-                    PlayerActive.Add(ActiveItems[num]);
-                    return PlayerActive.Find(x => x.num == num);
-                }
-                else
-                    return ActiveItems[num];
+                pItem = Instantiate(Item,this.transform);
+                PlayerActive.Add(pItem);
+                pItem.getItem();
             }
             else
             {
-                if (item.level == item.maxlevel)
-                    if (PlayerPassive.Find(x => x.synergeNum == num))
-                    {
-                        PlayerActive.Remove(item);
-                        PlayerActive.Add(UpgradeItems[num]);
-                    }
-                return PlayerActive.Find(x => x.num == num);
+                pItem.getItem();
+
+                if(pItem.level == pItem.maxlevel)
+                {
+                    PlayerActive.Remove(pItem);
+                    PlayerActive.Add(UpgradeItems[Item.num]);
+                    UpgradeItems[Item.num].getItem();
+                }
             }
         }
         else
         {
-            ItemBase item = PlayerPassive.Find(x => x.num != num);
-            
-            if (item == null)
+            ItemBase pItem = PlayerPassive.Find(x => x.num == Item.num);
+            if(pItem == null)
             {
-                if(isSelect)
-                {
-                    PlayerPassive.Add(PassiveItems[num]);
-                    return PlayerPassive.Find(x => x.num == num);
-                }
-                else
-                    return PassiveItems[num];
+                pItem = Instantiate(Item,this.transform);
+                PlayerPassive.Add(pItem);
+                pItem.getItem();
             }
             else
-                return PlayerPassive.Find(x => x.num == num);
+                pItem.getItem();
         }
     }
 }

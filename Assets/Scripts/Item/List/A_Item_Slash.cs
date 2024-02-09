@@ -17,11 +17,20 @@ public class A_Item_Slash : ItemBase
 
         this.isActive = true;
 
-        shootPos = GetComponentInParent<PlayerSkill>().Body;
+    }
+    public override void getItem()
+    {
+        base.getItem();
     }
 
     public override void itemEffect()
     {
+        if(!once)
+        {
+            shootPos = GetComponentInParent<PlayerSkill>().Body;
+            once = true;
+        }
+
         StartCoroutine(Slash(this.level));
     }
 
