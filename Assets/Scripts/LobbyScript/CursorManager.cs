@@ -6,6 +6,8 @@ public class CursorManager : MonoBehaviour
 {
     public GameObject pauseoption;
     GameObject ItemSelectCanvas;
+    GameObject LoseCanvas;
+    GameObject WinCanvas;
 
     private void Start()
     {
@@ -15,6 +17,8 @@ public class CursorManager : MonoBehaviour
     void Update()
     {
         ItemSelectCanvas = GameObject.Find("Demo_Canvas_ItemSelect(Clone)");
+        LoseCanvas = GameObject.Find("Canvas_Lose 1(Clone)");
+        WinCanvas = GameObject.Find("Canvas_Win(Clone)");
 
         if (pauseoption.activeSelf == true) //pauseoption이 활성화 상태일 때
         {
@@ -26,7 +30,9 @@ public class CursorManager : MonoBehaviour
         {
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-            if(ItemSelectCanvas!=null)                //아이템켄버스있으면 비활성화 x
+
+            // 커서가 있어야할 켄버스 있으면 비활성화 x
+            if (ItemSelectCanvas||LoseCanvas||WinCanvas)   
             {
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;

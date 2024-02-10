@@ -6,6 +6,7 @@ public class ItemBase : MonoBehaviour
 {
     public string itemname;
     public int num;
+    public int index;
     public float delay;
 
     public int level;

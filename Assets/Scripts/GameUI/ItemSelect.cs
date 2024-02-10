@@ -8,25 +8,22 @@ using UnityEngine.UI;
 
 public class ItemSelect : MonoBehaviour
 {
-    public Button[] allButtons;     //�ν����Ϳ��� ��ư������ �ִ°�
+    public Button[] allButtons;     
     [SerializeField]
-    private Button[] buttonObjects; //��ư Instantiate �Ҷ� ���� �迭 
-    public GameObject ItemSelectCanvas; // destroy�� ĵ����
+    private Button[] buttonObjects; 
+    public GameObject ItemSelectCanvas; 
 
-    //List<string> itemIndices = new List<string>(); //������ ��������� �����ϴ� ����Ʈ
-    // ���ӸŴ��� ��ũ��Ʈ ��������
+    //List<string> itemIndices = new List<string>(); 
     private GameManager gameManagerInstance;
-    public GameObject InventoryCanvas; // Canvas �� ���� ����
-
-    public Image[] itemSpriteHolder2;
-    public Sprite[] ItemSprites2;
+    public GameObject InventoryCanvas; 
 
     public Image[] itemSpriteHolder;
+    public Image[] itemSpriteHolder2;
     public Sprite[] ItemSprites;
 
     PlayerStat playerStat;
 
-    ////////////////// �߰� ///////////////////////
+    /////////////////////////////////////////
 
     ItemManager IM;
     ItemBase[] itemArray;
@@ -36,7 +33,7 @@ public class ItemSelect : MonoBehaviour
         public bool isActive;
     }
 
-    ////////////////// �߰� ///////////////////////
+    /////////////////////////////////////////
 
     int loopNum;
 
@@ -51,46 +48,38 @@ public class ItemSelect : MonoBehaviour
 
     void ItemButtonInstantiate()
     {
-        Cursor.visible = true; // Ŀ�� ���̰�
-        Cursor.lockState = CursorLockMode.None;   // Ŀ�� �����̰�
+        Cursor.visible = true; 
+        Cursor.lockState = CursorLockMode.None;   
 
         playerStat = PlayerStat.instance;
         IM = ItemManager.instance;
 
-        // ��ư ������ ���� �迭 �ʱ�ȭ
         buttonObjects = new Button[3];
         itemArray = new ItemBase[3];
 
-        // ��ư ��ġ
         Vector3 buttonPosition = new Vector3();
-        // ù��° ��ư ��ġ
         buttonPosition.x = 480;
         buttonPosition.y = 480;
 
-        // �ߺ����� ���� ������ ��ư �ε����� ������ ����Ʈ
         List<int> uniqueIndices = new List<int>();
 
-        // ��ư 3�� ����
         for (int i = 0; i < 3; i++)
         {
             int buttonIndex;
 
             loopNum = 0;
-            // �ߺ����� ���� ������ �ε��� ã��
             do
             {
                 buttonIndex = UnityEngine.Random.Range(0, 10);
                 if (loopNum >= 100)
-                { // ������ �ʹ� ���� �� ��쿡 ���� ������ �����ϱ� ���� �����մϴ�.
-                    Debug.LogError("��ư ������ ������ �߻��߽��ϴ�. ������ �ʹ� ���� ���ҽ��ϴ�.");
+                { 
                     break;
                 }
             } while (uniqueIndices.Contains(buttonIndex));
 
-            // ã�� �ε����� ����Ʈ�� �߰�
             uniqueIndices.Add(buttonIndex);
 
-            ////////////////// �߰� ///////////////////////
+            /////////////////////////////////////////
             if (buttonIndex >= 5)
             {
                 itemArray[i] = IM.checkInstantiate(buttonIndex % 5, true, this.gameObject);
@@ -100,16 +89,14 @@ public class ItemSelect : MonoBehaviour
                 itemArray[i] = IM.checkInstantiate(buttonIndex, false, this.gameObject);
             }
 
-            ////////////////// �߰� ///////////////////////
+            /////////////////////////////////////////
 
-            // ��ư ������ Instantiate
             buttonObjects[i] = Instantiate(allButtons[buttonIndex],
                 buttonPosition, Quaternion.identity);
-            // ĵ������ �ڽ����� �����ؼ� ȭ�鿡 ���̰�
             buttonObjects[i].transform.SetParent(transform);
 
 
-            ////////////////// ���õ��� �ִ� ������ �̸� ���� ���� ///////////////////////
+            /////////////////////////////////////////
             buttonObjects[i].transform.Find("LvText").GetComponent<Text>().text
                 = String.Format($"Lv {itemArray[i].level} / Lv {itemArray[i].maxlevel}");
             
@@ -126,35 +113,31 @@ public class ItemSelect : MonoBehaviour
             /////////////////////////////////////////////////////////////////
 
 
-            ////////////////// �߰� ///////////////////////
-            buttonPosition.x += 480;    // ���� ��ư ��ġ ����
+            /////////////////////////////////////////
+            buttonPosition.x += 480;    
         }
     }
 
-    ////////////////// �߰� ///////////////////////
+    /////////////////////////////////////////
     public void onItemButton1()
     {
         Debug.Log("Click1");
         IM.selectItem(itemArray[0]);
 
-        // ���ӸŴ����� �ִ� ����Ʈ�� ������ �������ߴ��� ����
-        //gameManagerInstance = FindObjectOfType<GameManager>();
-        //gameManagerInstance.itemIndices.Add(item.itemname);
+        gameManagerInstance = FindObjectOfType<GameManager>();
+        gameManagerInstance.itemIndices.Add(itemArray[0].index);
 
-
-        // ������ ���� ĵ���� ���ֱ�
-        ItemSelectCanvas = GameObject.Find("Canvas_ItemSelect(Clone)");
+        ItemSelectCanvas = GameObject.Find("Demo_Canvas_ItemSelect(Clone)");
         if (ItemSelectCanvas != null)
         {
             Destroy(ItemSelectCanvas);
         }
 
-        // �ð��帧 �ٽ� �ǵ�����
         Time.timeScale = 1;
-        Cursor.visible = false; // Ŀ�� �Ⱥ��̰�
-        Cursor.lockState = CursorLockMode.Locked;   // Ŀ�� �ȿ����̰�
-        ShowItemUI();
+        Cursor.visible = false; 
+        Cursor.lockState = CursorLockMode.Locked;
         FindImageHolder();
+        ShowItemUI();
     }
 
     public void onItemButton2()
@@ -162,24 +145,20 @@ public class ItemSelect : MonoBehaviour
         Debug.Log("Click2");
         IM.selectItem(itemArray[1]);
 
-        // ���ӸŴ����� �ִ� ����Ʈ�� ������ �������ߴ��� ����
-        //gameManagerInstance = FindObjectOfType<GameManager>();
-        //gameManagerInstance.itemIndices.Add(item.itemname);
+        gameManagerInstance = FindObjectOfType<GameManager>();
+        gameManagerInstance.itemIndices.Add(itemArray[1].index);
 
-
-        // ������ ���� ĵ���� ���ֱ�
-        ItemSelectCanvas = GameObject.Find("Canvas_ItemSelect(Clone)");
+        ItemSelectCanvas = GameObject.Find("Demo_Canvas_ItemSelect(Clone)");
         if (ItemSelectCanvas != null)
         {
             Destroy(ItemSelectCanvas);
         }
 
-        // �ð��帧 �ٽ� �ǵ�����
         Time.timeScale = 1;
-        Cursor.visible = false; // Ŀ�� �Ⱥ��̰�
-        Cursor.lockState = CursorLockMode.Locked;   // Ŀ�� �ȿ����̰�
-        ShowItemUI();
+        Cursor.visible = false; 
+        Cursor.lockState = CursorLockMode.Locked;
         FindImageHolder();
+        ShowItemUI();
     }
 
     public void onItemButton3()
@@ -187,242 +166,106 @@ public class ItemSelect : MonoBehaviour
         Debug.Log("Click3");
         IM.selectItem(itemArray[2]);
 
-        // ���ӸŴ����� �ִ� ����Ʈ�� ������ �������ߴ��� ����
-        //gameManagerInstance = FindObjectOfType<GameManager>();
-        //gameManagerInstance.itemIndices.Add(item.itemname);
+        gameManagerInstance = FindObjectOfType<GameManager>();
+        gameManagerInstance.itemIndices.Add(itemArray[2].index);
 
-
-        // ������ ���� ĵ���� ���ֱ�
-        ItemSelectCanvas = GameObject.Find("Canvas_ItemSelect(Clone)");
+        ItemSelectCanvas = GameObject.Find("Demo_Canvas_ItemSelect(Clone)");
         if (ItemSelectCanvas != null)
         {
             Destroy(ItemSelectCanvas);
         }
 
-        // �ð��帧 �ٽ� �ǵ�����
         Time.timeScale = 1;
-        Cursor.visible = false; // Ŀ�� �Ⱥ��̰�
-        Cursor.lockState = CursorLockMode.Locked;   // Ŀ�� �ȿ����̰�
-        ShowItemUI();
-        FindImageHolder();
-    }
-    public void ButtonAttackSpeed()
-    {
-        gameManagerInstance = FindObjectOfType<GameManager>();
-        gameManagerInstance.itemIndices.Add("AttSpd");
-        playerStat = PlayerStat.instance;
-        playerStat.AttSpd -= 0.1f;
-        ItemSelectCanvas = GameObject.Find("Canvas_ItemSelect(Clone)");
-        if (ItemSelectCanvas != null)
-        {
-            Destroy(ItemSelectCanvas);
-        }
-        Time.timeScale = 1;
-        Cursor.visible = false; // Ŀ�� �Ⱥ��̰�
-        Cursor.lockState = CursorLockMode.Locked;   // Ŀ�� �ȿ����̰�
+        Cursor.visible = false; 
+        Cursor.lockState = CursorLockMode.Locked;
         FindImageHolder();
         ShowItemUI();
     }
-    public void ButtonCriticalPower()
-    {
-        gameManagerInstance = FindObjectOfType<GameManager>();
-        gameManagerInstance.itemIndices.Add("Cridmg");
-        playerStat = PlayerStat.instance;
-        playerStat.Cridmg += 0.2f;
-        ItemSelectCanvas = GameObject.Find("Canvas_ItemSelect(Clone)");
-        if (ItemSelectCanvas != null)
-        {
-            Destroy(ItemSelectCanvas);
-        }
-        Time.timeScale = 1;
-        Cursor.visible = false; // Ŀ�� �Ⱥ��̰�
-        Cursor.lockState = CursorLockMode.Locked;   // Ŀ�� �ȿ����̰�
-        FindImageHolder();
-        ShowItemUI();
-    }
-    public void ButtonCriticalProbability()
-    {
-        gameManagerInstance = FindObjectOfType<GameManager>(); 
-        gameManagerInstance.itemIndices.Add("Cri");
-        playerStat = PlayerStat.instance;
-        playerStat.Cri += 0.15f;
-        ItemSelectCanvas = GameObject.Find("Canvas_ItemSelect(Clone)");
-        if (ItemSelectCanvas != null)
-        {
-            Destroy(ItemSelectCanvas);
-        }
-        Time.timeScale = 1;
-        Cursor.visible = false; // Ŀ�� �Ⱥ��̰�
-        Cursor.lockState = CursorLockMode.Locked;   // Ŀ�� �ȿ����̰�
-        FindImageHolder();
-        ShowItemUI();
-    }
-    public void ButtonDoubleJump()
-    {
-        gameManagerInstance = FindObjectOfType<GameManager>();
-        gameManagerInstance.itemIndices.Add("JumpCount");
-        playerStat = PlayerStat.instance;
-        playerStat.JumpCount += 1;
-        ItemSelectCanvas = GameObject.Find("Canvas_ItemSelect(Clone)");
-        if (ItemSelectCanvas != null)
-        {
-            Destroy(ItemSelectCanvas);
-        }
-        Time.timeScale = 1;
-        Cursor.visible = false; // Ŀ�� �Ⱥ��̰�
-        Cursor.lockState = CursorLockMode.Locked;   // Ŀ�� �ȿ����̰�
-        FindImageHolder();
-        ShowItemUI();
-    }
-    public void ButtonHpRegen()
-    {
-        gameManagerInstance = FindObjectOfType<GameManager>();
-        gameManagerInstance.itemIndices.Add("HPregen");
-        playerStat = PlayerStat.instance;
-        playerStat.HPregen += 1;
-        ItemSelectCanvas = GameObject.Find("Canvas_ItemSelect(Clone)");
-        if (ItemSelectCanvas != null)
-        {
-            Destroy(ItemSelectCanvas);
-        }
-        Time.timeScale = 1;
-        Cursor.visible = false; // Ŀ�� �Ⱥ��̰�
-        Cursor.lockState = CursorLockMode.Locked;   // Ŀ�� �ȿ����̰�
-        FindImageHolder();
-        ShowItemUI();
-    }
-    public void ButtonJumpPower()
-    {
-        gameManagerInstance = FindObjectOfType<GameManager>();
-        gameManagerInstance.itemIndices.Add("Jump");
-        playerStat = PlayerStat.instance;
-        playerStat.Jump += 0.03f;
-        ItemSelectCanvas = GameObject.Find("Canvas_ItemSelect(Clone)");
-        if (ItemSelectCanvas != null)
-        {
-            Destroy(ItemSelectCanvas);
-        }
-        Time.timeScale = 1;
-        Cursor.visible = false; // Ŀ�� �Ⱥ��̰�
-        Cursor.lockState = CursorLockMode.Locked;   // Ŀ�� �ȿ����̰�
-        FindImageHolder();
-        ShowItemUI();
-    }
-    public void ButtonMaxHp()
-    {
-        gameManagerInstance = FindObjectOfType<GameManager>();
-        gameManagerInstance.itemIndices.Add("MaxHP");
-        playerStat = PlayerStat.instance;
-        playerStat.MaxHP += 20;  
-        ItemSelectCanvas = GameObject.Find("Canvas_ItemSelect(Clone)");
-        if (ItemSelectCanvas != null)
-        {
-            Destroy(ItemSelectCanvas);
-        }
-        Time.timeScale = 1;
-        Cursor.visible = false; // Ŀ�� �Ⱥ��̰�
-        Cursor.lockState = CursorLockMode.Locked;   // Ŀ�� �ȿ����̰�
-        FindImageHolder();
-        ShowItemUI();
-    }
-    public void ButtonMoveSpeed()
-    {
-        gameManagerInstance = FindObjectOfType<GameManager>();
-        gameManagerInstance.itemIndices.Add("Speed");
-        playerStat = PlayerStat.instance;
-        playerStat.Speed += 3;
-        ItemSelectCanvas = GameObject.Find("Canvas_ItemSelect(Clone)");
-        if (ItemSelectCanvas != null)
-        {
-            Destroy(ItemSelectCanvas);
-        }
-        Time.timeScale = 1;
-        Cursor.visible = false; // Ŀ�� �Ⱥ��̰�
-        Cursor.lockState = CursorLockMode.Locked;   // Ŀ�� �ȿ����̰�
-        FindImageHolder();
-        ShowItemUI();
-    }
-    public void ButtonShield()
-    {
-        gameManagerInstance = FindObjectOfType<GameManager>();
-        gameManagerInstance.itemIndices.Add("Barrier");
-        playerStat = PlayerStat.instance;
-        playerStat.Barrier += 40;
-        ItemSelectCanvas = GameObject.Find("Canvas_ItemSelect(Clone)");
-        if (ItemSelectCanvas != null)
-        {
-            Destroy(ItemSelectCanvas);
-        }
-        Time.timeScale = 1;
-        Cursor.visible = false; // Ŀ�� �Ⱥ��̰�
-        Cursor.lockState = CursorLockMode.Locked;   // Ŀ�� �ȿ����̰�
-        FindImageHolder();
-        ShowItemUI();
-    }
+    
 
     public void ShowItemUI()
     {
-        // �����ִ� ���Ӹ޴����� ����
         gameManagerInstance = FindObjectOfType<GameManager>();
 
         for (int i = 0; i < gameManagerInstance.itemIndices.Count; i++)
         {
             switch (gameManagerInstance.itemIndices[i])
             {
-                case "Dmg":
-                    itemSpriteHolder2[i].sprite = ItemSprites2[0];
+                case 0:
+                    itemSpriteHolder2[i].sprite = ItemSprites[0];
                     itemSpriteHolder2[i].color = Color.white;
                     break;
-                case "AttSpd":
-                    itemSpriteHolder2[i].sprite = ItemSprites2[1];
+                case 1:                    
+                    itemSpriteHolder2[i].sprite = ItemSprites[1];
                     itemSpriteHolder2[i].color = Color.white;
                     break;
-                case "Cridmg":
-                    itemSpriteHolder2[i].sprite = ItemSprites2[2];
+                case 2:
+                    itemSpriteHolder2[i].sprite = ItemSprites[2];
                     itemSpriteHolder2[i].color = Color.white;
                     break;
-                case "Cri":
-                    itemSpriteHolder2[i].sprite = ItemSprites2[3];
+                case 3:
+                    itemSpriteHolder2[i].sprite = ItemSprites[3];
                     itemSpriteHolder2[i].color = Color.white;
                     break;
-                case "JumpCount":
-                    itemSpriteHolder2[i].sprite = ItemSprites2[4];
+                case 4:
+                    itemSpriteHolder2[i].sprite = ItemSprites[4];
                     itemSpriteHolder2[i].color = Color.white;
                     break;
-                case "HPregen":
-                    itemSpriteHolder2[i].sprite = ItemSprites2[5];
+                case 5:
+                    itemSpriteHolder2[i].sprite = ItemSprites[5];
                     itemSpriteHolder2[i].color = Color.white;
                     break;
-                case "Jump":
-                    itemSpriteHolder2[i].sprite = ItemSprites2[6];
+                case 6:
+                    itemSpriteHolder2[i].sprite = ItemSprites[6];
                     itemSpriteHolder2[i].color = Color.white;
                     break;
-                case "MaxHP":
-                    itemSpriteHolder2[i].sprite = ItemSprites2[7];
+                case 7:
+                    itemSpriteHolder2[i].sprite = ItemSprites[7];
                     itemSpriteHolder2[i].color = Color.white;
                     break;
-                case "Speed":
-                    itemSpriteHolder2[i].sprite = ItemSprites2[8];
+                case 8:
+                    itemSpriteHolder2[i].sprite = ItemSprites[8];
                     itemSpriteHolder2[i].color = Color.white;
                     break;
-                case "Barrier":
-                    itemSpriteHolder2[i].sprite = ItemSprites2[9];
+                case 9:
+                    itemSpriteHolder2[i].sprite = ItemSprites[9];
                     itemSpriteHolder2[i].color = Color.white;
                     break;
+                case 10:
+                    itemSpriteHolder2[i].sprite = ItemSprites[10];
+                    itemSpriteHolder2[i].color = Color.white;
+                    break;
+                case 11:
+                    itemSpriteHolder2[i].sprite = ItemSprites[11];
+                    itemSpriteHolder2[i].color = Color.white;
+                    break;
+                case 12:
+                    itemSpriteHolder2[i].sprite = ItemSprites[12];
+                    itemSpriteHolder2[i].color = Color.white;
+                    break;
+                case 13:
+                    itemSpriteHolder2[i].sprite = ItemSprites[13];
+                    itemSpriteHolder2[i].color = Color.white;
+                    break;
+                case 14:
+                    itemSpriteHolder2[i].sprite = ItemSprites[14];
+                    itemSpriteHolder2[i].color = Color.white;
+                    break;
+                default:
+                    Debug.Log("case에서 못찾음");
+                    break;
+
             }
         }
     }
 
     void FindImageHolder()
     {
-        // Canvas ���� �ִ� Panel�� ã���ϴ�.
         InventoryCanvas = GameObject.Find("Canvas_wave,time,item");
         Transform panelTransform = InventoryCanvas.transform.Find("Panel_Item");
         if (panelTransform != null)
         {            
-            // Panel ������ ��� �ڽ� ������Ʈ�� ã�� �迭�� �����մϴ�.
             int childCount = panelTransform.childCount;
-            Debug.Log(childCount);
             itemSpriteHolder2 = new Image[childCount];
             for (int i = 0; i < childCount; i++)
             {
@@ -431,7 +274,7 @@ public class ItemSelect : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Panel�� ã�� �� �����ϴ�.");
+            Debug.Log("패널못찾음");
         }
     }
 }

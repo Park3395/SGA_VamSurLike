@@ -10,6 +10,7 @@ public class A_Item_Slash : ItemBase
     {
         this.itemname = "Slash";
         this.num = 2;
+        this.index = 2;
         this.delay = 1.0f;
         this.level = 0;
         this.maxlevel = 3;

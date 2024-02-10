@@ -12,6 +12,7 @@ public class U_Item_MachineGun : ItemBase
     {
         this.itemname = "MachineGun";
         this.num = 10;
+        this.index = 10;
         this.delay = 0;
         this.level = 0;
         this.maxlevel = 1;

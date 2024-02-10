@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
 {
     public Canvas pressECanvas;
     public Canvas alarmCanvas;
+    public Canvas CrossHairCanvas;
+    public Canvas InventoryCanvas;
     public Canvas itemSelectCanvasPrefab;
     public Canvas loseCanvasPrefab;
     public Canvas WinCanvasPrefab;
@@ -16,7 +18,7 @@ public class GameManager : MonoBehaviour
     public Text currentWaveText;
     public GameObject timeAndWavePanel;
     public GameObject player;
-    public GameObject bossPrefab;
+    public GameObject bossGameObject;
     public GameObject[] medKits;
 
     string time;
@@ -28,10 +30,11 @@ public class GameManager : MonoBehaviour
     public float elapsedTime;      // 경과 시간
     public int totalDamaged;       // 플레이어가 받은 데미지 총합
     public int totalDamage;        // 플레이어가 가한 데미지
-    int playerHP;
 
-    bool waveStarted;
-    bool gameOver;
+    public int totalSeconds;
+    public bool waveStarted;
+    public bool gameOver;
+    int playerHP;
     bool itemSelected;
 
     public CinemachineVirtualCamera virtualCamerainGameManager;
@@ -45,7 +48,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] Wave3Monster;
     public GameObject[] Wave4Monster;
 
-    public List<string> itemIndices = new List<string>(); //아이템 뭐얻었는지 저장하는 리스트
+    public List<int> itemIndices = new List<int>(); //아이템 뭐얻었는지 저장하는 리스트
 
     void Start()
     {
@@ -69,7 +72,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         // 시간
-        int totalSeconds = (int)elapsedTime;    // 1.234567 형식에서 소숫점자리 버림
+        totalSeconds = (int)elapsedTime;    // 1.234567 형식에서 소숫점자리 버림
         sec = totalSeconds % 61;
         leftSec = 60 - sec;
         time = leftSec.ToString("00");
@@ -82,18 +85,17 @@ public class GameManager : MonoBehaviour
             totalElapsedTime += totalSeconds;
             waveStarted = false;
 
-            // 죽는애니메이션 넣기
             player.gameObject.SetActive(false);
 
-            Invoke("InstantiateLoseCanvas", 2);
+            Invoke("InstantiateLoseCanvas", 1);
         }
 
         if (Input.GetKeyDown(KeyCode.E) && pressECanvas.gameObject.activeSelf)
         {
-            pressECanvas.gameObject.SetActive(false);
-            // 플레이어 활성화
-            player.SetActive(true);
-
+            pressECanvas.gameObject.SetActive(false);   // e누르라는 캔버스 비활성화
+            player.SetActive(true);                     // 플레이어 활성화
+            CrossHairCanvas.gameObject.SetActive(true); // 크로스헤어 활성화
+            InventoryCanvas.gameObject.SetActive(true); // 고른 아이템표시 캔버스 활성화
             // 가상카메라 비활성화
             virtualCamerainGameManager = GameObject.FindObjectOfType<CinemachineVirtualCamera>();
             if (virtualCamerainGameManager != null)
@@ -109,7 +111,7 @@ public class GameManager : MonoBehaviour
             elapsedTime += 1.0f * Time.deltaTime;  // 시간 누적
         }
 
-        if (sec == 60) // 몬스터못잡고 60초가 지나면
+        if (sec == 60 && currentWave<=3) // 몬스터못잡고 60초가 지나면
         {
             currentWave++;
             StartWave();
@@ -133,14 +135,6 @@ public class GameManager : MonoBehaviour
         if (KilledMonsterAmount() % 4 == 3)
         {
             itemSelected = false;
-        }
-
-        if (bossPrefab == null && !gameOver)
-        {
-            gameOver = true;
-            waveStarted = false;
-            Destroy(alarmCanvas);
-            Invoke("InstantiateWinCanvas", 2);
         }
 
     }
@@ -221,15 +215,11 @@ public class GameManager : MonoBehaviour
     {
         Canvas loseCanvas = Instantiate(loseCanvasPrefab,
             new Vector3(0, 0, 0), Quaternion.identity);
+
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
-    void InstantiateWinCanvas()
-    {
-        // 화면안움직이게 가상카메라시점으로
-        virtualCamerainGameManager.gameObject.SetActive(true);
-        Canvas winCanvas = Instantiate(WinCanvasPrefab,
-            new Vector3(0, 0, 0), Quaternion.identity);
-    }
 
     bool IsMonsterDead()
     {

@@ -8,6 +8,7 @@ public class P_Item_AddHp : ItemBase
     {
         this.itemname = "AddHp";
         this.num = 4;
+        this.index = 9;
         this.level = 0;
         this.maxlevel = 6;
         this.synergeNum = 4;

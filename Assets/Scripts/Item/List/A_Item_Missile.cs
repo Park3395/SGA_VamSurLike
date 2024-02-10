@@ -10,6 +10,7 @@ public class A_Item_Missile : ItemBase
     {
         this.itemname = "Missile";
         this.num = 1;
+        this.index = 1;
         this.delay = 3.0f;
         this.level = 0;
         this.maxlevel = 5;

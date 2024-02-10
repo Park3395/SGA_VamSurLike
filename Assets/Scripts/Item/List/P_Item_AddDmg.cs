@@ -8,6 +8,7 @@ public class P_Item_AddDmg : ItemBase
     {
         this.itemname = "AddDmg";
         this.num = 1;
+        this.index = 6;
         this.level = 0;
         this.maxlevel = 5;
         this.synergeNum = 1;

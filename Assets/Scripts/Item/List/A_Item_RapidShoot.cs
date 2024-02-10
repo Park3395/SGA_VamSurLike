@@ -10,6 +10,7 @@ public class A_Item_RapidShoot : ItemBase
     {
         this.itemname = "RapidShoot";
         this.num = 0;
+        this.index = 0;
         this.delay = 2.0f;
         this.level = 0;
         this.maxlevel = 5;

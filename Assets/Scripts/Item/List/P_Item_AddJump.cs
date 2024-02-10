@@ -8,6 +8,7 @@ public class P_Item_AddJump : ItemBase
     {
         this.itemname = "AddJump";
         this.num = 2;
+        this.index = 7;
         this.level = 0;
         this.maxlevel = 4;
         this.synergeNum = 2;

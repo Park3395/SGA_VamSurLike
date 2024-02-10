@@ -10,6 +10,7 @@ public class A_Item_AttachBomb : ItemBase
     {
         this.itemname = "AttachBomb";
         this.num = 3;
+        this.index = 3;
         this.delay = 5.0f;
         this.level = 0;
         this.maxlevel = 5;

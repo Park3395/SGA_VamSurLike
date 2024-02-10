@@ -13,6 +13,7 @@ public class A_Item_DeathExplosion : ItemBase
     {
         this.itemname = "DeathExplosion";
         this.num = 4;
+        this.index = 4;
         this.delay = 0f;
         this.level = 0;
         this.maxlevel = 5;

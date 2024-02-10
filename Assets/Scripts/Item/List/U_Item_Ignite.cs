@@ -13,6 +13,7 @@ public class U_Item_Ignite : ItemBase
     {
         this.itemname = "Ignite";
         this.num = 4;
+        this.index = 14;
         this.delay = 0;
         this.level = 0;
         this.maxlevel = 1;

@@ -9,6 +9,7 @@ public class U_Item_GreatBomb : ItemBase
     {
         this.itemname = "GreatBomb";
         this.num = 3;
+        this.index = 13;
         this.delay = 5.0f;
         this.level = 0;
         this.maxlevel = 1;

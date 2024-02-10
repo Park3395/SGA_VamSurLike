@@ -8,6 +8,7 @@ public class P_Item_AddBarrier : ItemBase
     {
         this.itemname = "AddBarrier";
         this.num = 3;
+        this.index = 8;
         this.level = 0;
         this.maxlevel = 5;
         this.synergeNum = 3;

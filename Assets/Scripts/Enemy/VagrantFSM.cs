@@ -48,6 +48,10 @@ public class VagrantFSM : MonoBehaviour, IHitEnemy
     // 유도탄이 발사될 위치
     [SerializeField] private Transform trackingBombPos;
 
+    public Canvas winCanvasPrefab;
+    public Canvas alarmCanvas;
+    private GameManager gameManagerInstance;
+
     private void Start()
     {
         e_State = VagrantState.Spawn;
@@ -59,6 +63,8 @@ public class VagrantFSM : MonoBehaviour, IHitEnemy
         attackTimer = attackDelay;
         skillTimer = skillDelay;
         BossUI.SetActive(false);
+
+        gameManagerInstance = FindObjectOfType<GameManager>();
     }
 
     private void Update()
@@ -235,6 +241,12 @@ public class VagrantFSM : MonoBehaviour, IHitEnemy
 
         // 사망 상태를 처리하기 위한 코루틴을 실행한다
         StartCoroutine(DieProcess());
+        
+        gameManagerInstance.gameOver = true;
+        gameManagerInstance.waveStarted = false;
+        gameManagerInstance.totalElapsedTime += gameManagerInstance.totalSeconds;
+        Invoke("InstantiateWinCanvas", 1);
+        Destroy(alarmCanvas);
     }
 
     // 사망 상태 처리용 코루틴
@@ -245,5 +257,14 @@ public class VagrantFSM : MonoBehaviour, IHitEnemy
         print("소멸!");
         BossUI.SetActive(false);
         Destroy(gameObject);
+    }
+
+    void InstantiateWinCanvas()
+    {
+        Canvas winCanvas = Instantiate(winCanvasPrefab,
+            new Vector3(0, 0, 0), Quaternion.identity);
+
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 }

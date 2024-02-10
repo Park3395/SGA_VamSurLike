@@ -10,6 +10,7 @@ public class U_Item_RoundImpact : ItemBase
     {
         this.itemname = "RoundImpact";
         this.num = 12;
+        this.index = 12;
         this.delay = 3.0f;
         this.level = 0;
         this.maxlevel = 1;

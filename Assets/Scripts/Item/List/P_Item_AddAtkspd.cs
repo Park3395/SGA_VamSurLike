@@ -8,6 +8,7 @@ public class P_Item_AddAtkspd : ItemBase
     {
         this.itemname = "AddAtkSpd";
         this.num = 0;
+        this.index = 5;
         this.level = 0;
         this.maxlevel = 9;
         this.synergeNum = 0;

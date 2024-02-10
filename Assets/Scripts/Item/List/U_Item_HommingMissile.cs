@@ -10,6 +10,7 @@ public class U_Item_HommingMissile : ItemBase
     {
         this.itemname = "HommingMissile";
         this.num = 11;
+        this.index = 11;
         this.delay = 3.0f;
         this.level = 0;
         this.maxlevel = 1;
