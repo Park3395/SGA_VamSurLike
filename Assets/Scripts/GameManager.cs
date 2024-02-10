@@ -10,12 +10,14 @@ public class GameManager : MonoBehaviour
     public Canvas alarmCanvas;
     public Canvas CrossHairCanvas;
     public Canvas InventoryCanvas;
+    public Canvas playerHPandSkillCanvas;
     public Canvas itemSelectCanvasPrefab;
     public Canvas loseCanvasPrefab;
     public Canvas WinCanvasPrefab;
     public Text alarmText;
     public Text clockText;
     public Text currentWaveText;
+    public Text playerUILevel;
     public GameObject timeAndWavePanel;
     public GameObject player;
     public GameObject bossGameObject;
@@ -96,6 +98,7 @@ public class GameManager : MonoBehaviour
             player.SetActive(true);                     // 플레이어 활성화
             CrossHairCanvas.gameObject.SetActive(true); // 크로스헤어 활성화
             InventoryCanvas.gameObject.SetActive(true); // 고른 아이템표시 캔버스 활성화
+            playerHPandSkillCanvas.gameObject.SetActive(true); // hp,skill 캔버스 활성화
             // 가상카메라 비활성화
             virtualCamerainGameManager = GameObject.FindObjectOfType<CinemachineVirtualCamera>();
             if (virtualCamerainGameManager != null)
@@ -136,6 +139,7 @@ public class GameManager : MonoBehaviour
         {
             itemSelected = false;
         }
+        playerUILevel.text = (itemIndices.Count+1).ToString();
 
     }
 
