@@ -1802,6 +1802,7 @@ GameObject:
   m_Component:
   - component: {fileID: 567729684}
   - component: {fileID: 567729683}
+  - component: {fileID: 567729685}
   m_Layer: 0
   m_Name: Normal_BGM
   m_TagString: Untagged
@@ -1920,6 +1921,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &567729685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 567729682}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b82de912bde2d2d4b9388b1565ec3c7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bgmSound: {fileID: 567729683}
+  bgmList:
+  - {fileID: 8300000, guid: 1f148530b124fbe4eaac1e2a6a71c0dc, type: 3}
+  - {fileID: 8300000, guid: d012906a6ab4bd24cbb73d6277274872, type: 3}
+  boss: {fileID: 0}
 --- !u!1001 &588175372
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2880,6 +2898,10 @@ PrefabInstance:
     - target: {fileID: 5740748137308506774, guid: 3bbdc5601fa193e42ae151b529e87dd9, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5740748137308506774, guid: 3bbdc5601fa193e42ae151b529e87dd9, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7364392751124377169, guid: 3bbdc5601fa193e42ae151b529e87dd9, type: 3}
       propertyPath: m_Speed
@@ -4735,6 +4757,10 @@ PrefabInstance:
     - target: {fileID: 5740748137308506774, guid: 3bbdc5601fa193e42ae151b529e87dd9, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5740748137308506774, guid: 3bbdc5601fa193e42ae151b529e87dd9, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7364392751124377169, guid: 3bbdc5601fa193e42ae151b529e87dd9, type: 3}
       propertyPath: m_Speed
