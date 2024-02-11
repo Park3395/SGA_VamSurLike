@@ -2697,6 +2697,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 617206163341235042}
+  - {fileID: 6330100881730811600}
   m_Father: {fileID: 7216485245366503696}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7175310619837814617
@@ -2711,9 +2712,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59f95d163b7a99d45bb51c23317e39a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basicBullet: {fileID: 4965647284618370630, guid: da039dba5d812bf468d5e7778df6be1d, type: 3}
-  shootPosL: {fileID: -951525522345666077}
-  shootPosR: {fileID: -1340551003336505282}
 --- !u!95 &7223088108557833439
 Animator:
   serializedVersion: 5
@@ -2735,6 +2733,72 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &1091016543207964678
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6330100881730811600}
+  - component: {fileID: 69243824044870796}
+  m_Layer: 6
+  m_Name: ItemManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6330100881730811600
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1091016543207964678}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: -8679921383154817045}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &69243824044870796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1091016543207964678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef8dc828e44ba734ab9a657a65bca726, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ActiveItems:
+  - {fileID: 6475502262696148694, guid: 5200cc91f902f5549a0099d210e3f44e, type: 3}
+  - {fileID: 717919956097553499, guid: 501ceaafa0ce221439d872b27b293b1b, type: 3}
+  - {fileID: 2045323406051939246, guid: 4f4c632662337584eb99724dc6f430f1, type: 3}
+  - {fileID: 7253522002694486653, guid: 2df4a2fff3bb37e428b1e4ee278a5c63, type: 3}
+  - {fileID: 5971499776335431693, guid: 71b086a4c319a8542814f9bb16d8a9f3, type: 3}
+  PassiveItems:
+  - {fileID: 5194303485940845889, guid: 3c46f7c4a6045d44a91635b3840bb952, type: 3}
+  - {fileID: 3045595948368540356, guid: 59a6a3c15668a2f49ada3a03b06936d8, type: 3}
+  - {fileID: 5148201821640600831, guid: 83af3e34cfe9bbc42b367c0ba4630421, type: 3}
+  - {fileID: 7554476582805358228, guid: 6f3b92efac0be294282e085dd4dcb876, type: 3}
+  - {fileID: 257068638078559302, guid: 0a395aba92d697e4baef8c00f68ad75c, type: 3}
+  UpgradeItems:
+  - {fileID: 8731494393036190411, guid: cdf2820db18a80742950631bb4decef4, type: 3}
+  - {fileID: 3888153698799490158, guid: b0f0397979e7e4b408ab2b824c4849f0, type: 3}
+  - {fileID: 6304387081810146535, guid: 55d7f7fb60e52ed4b87a35cc56b125fc, type: 3}
+  - {fileID: 1156829488820095584, guid: e4a1d2a76a0ce0a47b5d8bc0e35ae744, type: 3}
+  - {fileID: 5293867438735949124, guid: 815c60023c247874ba28c61db81afecf, type: 3}
+  LevelCanvas: {fileID: 0}
+  PlayerActive: []
+  PlayerPassive: []
+  ItemSelect: {fileID: 0}
 --- !u!1 &1121467826671918393
 GameObject:
   m_ObjectHideFlags: 0
@@ -3746,6 +3810,11 @@ MonoBehaviour:
   EButtonDelay: 0
   RButtonDelay: 0
   QButtonDelay: 0
+  basicBullet: {fileID: 4965647284618370630, guid: da039dba5d812bf468d5e7778df6be1d, type: 3}
+  ShootPos: {fileID: -951525522345666077}
+  ShootPos_Sub: {fileID: -1340551003336505282}
+  Body: {fileID: 1381922710922930513}
+  onKeyItems: []
   LeftClickAnim_Sub: Commando_Fire_Right
   ShiftAnim_Sub: Commando_Jump
 --- !u!1 &4910092181444338419

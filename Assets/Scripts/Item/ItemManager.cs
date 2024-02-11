@@ -1,9 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ItemManager : MonoBehaviour
 {
+    public static ItemManager instance = null;
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(this);
+    }
+
     [SerializeField]
     ItemBase[] ActiveItems;
     [SerializeField]
@@ -21,6 +32,9 @@ public class ItemManager : MonoBehaviour
 
     PlayerStat pStat;
 
+    [SerializeField]
+    Canvas ItemSelect;
+
     private void Start()
     {
         pStat = PlayerStat.instance;
@@ -37,44 +51,67 @@ public class ItemManager : MonoBehaviour
             Debug.Log("Level Up");
             pStat.Pexp -= levelexp;
             pStat.Plevel++;
-            Time.timeScale = 0;
-            LevelCanvas.SetActive(true);
+            Instantiate(ItemSelect, new Vector3(0, 0, 0), Quaternion.identity);
         }
     }
 
-    private void selectItem(int num, bool isActive)
+    public ItemBase checkInstantiate(int num, bool isActive, GameObject Target)
     {
-        if (isActive)
+        ItemBase temp;
+        if(isActive)
         {
-            ItemBase item = PlayerActive.Find(x => x.num != num);
+            temp = PlayerActive.Find(x => x.num == num);
 
-            if (item == null)
-            {
-                PlayerActive.Add(ActiveItems[num]);
-            }
+            if (temp == null)
+                return Instantiate(ActiveItems[num], Target.transform);
             else
-            {
-                item.level++;
-            }
-
-            if(item.level == item.maxlevel)
-                if(PlayerPassive.Find(x=>x.synergeNum == num))
-                {
-                    PlayerActive.Remove(item);
-                    PlayerActive.Add(UpgradeItems[num]);
-                }
+                return temp;
         }
         else
         {
-            ItemBase item = PlayerPassive.Find(x => x.num != num);
-            if (item == null)
+            temp = PlayerPassive.Find(x => x.num == num);
+
+            if (temp == null)
+                return Instantiate(PassiveItems[num], Target.transform);
+            else
+                return temp;
+        }
+    }
+
+    public void selectItem(ItemBase Item)
+    {
+        if(Item.isActive)
+        {
+            ItemBase pItem = PlayerActive.Find(x => x.num == Item.num);
+            if (pItem == null)
             {
-                PlayerPassive.Add(PassiveItems[num]);
+                pItem = Instantiate(Item,this.transform);
+                PlayerActive.Add(pItem);
+                pItem.getItem();
             }
             else
             {
-                item.level++;
+                pItem.getItem();
+
+                if(pItem.level == pItem.maxlevel)
+                {
+                    PlayerActive.Remove(pItem);
+                    PlayerActive.Add(UpgradeItems[Item.num]);
+                    UpgradeItems[Item.num].getItem();
+                }
             }
+        }
+        else
+        {
+            ItemBase pItem = PlayerPassive.Find(x => x.num == Item.num);
+            if(pItem == null)
+            {
+                pItem = Instantiate(Item,this.transform);
+                PlayerPassive.Add(pItem);
+                pItem.getItem();
+            }
+            else
+                pItem.getItem();
         }
     }
 }

@@ -21,44 +21,64 @@ public class ContentsRightPanel : MonoBehaviour
         {
             switch (gameManagerInstance.itemIndices[i])
             {
-                case "Dmg":
+                case 0:
                     itemSpriteHolder[i].sprite = ItemSprites[0];
                     itemSpriteHolder[i].color = Color.white;
                     break;
-                case "AttSpd":
+                case 1:
                     itemSpriteHolder[i].sprite = ItemSprites[1];
                     itemSpriteHolder[i].color = Color.white;
                     break;
-                case "Cridmg":
+                case 2:
                     itemSpriteHolder[i].sprite = ItemSprites[2];
                     itemSpriteHolder[i].color = Color.white;
                     break;
-                case "Cri":
+                case 3:
                     itemSpriteHolder[i].sprite = ItemSprites[3];
                     itemSpriteHolder[i].color = Color.white;
                     break;
-                case "JumpCount":
+                case 4:
                     itemSpriteHolder[i].sprite = ItemSprites[4];
                     itemSpriteHolder[i].color = Color.white;
                     break;
-                case "HPregen":
+                case 5:
                     itemSpriteHolder[i].sprite = ItemSprites[5];
                     itemSpriteHolder[i].color = Color.white;
                     break;
-                case "Jump":
+                case 6:
                     itemSpriteHolder[i].sprite = ItemSprites[6];
                     itemSpriteHolder[i].color = Color.white;
                     break;
-                case "MaxHP":
+                case 7:
                     itemSpriteHolder[i].sprite = ItemSprites[7];
                     itemSpriteHolder[i].color = Color.white;
                     break;
-                case "Speed":
+                case 8:
                     itemSpriteHolder[i].sprite = ItemSprites[8];
                     itemSpriteHolder[i].color = Color.white;
                     break;
-                case "Barrier":
+                case 9:
                     itemSpriteHolder[i].sprite = ItemSprites[9];
+                    itemSpriteHolder[i].color = Color.white;
+                    break;
+                case 10:
+                    itemSpriteHolder[i].sprite = ItemSprites[10];
+                    itemSpriteHolder[i].color = Color.white;
+                    break;
+                case 11:
+                    itemSpriteHolder[i].sprite = ItemSprites[11];
+                    itemSpriteHolder[i].color = Color.white;
+                    break;
+                case 12:
+                    itemSpriteHolder[i].sprite = ItemSprites[12];
+                    itemSpriteHolder[i].color = Color.white;
+                    break;
+                case 13:
+                    itemSpriteHolder[i].sprite = ItemSprites[13];
+                    itemSpriteHolder[i].color = Color.white;
+                    break;
+                case 14:
+                    itemSpriteHolder[i].sprite = ItemSprites[14];
                     itemSpriteHolder[i].color = Color.white;
                     break;
             }

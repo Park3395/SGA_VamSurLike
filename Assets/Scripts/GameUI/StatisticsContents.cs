@@ -56,11 +56,15 @@ public class StatisticsContents : MonoBehaviour
         itemAmountNumber.text = gameManagerInstance.itemIndices.Count.ToString();
         itemAmountScore.text = (gameManagerInstance.itemIndices.Count*110).ToString();
 
-        //damageScore.text;
-        //damagedScore.text;
+        damageNumber.text = gameManagerInstance.totalDamage.ToString();
+        damageScore.text= (gameManagerInstance.totalDamage/10).ToString();
+
+        damagedNumber.text = gameManagerInstance.totalDamaged.ToString();
+        damagedScore.text = gameManagerInstance.totalDamaged.ToString();
 
         totalScore.text = (totalSeconds * 6 + getwave * 100 + killAmount * 10
-            + gameManagerInstance.itemIndices.Count * 110).ToString();
+            + gameManagerInstance.itemIndices.Count * 110+ gameManagerInstance.totalDamage / 10
+            + gameManagerInstance.totalDamaged).ToString();
 
     }
 

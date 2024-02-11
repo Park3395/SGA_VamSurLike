@@ -1,32 +1,42 @@
 패시브 아이템
-Hp,  방어막, HP리젠, 데미지, 공격속도, 크리확률, 크리뎀지,    이속, 		점프력, 		점프횟수
-+20  +40       +1       +10      +0.1     +0.15   +20%(0.2)    15에서+3        0.3에서+0.03  	  +1
+Hp,  방어막, HP리젠, 데미지, 공격속도, 크리확률, 크리뎀지,  이속,     점프력,     점프횟수
++20  +40      +1      +10      +0.1      +0.15   +20%(0.2) 15에서+3  0.3에서+0.03   +1
 
-조합 아이템?,
-얻으면 스킬생기는 아이템
-1. 일정범위에 공격력 비례데미지
-2. 체력회복이나 때리면 피흡
-3. 다른 공격스킬
---------------------------------------------
-1분에 1웨이브
-웨이브수 4
-몬스터수 5,10,15,15
-4마리잡으면 레벨업
-총 45마리 렙업12번 아이템12개
 
-스폰위치 - 고정 위치여러개 
-비활성화했다가 웨이브에따라 활성화풀기
-->몹 pool // 나중에
+아이템 먹은거만 뜨게-패시브3개 액티브3개
+셀렉티드 버튼 리스트나 배열 셀렉티드 리스트 3개있으면-거기서뽑기 아니면- 원래
 
-//회복아이템
 
-플레이어 ui - 체력, 현재 웨이브, 경과시간, 얻은 아이템
+플레이어 ui 처음에 active false
 
-플레이어 없어지면 몬스터들 진동
-보스도 setactive false로
+액티브스킬
 
-점수 -가한데미지 받은데미지
+총알이 잘안맞음
 
-아이템고를때 점프하면 계속점프됨
+A0_RapidShoot(Clone)	syringe 	0
+A1_Missile(Clone)		behemoth 	1
+A2_Slash(Clone)		dagger	2
+A3_AttachBomb(Clone)	stickybomb	3	
+A4_DeathExplosion(Clone)texasdf	4
+P0_AddAtkSpd(Clone)	attackspeed	5
+P1_AddDmg(Clone)	attackpower	6
+P2_AddJump(Clone)	jumpPower	7
+P3_AddBarrier(Clone)	shield		8	
+P4_AddHp(Clone)		maxhp	9
+U0_MachineGun(Clone)	goldgat	10
+U1_Homming Missile(Clone)misslieRack11
+U2_RoundImpect(Clone)	sawmerang	12
+U3_GreatBomb(Clone)	icbm		13
+U4_Ignite(Clone)		parentegg	14
 
-얻은아이템이랑 웨이브수 시간
+
+
+
+
+
+
+
+
+
+
+

@@ -6,7 +6,9 @@ public class P_Item_AddAtkspd : ItemBase
 {
     private void Awake()
     {
+        this.itemname = "AddAtkSpd";
         this.num = 0;
+        this.index = 5;
         this.level = 0;
         this.maxlevel = 9;
         this.synergeNum = 0;
@@ -15,6 +17,7 @@ public class P_Item_AddAtkspd : ItemBase
 
     public override void getItem()
     {
+        base.getItem();
         PlayerStat.instance.AttSpd -= 0.05f;
     }
 }

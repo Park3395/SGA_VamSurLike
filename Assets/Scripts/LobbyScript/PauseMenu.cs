@@ -44,7 +44,7 @@ public class PauseMenu : MonoBehaviour
         gamePaused = true;
         pauseMenu.gameObject.SetActive(true);
         halfDarkPanel.gameObject.SetActive(true);
-        Time.timeScale = 0.0f;
+        Time.timeScale = 0.01f;
         
 
     }
