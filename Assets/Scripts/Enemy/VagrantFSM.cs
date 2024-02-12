@@ -52,6 +52,12 @@ public class VagrantFSM : MonoBehaviour, IHitEnemy
     public Canvas alarmCanvas;
     private GameManager gameManagerInstance;
 
+    // sound effect
+    public AudioSource orbSpawnSound;
+    public AudioSource orbShootSound;
+    public AudioSource damagedSound;
+    public AudioSource dieSound;
+
     private void Start()
     {
         e_State = VagrantState.Spawn;
@@ -154,11 +160,13 @@ public class VagrantFSM : MonoBehaviour, IHitEnemy
     {
         for (int i = 0; i < 6; i++)
         {
+            orbSpawnSound.Play();
             missileLaunch.transform.forward = player.transform.position;
             Debug.Log("ShootOrbs");
             GameObject Orb = Instantiate(OrbFactory);
             Orb.transform.position = missileLaunch.position;
             yield return new WaitForSeconds(duration);
+            orbShootSound.Play();
             Rigidbody rb = Orb.GetComponent<Rigidbody>();
             Vector3 playerPos = player.transform.position;
             Vector3 OrbPos = Orb.transform.position;
@@ -226,6 +234,7 @@ public class VagrantFSM : MonoBehaviour, IHitEnemy
     // 피격 상태 처리용 코루틴
     IEnumerator DamageProcess()
     {
+        damagedSound.Play();
         // 피격 애니메이션 재생 시간만큼 기다린다
         yield return new WaitForSeconds(1.0f);
 
@@ -252,6 +261,7 @@ public class VagrantFSM : MonoBehaviour, IHitEnemy
     // 사망 상태 처리용 코루틴
     IEnumerator DieProcess()
     {
+        dieSound.Play();
         // 1초 동안 기다린 이후 자기자신을 제거한다
         yield return new WaitForSeconds(1.0f);
         print("소멸!");
