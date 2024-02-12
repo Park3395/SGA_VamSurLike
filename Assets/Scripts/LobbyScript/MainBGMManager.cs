@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public enum BGMType { stage = 0, Boss }
+
 public class MainBGMManager : MonoBehaviour
 {
-    private static MainBGMManager instance; //ΩÃ±€≈Ê ∆–≈œ
-    public AudioSource bgmSound;
+    public static MainBGMManager instance; //ΩÃ±€≈Ê ∆–≈œ
+    [SerializeField]
     public AudioClip[] bgmList;
-    public GameObject boss;
+    public AudioSource bgmSound;
+   
 
     void Awake()
     {
-        boss = GameObject.FindGameObjectWithTag("Boss");
-
-
         if (instance == null)
         {
             instance = this;
@@ -22,30 +22,25 @@ public class MainBGMManager : MonoBehaviour
         }
         DontDestroyOnLoad(this.gameObject);
     }
-    
-    void Update()
-    {
-        if (boss.gameObject.activeSelf == false)
-        {
-            bgmSound.clip = bgmList[0];
-            bgmSound.Play();
-        }
 
-        else if (boss.gameObject.activeSelf == true)
-        {
-            bgmSound.clip = bgmList[1];
-            bgmSound.Play();
-        }
-
-        
-        
-    }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if(scene.name == "Start")
+        if (scene.name == "Start")
         {
             Destroy(this.gameObject);
         }
     }
+
+    public void ChangetoBossBGM(BGMType index)
+    {
+        bgmSound.Stop();
+        bgmSound.clip = bgmList[1];
+        bgmSound.Play();
+    }
+
+
+
+
+
 }
