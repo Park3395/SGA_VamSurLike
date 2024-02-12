@@ -75,6 +75,7 @@ public class BeetleFSM : MonoBehaviour, IHitEnemy
         if (GameObject.FindGameObjectWithTag("Player") == null)
         {
             anim.enabled = false;
+            agent.isStopped = true;
         }
 
         // 현재 상태를 검사하고 상태별로 정해진 기능을 수행한다
@@ -154,7 +155,6 @@ public class BeetleFSM : MonoBehaviour, IHitEnemy
     // 공격 상태
     void Attack()
     {
-        //Debug.Log("Attack");
         // 플레이어가 공격 범위 내라면 공격을 시작한다
         if (Vector3.Distance(transform.position, player.position) <= attackDistance)
         {

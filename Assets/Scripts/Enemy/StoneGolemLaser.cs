@@ -4,27 +4,28 @@ using UnityEngine;
 
 public class StoneGolemLaser : MonoBehaviour
 {
-    public Transform laserOrigin;
-    public float laserRange = 50f;
-    public float laserDuration = 0.05f;
-    public float laserDamage = 10;
+    PlayerStat pStat;
+    StoneGolemFSM efsm;
+    GameObject golem;
 
-    LineRenderer laserLine;
-    GameObject player;
-    StoneGolemFSM fsm;
-
-    private void Awake()
+    private void Start()
     {
-        laserLine = GetComponent<LineRenderer>();
-        player = GameObject.FindGameObjectWithTag("Player");
-        fsm = (StoneGolemFSM)GetComponent<StoneGolemFSM>();
+        pStat = PlayerStat.instance;
+        golem = GameObject.FindGameObjectWithTag("StoneGolem");
+        efsm = golem.GetComponent<StoneGolemFSM>();
     }
 
-    private void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        //if (fsm.skillDelay < 0.0f)
-        //{
+        if (other.gameObject.layer == 6)
+        {
+            Debug.Log("파이어볼 충돌");
+            pStat.NowHP -= efsm.attackPower;
+            Destroy(gameObject);
+        }
 
-        //}
+        // 충돌체의 레이어가 Ground라면 오브젝트 삭제
+        if (other.gameObject.layer == 8)
+            Destroy(gameObject);
     }
 }

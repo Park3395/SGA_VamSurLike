@@ -2206,7 +2206,7 @@ GameObject:
   - component: {fileID: 4997018282300758207}
   m_Layer: 0
   m_Name: Hurtbox (Face)
-  m_TagString: Untagged
+  m_TagString: HurtBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2220,7 +2220,7 @@ Transform:
   m_GameObject: {fileID: 7166024230079236849}
   serializedVersion: 2
   m_LocalRotation: {x: 0.22669166, y: -1.4210852e-14, z: -9.947597e-14, w: 0.9739666}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.209, z: -0.424}
   m_LocalScale: {x: 1, y: 1.0000004, z: 1.0000007}
   m_ConstrainProportionsScale: 0
   m_Children: []

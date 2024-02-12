@@ -587,6 +587,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4944920114250903031, guid: 40730127b06fad548b9dfc691e91511e, type: 3}
+      propertyPath: m_TagString
+      value: HurtBox
+      objectReference: {fileID: 0}
     - target: {fileID: -4906437426027004660, guid: 40730127b06fad548b9dfc691e91511e, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -790,6 +794,18 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 40730127b06fad548b9dfc691e91511e, type: 3}
       propertyPath: m_TagString
       value: StoneGolem
+      objectReference: {fileID: 0}
+    - target: {fileID: 1194958522960113857, guid: 40730127b06fad548b9dfc691e91511e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1194958522960113857, guid: 40730127b06fad548b9dfc691e91511e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.709
+      objectReference: {fileID: 0}
+    - target: {fileID: 1194958522960113857, guid: 40730127b06fad548b9dfc691e91511e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1243017521952085670, guid: 40730127b06fad548b9dfc691e91511e, type: 3}
       propertyPath: m_Layer
@@ -1229,6 +1245,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 40730127b06fad548b9dfc691e91511e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3131050985233743191}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 40730127b06fad548b9dfc691e91511e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4569202497554222966}
     - targetCorrespondingSourceObject: {fileID: -167898499748451524, guid: 40730127b06fad548b9dfc691e91511e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4013893951284409716}
@@ -1268,9 +1287,6 @@ MonoBehaviour:
   laserOrigin: {fileID: 1655618923671270837}
   aimDuration: 3
   laserRange: 50
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 64
   laserFactory: {fileID: 287976341882553389, guid: c148b3f005da2554b9002e31c61e9342, type: 3}
   laserSpeed: 10
 --- !u!195 &1878837008558291748
@@ -1369,6 +1385,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ClapZone: {fileID: 429804792482721317}
+--- !u!65 &4569202497554222966
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 122678945427026360}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.8444319, y: 1.3385949, z: 1.8250524}
+  m_Center: {x: 0.029927254, y: 6.0142546, z: 0.4125262}
 --- !u!1 &429804792482721317 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8609678357796969780, guid: 40730127b06fad548b9dfc691e91511e, type: 3}

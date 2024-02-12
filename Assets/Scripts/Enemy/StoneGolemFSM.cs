@@ -40,8 +40,6 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
     LineRenderer laserLine;
     public float aimDuration = 3.0f;
     public float laserRange = 50.0f;
-    // 레이저에 닿는 플레이어 레이어
-    public LayerMask playerLayer;
     // 조준 후 마지막 플레이어 위치
     bool isAiming;
     public GameObject laserFactory;
@@ -107,6 +105,7 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
         if ( GameObject.FindGameObjectWithTag("Player") == null)
         {
             anim.enabled = false;
+            agent.isStopped = true;
         }
 
         // 현재 상태를 검사하고 상태별로 정해진 기능을 수행한다
@@ -259,7 +258,7 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
         StartCoroutine(ActivateLaser());
     }
 
-    // 레이저 스킬 // 벽을 통과하지 않게 수정중.
+    // 레이저 스킬 //
     IEnumerator ActivateLaser()
     {
         if (enumerCount == 0)
@@ -276,6 +275,7 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
             Rigidbody rb = laser.GetComponent<Rigidbody>();
             Vector3 playerPos = player.transform.position;
             Vector3 laserPos = laser.transform.position;
+            laser.transform.forward = playerPos;
             rb.AddForce((playerPos - laserPos).normalized * laserSpeed, ForceMode.Impulse);
 
             // enum 상태를 Run으로 전환

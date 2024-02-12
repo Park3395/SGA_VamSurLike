@@ -21,7 +21,6 @@ public class OrbAction : MonoBehaviour
     {
         if (other.gameObject.name == "Player")
         {
-            Debug.Log("Collision with Player");
             // 닿았을 때 플레이어의 hp 감소
             pStat.NowHP -= eFSM.attackPower;
             Destroy(gameObject);
