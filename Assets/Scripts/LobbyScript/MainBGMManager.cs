@@ -28,7 +28,7 @@ public class MainBGMManager : MonoBehaviour
     {
         if (scene.name == "StartScene")
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 

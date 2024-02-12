@@ -32,7 +32,7 @@ public class BGMManager : MonoBehaviour
         {
             AudioListener.volume = 0.5f; //오디오 볼륨 조절
         }
-        else if(scene.name == "StartScene")
+        if(scene.name == "StartScene")
         {
             AudioListener.volume = 1.0f;
         }
