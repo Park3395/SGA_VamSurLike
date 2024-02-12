@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Slash : MonoBehaviour
 {
-    float duration = 1.0f;
+    float duration = 0.5f;
 
     private void Update()
     {

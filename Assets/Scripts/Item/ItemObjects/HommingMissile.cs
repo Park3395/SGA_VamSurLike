@@ -53,18 +53,13 @@ public class HommingMissile : MonoBehaviour
     {
         this.transform.GetChild(0).GetComponent<SphereCollider>().enabled = true;
 
-        //    if (other.gameObject.layer == 9)
-        //    {
-        //        other.gameObject.GetComponent<IHitEnemy>().HitEnemy(dmg);
-        //        gameManagerInstance = FindObjectOfType<GameManager>();
-        //        gameManagerInstance.totalDamage += (int)dmg;
-        //        // 데미지 팝업 띄울 위치 변경중.
-        //        Damage_PopUp_Generator.current.CreatePopUp(other.gameObject.transform.position, dmg.ToString());
-        //        Destroy(this.gameObject);
-        //    }
-        //    else
-        //        Destroy(this.gameObject);
+        StartCoroutine(WaitChild());
 
         Destroy(this.gameObject);
+    }
+
+    IEnumerator WaitChild()
+    {
+        yield return new WaitUntil(() => this.transform.GetChild(0) == null);
     }
 }

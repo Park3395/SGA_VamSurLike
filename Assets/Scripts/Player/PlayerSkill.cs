@@ -23,23 +23,23 @@ public class PlayerSkill : MonoBehaviour
     #region SkillDelay
     // ½ºÅ³ ÄðÅ¸ÀÓ
     [SerializeField]
-    protected float LeftSkillDelay;
-    float nowLCSTime = 0f;
+    public float LeftSkillDelay;
+    public float nowLCSTime = 0f;
     [SerializeField]
-    protected float ShiftSkillDelay;
-    float nowSSTime = 0f;
+    public float ShiftSkillDelay;
+    public float nowSSTime = 0f;
     [SerializeField]
-    protected float RightSkillDelay;
-    float nowRCSTime = 0f;
+    public float RightSkillDelay;
+    public  float nowRCSTime = 0f;
     [SerializeField]
-    protected float EButtonDelay;
-    float nowESTime = 0f;
+    public float EButtonDelay;
+    public float nowESTime = 0f;
     [SerializeField]
-    protected float RButtonDelay;
-    float nowRSTime = 0f;
+    public float RButtonDelay;
+    public float nowRSTime = 0f;
     [SerializeField]
-    protected float QButtonDelay;
-    float nowQSTime = 0f;
+    public float QButtonDelay;
+    public float nowQSTime = 0f;
     #endregion
 
     public GameObject basicBullet;

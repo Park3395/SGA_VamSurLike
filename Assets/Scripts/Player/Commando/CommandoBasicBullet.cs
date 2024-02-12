@@ -8,16 +8,9 @@ public class BasicBullet : MonoBehaviour
     float speed = 180f;
     float nowt = 0f;
     float maxt = 2f;
-    PlayerStat stat;
-    float dmg;
-
-    private GameManager gameManagerInstance;
 
     private void Awake()
     {
-        stat = PlayerStat.instance;
-        dmg = stat.Dmg;
-
         #region shootforce
 
         RaycastHit hit;
@@ -48,18 +41,5 @@ public class BasicBullet : MonoBehaviour
         else
             Destroy(this.gameObject);
         this.transform.Translate(force*speed*Time.deltaTime);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.layer == 9)
-        {
-            other.gameObject.GetComponent<IHitEnemy>().HitEnemy(dmg);
-            gameManagerInstance = FindObjectOfType<GameManager>();
-            gameManagerInstance.totalDamage += (int)dmg;
-            Destroy(this.gameObject);
-        }
-        else
-            Destroy(this.gameObject);
     }
 }

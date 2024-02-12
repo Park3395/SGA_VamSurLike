@@ -5,19 +5,12 @@ using UnityEngine;
 public class Missile : MonoBehaviour
 {
     Vector3 force;
-    float speed = 180f;
+    float speed = 10f;
     float nowt = 0f;
     float maxt = 2f;
-    PlayerStat stat;
-    float dmg;
-
-    private GameManager gameManagerInstance;
 
     private void Awake()
     {
-        stat = PlayerStat.instance;
-        dmg = stat.Dmg;
-
         #region shootforce
 
         RaycastHit hit;
@@ -47,6 +40,7 @@ public class Missile : MonoBehaviour
             nowt += Time.deltaTime;
         else
             Destroy(this.gameObject);
+
         this.transform.Translate(force * speed * Time.deltaTime);
     }
 
@@ -54,18 +48,13 @@ public class Missile : MonoBehaviour
     {
         this.transform.GetChild(0).GetComponent<SphereCollider>().enabled = true;
 
-        //    if (other.gameObject.layer == 9)
-        //    {
-        //        other.gameObject.GetComponent<IHitEnemy>().HitEnemy(dmg);
-        //        gameManagerInstance = FindObjectOfType<GameManager>();
-        //        gameManagerInstance.totalDamage += (int)dmg;
-        //        // 데미지 팝업 띄울 위치 변경중.
-        //        Damage_PopUp_Generator.current.CreatePopUp(other.gameObject.transform.position, dmg.ToString());
-        //        Destroy(this.gameObject);
-        //    }
-        //    else
-        //        Destroy(this.gameObject);
+        StartCoroutine(WaitChild());
 
         Destroy(this.gameObject);
+    }
+
+    IEnumerator WaitChild()
+    {
+        yield return new WaitUntil(() => this.transform.GetChild(0) == null);
     }
 }

@@ -9,7 +9,6 @@ public class CommandoDamagePopUp : MonoBehaviour
     GameObject hurtBox;
     Transform popUpPos;
 
-    // Start is called before the first frame update
     void Start()
     { 
         pStat = PlayerStat.instance;
@@ -17,14 +16,10 @@ public class CommandoDamagePopUp : MonoBehaviour
         hurtBox = GameObject.FindGameObjectWithTag("HurtBox");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
     private void OnTriggerEnter(Collider other)
     {
+        if(other.gameObject.layer == 9)
         // 데미지 팝업 띄울 위치 변경중.
-        Damage_PopUp_Generator.current.CreatePopUp(hurtBox.transform.position, dmg.ToString());
+            Damage_PopUp_Generator.current.CreatePopUp(hurtBox.transform.position, dmg.ToString());
     }
 }

@@ -9,6 +9,7 @@ TagManager:
   - StoneGolem
   - Boss
   - HurtBox
+  - Bullet
   layers:
   - Default
   - TransparentFX
