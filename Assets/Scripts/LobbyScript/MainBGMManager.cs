@@ -26,7 +26,7 @@ public class MainBGMManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "Start")
+        if (scene.name == "StartScene")
         {
             Destroy(this.gameObject);
         }
