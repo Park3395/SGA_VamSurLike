@@ -43,6 +43,10 @@ public class BeetleFSM : MonoBehaviour, IHitEnemy
     // 내비게이션 메쉬 컴포넌트
     NavMeshAgent agent;
 
+    // sound effect
+    public AudioSource damagedSound;
+    public AudioSource dieSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -219,6 +223,7 @@ public class BeetleFSM : MonoBehaviour, IHitEnemy
     // 피격 상태 처리용 코루틴
     IEnumerator DamageProcess()
     {
+        damagedSound.Play();
         // 피격 애니메이션 재생 시간만큼 기다린다
         yield return new WaitForSeconds(1.0f);
 
@@ -241,6 +246,7 @@ public class BeetleFSM : MonoBehaviour, IHitEnemy
     IEnumerator DieProcess()
     {
         anim.Play("Death");
+        dieSound.Play();
         // 2초 동안 기다린 이후 자기자신을 제거한다
         yield return new WaitForSeconds(2.0f);
         print("소멸!");

@@ -58,6 +58,13 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
 
     int enumerCount = 0;
 
+    // sound effect
+    //public AudioSource spawnSound;
+    public AudioSource laserSound;
+    public AudioSource fireSound;
+    public AudioSource damagedSound;
+    public AudioSource dieSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -138,6 +145,7 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
     // 스폰 상태
     void Spawn()
     {
+        //spawnSound.Play();
         agent.isStopped = true;
         // StoneGolem이 플레이어를 바라보도록 설정
         transform.forward = player.position;
@@ -237,8 +245,10 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
     void Skill()
     {
         agent.isStopped = true;
+        transform.forward = player.transform.position;
         // Laser animation 재생
         anim.Play("LaserAiming");
+        laserSound.Play();
         if (isAiming)
         {
             // 레이저의 시작 위치 골렘의 눈 laserOrigin
@@ -266,6 +276,7 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
             enumerCount = 1;
             laserLine.enabled = true;
             yield return new WaitForSeconds(aimDuration);
+            fireSound.Play();
             laserLine.enabled = false;
             isAiming = false;
             anim.SetTrigger("LaserAttack");
@@ -299,6 +310,7 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
     IEnumerator DamageProcess()
     {
         // 피격 애니메이션 재생 시간만큼 기다린다
+        damagedSound.Play();
         yield return new WaitForSeconds(1.0f);
 
         // 현재 상태를 이동으로 전환한다
@@ -307,7 +319,6 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
 
     void Die()
     {
-
         isDie = true;
         // 진행 중인 피격 코루틴 함수를 중지한다
         StopAllCoroutines();
@@ -320,7 +331,7 @@ public class StoneGolemFSM : MonoBehaviour, IHitEnemy
     IEnumerator DieProcess()
     {
         anim.Play("Death");
-
+        dieSound.Play();
         // 2초 동안 기다린 이후 자기자신을 제거한다
         yield return new WaitForSeconds(2.0f);
         print("소멸!");

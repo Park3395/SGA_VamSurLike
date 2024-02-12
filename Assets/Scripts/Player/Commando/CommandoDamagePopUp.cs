@@ -20,12 +20,11 @@ public class CommandoDamagePopUp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        popUpPos = hurtBox.transform;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         // 데미지 팝업 띄울 위치 변경중.
-        Damage_PopUp_Generator.current.CreatePopUp(popUpPos.position, dmg.ToString());
+        Damage_PopUp_Generator.current.CreatePopUp(hurtBox.transform.position, dmg.ToString());
     }
 }

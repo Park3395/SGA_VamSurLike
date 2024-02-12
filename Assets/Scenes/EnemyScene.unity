@@ -317,11 +317,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 122678945427026360, guid: ce19557f0cdf0604980642f38b2038ef, type: 3}
       propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 122678945427026360, guid: ce19557f0cdf0604980642f38b2038ef, type: 3}
-      propertyPath: m_TagString
-      value: StoneGolem
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 790389934923492098, guid: ce19557f0cdf0604980642f38b2038ef, type: 3}
       propertyPath: m_LocalPosition.x
@@ -365,28 +361,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6346791739977636698, guid: ce19557f0cdf0604980642f38b2038ef, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6346791739977636698, guid: ce19557f0cdf0604980642f38b2038ef, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6346791739977636698, guid: ce19557f0cdf0604980642f38b2038ef, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.311
       objectReference: {fileID: 0}
     - target: {fileID: 6553505168473457217, guid: ce19557f0cdf0604980642f38b2038ef, type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 1916212271}
     - target: {fileID: 9210174027352298764, guid: ce19557f0cdf0604980642f38b2038ef, type: 3}
-      propertyPath: laserSpeed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 9210174027352298764, guid: ce19557f0cdf0604980642f38b2038ef, type: 3}
-      propertyPath: laserFactory
+      propertyPath: dieSound
       value: 
-      objectReference: {fileID: 287976341882553389, guid: c148b3f005da2554b9002e31c61e9342, type: 3}
+      objectReference: {fileID: 2018138935}
+    - target: {fileID: 9210174027352298764, guid: ce19557f0cdf0604980642f38b2038ef, type: 3}
+      propertyPath: fireSound
+      value: 
+      objectReference: {fileID: 2018138937}
+    - target: {fileID: 9210174027352298764, guid: ce19557f0cdf0604980642f38b2038ef, type: 3}
+      propertyPath: laserSound
+      value: 
+      objectReference: {fileID: 2018138938}
+    - target: {fileID: 9210174027352298764, guid: ce19557f0cdf0604980642f38b2038ef, type: 3}
+      propertyPath: damagedSound
+      value: 
+      objectReference: {fileID: 2018138936}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -640,7 +644,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3414617439616440431, guid: 8b89fbd7321decf4884904f195bab0f2, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 9999
       objectReference: {fileID: 0}
     - target: {fileID: 3414617439616440431, guid: 8b89fbd7321decf4884904f195bab0f2, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -665,6 +669,10 @@ PrefabInstance:
     - target: {fileID: 5340058171615990643, guid: 8b89fbd7321decf4884904f195bab0f2, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6605026034031265891, guid: 8b89fbd7321decf4884904f195bab0f2, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8414837051031212300, guid: 8b89fbd7321decf4884904f195bab0f2, type: 3}
       propertyPath: m_FontData.m_MinSize
@@ -694,15 +702,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 184014172843024960, guid: 3bbdc5601fa193e42ae151b529e87dd9, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 184014172843024960, guid: 3bbdc5601fa193e42ae151b529e87dd9, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 184014172843024960, guid: 3bbdc5601fa193e42ae151b529e87dd9, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.393
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1405826821845735269, guid: 3bbdc5601fa193e42ae151b529e87dd9, type: 3}
       propertyPath: m_IsKinematic
@@ -758,7 +766,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5740748137308506774, guid: 3bbdc5601fa193e42ae151b529e87dd9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7364392751124377169, guid: 3bbdc5601fa193e42ae151b529e87dd9, type: 3}
       propertyPath: m_Speed
@@ -769,6 +777,26 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3bbdc5601fa193e42ae151b529e87dd9, type: 3}
+--- !u!82 &2018138935 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1358204288517764193, guid: ce19557f0cdf0604980642f38b2038ef, type: 3}
+  m_PrefabInstance: {fileID: 787903199}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &2018138936 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7039119849947568619, guid: ce19557f0cdf0604980642f38b2038ef, type: 3}
+  m_PrefabInstance: {fileID: 787903199}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &2018138937 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3587431547703059556, guid: ce19557f0cdf0604980642f38b2038ef, type: 3}
+  m_PrefabInstance: {fileID: 787903199}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &2018138938 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1217138062895768631, guid: ce19557f0cdf0604980642f38b2038ef, type: 3}
+  m_PrefabInstance: {fileID: 787903199}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2134572152
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7539,6 +7567,10 @@ MonoBehaviour:
   laserRange: 50
   laserFactory: {fileID: 287976341882553389, guid: c148b3f005da2554b9002e31c61e9342, type: 3}
   laserSpeed: 10
+  laserSound: {fileID: 0}
+  fireSound: {fileID: 0}
+  damagedSound: {fileID: 0}
+  dieSound: {fileID: 0}
 --- !u!1 &7461850692033123147
 GameObject:
   m_ObjectHideFlags: 0

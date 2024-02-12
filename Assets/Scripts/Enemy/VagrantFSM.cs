@@ -252,10 +252,11 @@ public class VagrantFSM : MonoBehaviour, IHitEnemy
     // 사망 상태 처리용 코루틴
     IEnumerator DieProcess()
     {
-        // 2초 동안 기다린 이후 자기자신을 제거한다
-        yield return new WaitForSeconds(2.0f);
+        // 1초 동안 기다린 이후 자기자신을 제거한다
+        yield return new WaitForSeconds(1.0f);
         print("소멸!");
         BossUI.SetActive(false);
+        Time.timeScale = 0.01f;
         Destroy(gameObject);
     }
 
