@@ -57,8 +57,6 @@ public class BasicBullet : MonoBehaviour
             other.gameObject.GetComponent<IHitEnemy>().HitEnemy(dmg);
             gameManagerInstance = FindObjectOfType<GameManager>();
             gameManagerInstance.totalDamage += (int)dmg;
-            // 데미지 팝업 띄울 위치 변경중.
-            Damage_PopUp_Generator.current.CreatePopUp(other.gameObject.transform.position, dmg.ToString());
             Destroy(this.gameObject);
         }
         else
