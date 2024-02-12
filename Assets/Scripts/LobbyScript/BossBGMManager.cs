@@ -4,14 +4,6 @@ using UnityEngine;
 
 public class BossBGMManager : MonoBehaviour
 {
-    /*public AudioSource BgmSound;
-    public AudioClip[] BgmList;
-    void Update()
-    {
-        BgmSound = MainBGMManager.instance.bgmSound;
-        BgmList = MainBGMManager.instance.bgmList;
-        
-    }*/
     private void OnEnable()
     {
         MainBGMManager.instance.bgmSound.Stop();
