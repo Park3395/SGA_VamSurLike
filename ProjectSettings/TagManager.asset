@@ -7,7 +7,7 @@ TagManager:
   - Model
   - LaserPos
   - StoneGolem
-  - HurtBox
+  - Boss
   layers:
   - Default
   - TransparentFX

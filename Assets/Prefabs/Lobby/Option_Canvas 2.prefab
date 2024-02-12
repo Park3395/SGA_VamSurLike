@@ -964,6 +964,7 @@ GameObject:
   - component: {fileID: 4337150808037711554}
   - component: {fileID: 4337150808037895182}
   - component: {fileID: 4337150808058159498}
+  - component: {fileID: 388140970164403986}
   m_Layer: 5
   m_Name: Volume_Slider
   m_TagString: Untagged
@@ -1050,7 +1051,33 @@ MonoBehaviour:
   m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 388140970164403986}
+        m_TargetAssemblyTypeName: LobbyAudioMixer, Assembly-CSharp
+        m_MethodName: SetLevel
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &388140970164403986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4337150808051586146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6121a12966707444b90744c78c88dc10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixer: {fileID: 24100000, guid: b7da667cda1ce4a4fb0c93df8588a416, type: 2}
+  slider: {fileID: 4337150808058159498}
 --- !u!1 &4337150808051586152
 GameObject:
   m_ObjectHideFlags: 0
