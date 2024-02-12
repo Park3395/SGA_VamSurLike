@@ -16870,6 +16870,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 981173820541574061, guid: 24c3549853311ed4c96856954580ceca, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1363272665214979367, guid: 24c3549853311ed4c96856954580ceca, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1701933622408896863, guid: 24c3549853311ed4c96856954580ceca, type: 3}
       propertyPath: m_Name
       value: Text_LevelNum
@@ -16958,6 +16966,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4394525091056659925, guid: 24c3549853311ed4c96856954580ceca, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4744506895617392212, guid: 24c3549853311ed4c96856954580ceca, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -16971,6 +16983,10 @@ PrefabInstance:
       value: PlayerHpandSkillCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 5105083087474313041, guid: 24c3549853311ed4c96856954580ceca, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9122267918299981428, guid: 24c3549853311ed4c96856954580ceca, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
